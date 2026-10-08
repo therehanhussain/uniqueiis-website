@@ -2,13 +2,29 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe, MapPin, Radio, Shield, CheckCircle, ArrowRight, Check } from "lucide-react";
+import { Globe, MapPin, Radio, Shield, CheckCircle, ArrowRight, Check, Box, FileText } from "lucide-react";
 import { GLOBAL_NETWORK, WORLDWIDE_NETWORK_COUNTRIES, NetworkHub } from "@/lib/data";
+
+const GlobalGlobe3D = dynamic(() => import("./three/GlobalGlobe3D"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[400px] sm:h-[480px] lg:h-[540px] flex items-center justify-center">
+      <div className="flex flex-col items-center gap-2">
+        <div className="w-8 h-8 rounded-full border-2 border-emerald-accent/30 border-t-emerald-accent animate-spin" />
+        <span className="text-[10px] font-mono text-titanium-400 uppercase tracking-widest">
+          Calibrating 3D Globe...
+        </span>
+      </div>
+    </div>
+  ),
+});
 
 export default function GlobalNetwork() {
   const [activeHub, setActiveHub] = useState<NetworkHub>(GLOBAL_NETWORK[0]);
   const [activeRegionTab, setActiveRegionTab] = useState<"all" | "middleEast" | "asiaPacific" | "europe" | "americasAfrica">("all");
+  const [displayMode, setDisplayMode] = useState<"3d" | "pdf">("3d");
 
   const getAllCountries = () => {
     return [
@@ -79,15 +95,55 @@ export default function GlobalNetwork() {
         <div className="rounded-3xl bg-white/[0.02] border border-white/10 p-6 sm:p-10 lg:p-12 backdrop-blur-xl shadow-glass mb-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* Left: Actual Graphic from PDF Page 11 */}
-            <div className="lg:col-span-7 relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-white/10 bg-[#03060C] flex items-center justify-center p-3">
-              <Image
-                src="/images/uiis/worldwide_globe.jpg"
-                alt="UIIS Worldwide Network Visual"
-                fill
-                sizes="(max-width: 1024px) 100vw, 55vw"
-                className="object-contain"
-              />
+            {/* Left: 3D Global Network Globe / PDF Visual with Switcher */}
+            <div className="lg:col-span-7 flex flex-col gap-3">
+              <div className="flex items-center justify-between pb-1">
+                <span className="text-[11px] font-mono uppercase text-titanium-400 tracking-wider">
+                  Network Visualization
+                </span>
+                <div className="flex items-center gap-1.5 p-1 rounded-xl bg-black/60 border border-white/10 text-xs font-mono">
+                  <button
+                    type="button"
+                    onClick={() => setDisplayMode("3d")}
+                    className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all ${
+                      displayMode === "3d"
+                        ? "bg-emerald-accent text-[#060A14] font-bold"
+                        : "text-titanium-400 hover:text-white"
+                    }`}
+                  >
+                    <Box className="w-3.5 h-3.5" />
+                    <span>3D Globe</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDisplayMode("pdf")}
+                    className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all ${
+                      displayMode === "pdf"
+                        ? "bg-emerald-accent text-[#060A14] font-bold"
+                        : "text-titanium-400 hover:text-white"
+                    }`}
+                  >
+                    <FileText className="w-3.5 h-3.5" />
+                    <span>PDF Graphic</span>
+                  </button>
+                </div>
+              </div>
+
+              <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-white/10 bg-[#03060C] flex items-center justify-center">
+                {displayMode === "3d" ? (
+                  <GlobalGlobe3D />
+                ) : (
+                  <div className="relative w-full h-full p-3 flex items-center justify-center">
+                    <Image
+                      src="/images/uiis/worldwide_globe.jpg"
+                      alt="UIIS Worldwide Network Visual"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 55vw"
+                      className="object-contain"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Right: Hub Radar & Active Coordination Node */}
@@ -160,35 +216,43 @@ export default function GlobalNetwork() {
               <button
                 type="button"
                 onClick={() => setActiveRegionTab("all")}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-medium transition-all ${
-                  activeRegionTab === "all" ? "bg-emerald-accent text-navy-950 font-bold" : "bg-white/5 text-titanium-300 hover:text-white"
+                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all ${
+                  activeRegionTab === "all"
+                    ? "bg-white text-navy-950 font-bold"
+                    : "bg-white/5 text-titanium-400 hover:text-white"
                 }`}
               >
-                All ({getAllCountries().length})
+                All Regions ({getAllCountries().length})
               </button>
               <button
                 type="button"
                 onClick={() => setActiveRegionTab("middleEast")}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-medium transition-all ${
-                  activeRegionTab === "middleEast" ? "bg-emerald-accent text-navy-950 font-bold" : "bg-white/5 text-titanium-300 hover:text-white"
+                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all ${
+                  activeRegionTab === "middleEast"
+                    ? "bg-emerald-accent text-navy-950 font-bold"
+                    : "bg-white/5 text-titanium-400 hover:text-white"
                 }`}
               >
-                Middle East & Gulf ({WORLDWIDE_NETWORK_COUNTRIES.middleEast.length})
+                Middle East ({WORLDWIDE_NETWORK_COUNTRIES.middleEast.length})
               </button>
               <button
                 type="button"
                 onClick={() => setActiveRegionTab("asiaPacific")}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-medium transition-all ${
-                  activeRegionTab === "asiaPacific" ? "bg-emerald-accent text-navy-950 font-bold" : "bg-white/5 text-titanium-300 hover:text-white"
+                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all ${
+                  activeRegionTab === "asiaPacific"
+                    ? "bg-emerald-accent text-navy-950 font-bold"
+                    : "bg-white/5 text-titanium-400 hover:text-white"
                 }`}
               >
-                Asia & Pacific ({WORLDWIDE_NETWORK_COUNTRIES.asiaPacific.length})
+                Asia Pacific ({WORLDWIDE_NETWORK_COUNTRIES.asiaPacific.length})
               </button>
               <button
                 type="button"
                 onClick={() => setActiveRegionTab("europe")}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-medium transition-all ${
-                  activeRegionTab === "europe" ? "bg-emerald-accent text-navy-950 font-bold" : "bg-white/5 text-titanium-300 hover:text-white"
+                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all ${
+                  activeRegionTab === "europe"
+                    ? "bg-emerald-accent text-navy-950 font-bold"
+                    : "bg-white/5 text-titanium-400 hover:text-white"
                 }`}
               >
                 Europe ({WORLDWIDE_NETWORK_COUNTRIES.europe.length})
@@ -196,8 +260,10 @@ export default function GlobalNetwork() {
               <button
                 type="button"
                 onClick={() => setActiveRegionTab("americasAfrica")}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-medium transition-all ${
-                  activeRegionTab === "americasAfrica" ? "bg-emerald-accent text-navy-950 font-bold" : "bg-white/5 text-titanium-300 hover:text-white"
+                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all ${
+                  activeRegionTab === "americasAfrica"
+                    ? "bg-emerald-accent text-navy-950 font-bold"
+                    : "bg-white/5 text-titanium-400 hover:text-white"
                 }`}
               >
                 Americas & Africa ({WORLDWIDE_NETWORK_COUNTRIES.americasAfrica.length})
@@ -207,33 +273,33 @@ export default function GlobalNetwork() {
 
           {/* Countries Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
-            {getDisplayedCountries().map((country) => (
+            {getDisplayedCountries().map((country, idx) => (
               <div
-                key={country}
-                className="p-3 rounded-xl bg-white/[0.02] border border-white/5 flex items-center gap-2 hover:border-emerald-accent/40 transition-colors"
+                key={idx}
+                className="px-3 py-2 rounded-xl bg-white/[0.03] border border-white/5 text-xs text-titanium-200 flex items-center gap-2 hover:border-white/20 transition-colors"
               >
-                <MapPin className="w-3.5 h-3.5 text-emerald-accent shrink-0" />
-                <span className="text-xs text-white truncate font-medium">{country}</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-accent/60" />
+                <span className="truncate">{country}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* 5 Network Delivery Pillars (PDF Page 11) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {networkPillars.map((p, idx) => (
+        {/* 5 Network Value Pillars */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          {networkPillars.map((pillar, idx) => (
             <div
               key={idx}
-              className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-emerald-accent/40 transition-colors"
+              className="p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/15 transition-all"
             >
-              <span className="text-xs font-mono text-emerald-accent font-bold block mb-2">
+              <span className="text-[10px] font-mono text-emerald-accent block mb-2">
                 0{idx + 1}
               </span>
-              <h4 className="text-sm font-bold text-white mb-2 leading-snug">
-                {p.title}
+              <h4 className="text-sm font-bold text-white mb-2">
+                {pillar.title}
               </h4>
               <p className="text-xs text-titanium-400 leading-relaxed font-normal">
-                {p.desc}
+                {pillar.desc}
               </p>
             </div>
           ))}

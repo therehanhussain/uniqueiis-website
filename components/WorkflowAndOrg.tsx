@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Workflow,
@@ -13,15 +14,24 @@ import {
   ArrowRight,
   TrendingUp,
   Building2,
-  Check
+  Check,
 } from "lucide-react";
 import {
   INSPECTION_WORKFLOW_STEPS,
   CLIENT_DELIVERABLES,
   WORKFLOW_CLIENT_BENEFITS,
   OUR_PEOPLE_AREAS,
-  COMPANY_COMMITMENTS
+  COMPANY_COMMITMENTS,
 } from "@/lib/data";
+
+const WorkflowTimeline3D = dynamic(() => import("./three/WorkflowTimeline3D"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[180px] sm:h-[220px] flex items-center justify-center">
+      <div className="w-6 h-6 rounded-full border-2 border-emerald-accent/30 border-t-emerald-accent animate-spin" />
+    </div>
+  ),
+});
 
 export default function WorkflowAndOrg() {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
@@ -62,7 +72,7 @@ export default function WorkflowAndOrg() {
         <div className="mb-28 rounded-3xl bg-white/[0.02] border border-white/10 p-6 sm:p-10 lg:p-12 backdrop-blur-xl shadow-glass">
           
           {/* Top Progress Bar & Step Numbers */}
-          <div className="mb-10 pb-8 border-b border-white/10">
+          <div className="mb-8 pb-6 border-b border-white/10">
             <div className="flex items-center justify-between mb-4">
               <span className="text-xs font-mono uppercase tracking-wider text-titanium-400">
                 Milestone Progress ({activeStepIndex + 1} of {INSPECTION_WORKFLOW_STEPS.length})
@@ -107,6 +117,15 @@ export default function WorkflowAndOrg() {
                 );
               })}
             </div>
+          </div>
+
+          {/* 3D Technical Inspection Conduit Pipeline */}
+          <div className="mb-8 p-3 rounded-2xl bg-black/40 border border-white/5 overflow-hidden relative">
+            <div className="absolute top-3 left-4 z-10 flex items-center gap-2 text-[10px] font-mono text-titanium-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-accent animate-pulse" />
+              <span>3D PIPELINE CONDUIT • ACTIVE MILESTONE [STEP {activeStep.step}]</span>
+            </div>
+            <WorkflowTimeline3D activeStepIndex={activeStepIndex} />
           </div>
 
           {/* Active Step Showcase Panel */}
@@ -170,107 +189,169 @@ export default function WorkflowAndOrg() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Client Deliverables Strip from PDF Page 8 */}
-          <div className="mt-12 pt-8 border-t border-white/10">
-            <span className="text-xs font-mono uppercase tracking-widest text-emerald-accent font-semibold block mb-4 text-center sm:text-left">
-              What the Client Receives (Deliverables)
-            </span>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-              {CLIENT_DELIVERABLES.slice(0, 5).map((del, dIdx) => (
-                <div key={dIdx} className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
-                  <span className="text-xs font-bold text-white block mb-1">{del.title}</span>
-                  <p className="text-[11px] text-titanium-400 leading-tight">{del.desc}</p>
+        </div>
+
+        {/* Deliverables & Client Benefits from PDF Page 8 */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-28">
+          
+          {/* Key Deliverables Column */}
+          <div className="lg:col-span-6 rounded-3xl bg-white/[0.02] border border-white/10 p-8 sm:p-10">
+            <div className="flex items-center gap-3 mb-6">
+              <FileText className="w-5 h-5 text-emerald-accent" />
+              <h3 className="text-xl sm:text-2xl font-bold text-white">
+                Client Deliverables
+              </h3>
+            </div>
+
+            <div className="space-y-4">
+              {CLIENT_DELIVERABLES.map((deliv, idx) => (
+                <div key={idx} className="flex items-start gap-3.5 p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+                  <span className="text-xs font-mono text-emerald-accent font-bold mt-0.5">
+                    0{idx + 1}
+                  </span>
+                  <div>
+                    <h4 className="text-sm font-bold text-white">
+                      {deliv.title}
+                    </h4>
+                    <p className="mt-1 text-xs text-titanium-400 leading-relaxed font-normal">
+                      {deliv.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Workflow Value to Clients Column */}
+          <div className="lg:col-span-6 rounded-3xl bg-white/[0.02] border border-white/10 p-8 sm:p-10 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <TrendingUp className="w-5 h-5 text-emerald-accent" />
+                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                  Measurable Client Value
+                </h3>
+              </div>
+
+              <div className="space-y-3">
+                {WORKFLOW_CLIENT_BENEFITS.map((ben, idx) => (
+                  <div key={idx} className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/5 flex items-center gap-3">
+                    <span className="text-[10px] font-mono text-emerald-accent uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-accent/15 border border-emerald-accent/30 font-bold">
+                      0{idx + 1}
+                    </span>
+                    <span className="text-xs sm:text-sm font-semibold text-white">
+                      {ben}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between text-xs font-mono text-titanium-400">
+              <span>Electronic QA/QC Dossiers</span>
+              <span className="text-emerald-accent font-semibold">100% Traceability</span>
+            </div>
+          </div>
+
+        </div>
+
+        {/* ============================================================== */}
+        {/* 02. OUR PEOPLE — TECHNICAL DISCIPLINES & EXPERTISE             */}
+        {/* ============================================================== */}
+        <div className="mb-28">
+          <div className="max-w-3xl mb-12">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4">
+              <Users className="w-3.5 h-3.5 text-emerald-accent" />
+              <span>Certified Technical Personnel • PDF Page 9</span>
+            </div>
+
+            <h3 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+              Our People. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-accent via-white to-titanium-200">
+                Experience, Competence & Commitment.
+              </span>
+            </h3>
+
+            <p className="mt-4 text-base text-titanium-300 leading-relaxed">
+              Our personnel are qualified, experienced, and hold international credentials with major approvals across demanding sectors. We deploy multidisciplinary teams rigorously vetted for technical competence and safety commitment.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+            {OUR_PEOPLE_AREAS.map((area, idx) => (
+              <div
+                key={idx}
+                className="rounded-3xl bg-white/[0.02] border border-white/10 p-6 flex flex-col justify-between hover:border-white/20 transition-all group"
+              >
+                <div>
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-5 border border-white/10 bg-navy-950">
+                    <Image
+                      src={area.image}
+                      alt={area.title}
+                      fill
+                      sizes="300px"
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#060A14] via-transparent to-transparent opacity-80" />
+                  </div>
+
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-accent font-semibold block mb-1">
+                    Area 0{idx + 1}
+                  </span>
+                  <h4 className="text-base sm:text-lg font-bold text-white mb-2">
+                    {area.title}
+                  </h4>
+                  <p className="text-xs text-titanium-300 leading-relaxed font-normal">
+                    {area.desc}
+                  </p>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-titanium-400">
+                  <span>Deployment</span>
+                  <span className="text-white font-semibold">Immediate Dispatch</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* ============================================================== */}
-        {/* 02. TEAM / PEOPLE — CINEMATIC PHOTO SECTION                    */}
+        {/* 03. ORGANIZATIONAL COMMITMENTS — HEALTH, SAFETY, ENVIRONMENT   */}
         {/* ============================================================== */}
         <div>
-          <div className="max-w-3xl mb-14">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4">
-              <Users className="w-3.5 h-3.5 text-emerald-accent" />
-              <span>Our People — Our Strength • PDF Page 10</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-tight uppercase">
-              PEOPLE. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-accent via-white to-titanium-200">
-                PROCESS.
-              </span> <br />
-              PARTNERSHIP.
-            </h2>
-
-            <p className="mt-5 text-base sm:text-lg text-titanium-300 leading-relaxed font-normal">
-              Competent, certified, and multidisciplinary engineers bringing decades of combined field experience to critical energy and infrastructure assets.
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-xs font-mono uppercase tracking-widest text-emerald-accent font-semibold block mb-2">
+              Corporate Governance
+            </span>
+            <h3 className="text-2xl sm:text-4xl font-black text-white">
+              Company Commitments
+            </h3>
+            <p className="mt-3 text-sm text-titanium-400">
+              Guiding principles across Health, Safety, Environment, Quality, People, and Sustainability.
             </p>
           </div>
 
-          {/* 5 Cinematic Photographs with Smooth Reveal */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
-            {OUR_PEOPLE_AREAS.map((person, idx) => (
-              <motion.div
-                key={person.title}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="group relative rounded-3xl bg-white/[0.02] border border-white/10 hover:border-emerald-accent/40 overflow-hidden flex flex-col justify-between transition-all duration-500 hover:-translate-y-1.5 shadow-sm hover:shadow-glass"
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {COMPANY_COMMITMENTS.map((item, idx) => (
+              <div
+                key={idx}
+                className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/15 transition-all text-left flex flex-col justify-between"
               >
-                <div className="relative h-60 w-full overflow-hidden bg-navy-950">
-                  <Image
-                    src={person.image}
-                    alt={person.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060A14] via-[#060A14]/40 to-transparent" />
-                  <span className="absolute top-3 left-3 text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-emerald-accent border border-white/10">
+                <div>
+                  <span className="text-[10px] font-mono text-emerald-accent block mb-2">
                     0{idx + 1}
                   </span>
-                </div>
-
-                <div className="p-5 flex flex-col justify-between flex-grow">
-                  <div>
-                    <h4 className="text-base font-bold text-white group-hover:text-emerald-accent transition-colors">
-                      {person.title}
-                    </h4>
-                    <p className="mt-2 text-xs text-titanium-400 leading-relaxed font-normal">
-                      {person.desc}
-                    </p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-white/5 text-[10px] font-mono text-titanium-500">
-                    Field-Proven Expertise
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* 5 Commitments from PDF Page 10 */}
-          <div className="mt-14 p-8 sm:p-10 rounded-3xl bg-white/[0.02] border border-white/10">
-            <span className="text-xs font-mono uppercase tracking-widest text-emerald-accent font-semibold block mb-4 text-center">
-              Our Five Commitments
-            </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-              {COMPANY_COMMITMENTS.map((com, cIdx) => (
-                <div key={cIdx} className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 text-center">
-                  <span className="text-[10px] font-mono uppercase font-bold text-emerald-accent block mb-1">
-                    {com.title}
-                  </span>
-                  <h5 className="text-xs font-bold text-white mb-1.5 leading-snug">
-                    {com.statement}
-                  </h5>
-                  <p className="text-[11px] text-titanium-400 leading-tight">
-                    {com.desc}
+                  <h4 className="text-sm font-bold text-white mb-2">
+                    {item.title}
+                  </h4>
+                  <p className="text-xs text-titanium-300 font-medium mb-3">
+                    {item.statement}
+                  </p>
+                  <p className="text-xs text-titanium-500 leading-relaxed font-normal">
+                    {item.desc}
                   </p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
 

@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TrustPillars from "@/components/TrustPillars";
 import About from "@/components/About";
+import Inspection3DSection from "@/components/Inspection3DSection";
 import Industries from "@/components/Industries";
 import Services from "@/components/Services";
 import NDTSection from "@/components/NDTSection";
@@ -18,7 +19,7 @@ export default function Home() {
       {/* 01. Glassmorphic Navigation */}
       <Navbar />
 
-      {/* 02. Cinematic Engineering Hero */}
+      {/* 02. Cinematic Engineering Hero with 3D Pressure Vessel Component */}
       <Hero />
 
       {/* 03. Scroll Storytelling Trust Section: INSPECT • ASSURE • DELIVER • ADD VALUE */}
@@ -27,31 +28,34 @@ export default function Home() {
       {/* 04. About UIIS: Split-Screen "INSPECTION WITHOUT COMPROMISE" */}
       <About />
 
-      {/* 05. Industries We Serve: Horizontal / Scroll-driven Experience */}
+      {/* 05. 3D Inspection Verification: MATERIAL • WELD • THICKNESS • SURFACE • DIMENSION • QUALITY */}
+      <Inspection3DSection />
+
+      {/* 06. Industries We Serve: High-Resolution Industrial Cards with 3D Depth */}
       <Industries />
 
-      {/* 06. Services: 01 to 07 Large Immersive Cards with Modal Expansion */}
+      {/* 07. Services: 01 to 07 Large Immersive Cards with Modal Expansion */}
       <Services />
 
-      {/* 07. NDT Solutions: "INSPECTION WITHOUT DESTRUCTION" */}
+      {/* 08. NDT Solutions: 3D Physics Visualizer (UT, RT, MT, PT, VT) & Educational Principles */}
       <NDTSection />
 
-      {/* 08. Technical Capabilities: 10 Disciplines & Standards */}
+      {/* 09. Technical Capabilities: 10 Disciplines & Standards */}
       <Capabilities />
 
-      {/* 09. 11-Step Inspection Workflow & "PEOPLE. PROCESS. PARTNERSHIP." */}
+      {/* 10. 11-Step Inspection Workflow with 3D Technical Conduit Pipeline */}
       <WorkflowAndOrg />
 
-      {/* 10. Global Network: Worldwide Network & Deployment Hubs */}
+      {/* 11. Global Network with 3D Engineering Globe & Deployment Hubs */}
       <GlobalNetwork />
 
-      {/* 11. UIIS Partner Ecosystem: 12 Verified Logos Marquee */}
+      {/* 12. UIIS Partner Ecosystem: 12 Verified Logos Marquee */}
       <PartnerEcosystem />
 
-      {/* 12. Contact: "LET'S BUILD A SAFER, STRONGER TOMORROW" & HQ */}
+      {/* 13. Contact: "LET'S BUILD A SAFER, STRONGER TOMORROW" & HQ */}
       <Contact />
 
-      {/* 13. Minimalist Engineering Footer */}
+      {/* 14. Minimalist Engineering Footer */}
       <Footer />
     </main>
   );

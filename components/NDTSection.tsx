@@ -2,13 +2,41 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
-import { Activity, ShieldCheck, CheckCircle2, Check, ArrowUpRight } from "lucide-react";
+import {
+  Activity,
+  ShieldCheck,
+  CheckCircle2,
+  Check,
+  Box,
+  Camera,
+  Info,
+} from "lucide-react";
 import { NDT_SERVICES_OFFERED, NDT_METHODS, NDT_BENEFITS } from "@/lib/data";
+import type { NDTMethodType } from "./three/NDTVisualizer3D";
+
+// Dynamically import 3D NDT Visualizer
+const NDTVisualizer3D = dynamic(() => import("./three/NDTVisualizer3D"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[360px] flex items-center justify-center">
+      <div className="flex flex-col items-center gap-2">
+        <div className="w-8 h-8 rounded-full border-2 border-emerald-accent/30 border-t-emerald-accent animate-spin" />
+        <span className="text-[10px] font-mono text-titanium-400 uppercase tracking-widest">
+          Loading 3D Simulation...
+        </span>
+      </div>
+    </div>
+  ),
+});
 
 export default function NDTSection() {
   const [activeMethodIndex, setActiveMethodIndex] = useState(0);
+  const [viewMode, setViewMode] = useState<"3d" | "photo">("3d");
+
   const activeMethod = NDT_METHODS[activeMethodIndex];
+  const is3DSupported = ["UT", "RT", "MT", "PT", "VT"].includes(activeMethod.code);
 
   return (
     <section
@@ -118,7 +146,7 @@ export default function NDTSection() {
               Six Common NDT Methods
             </h3>
             <p className="mt-3 text-sm text-titanium-400">
-              Hover over or select any method to review technique principles and industrial applications.
+              Select any method below to inspect its testing principles with real-time 3D physics demonstration.
             </p>
           </div>
 
@@ -129,7 +157,6 @@ export default function NDTSection() {
                 <button
                   key={method.code}
                   type="button"
-                  onMouseEnter={() => setActiveMethodIndex(idx)}
                   onClick={() => setActiveMethodIndex(idx)}
                   className={`p-4 rounded-2xl border text-left transition-all duration-300 focus:outline-none flex flex-col justify-between h-32 ${
                     isActive
@@ -159,7 +186,7 @@ export default function NDTSection() {
             })}
           </div>
 
-          {/* Active Method High-Resolution Showcase Card */}
+          {/* Active Method Showcase Card with 3D Physics Visualizer */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeMethod.code}
@@ -171,7 +198,8 @@ export default function NDTSection() {
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 
-                <div className="lg:col-span-7">
+                {/* Method Information */}
+                <div className="lg:col-span-6">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="font-mono text-xs font-black px-3 py-1 rounded bg-emerald-accent/20 text-emerald-accent border border-emerald-accent/30">
                       {activeMethod.code}
@@ -194,21 +222,80 @@ export default function NDTSection() {
                     <span>•</span>
                     <span className="text-emerald-accent font-semibold">Level II / Level III Qualified</span>
                   </div>
+
+                  {/* Educational Disclaimer Badge */}
+                  <div className="mt-6 p-3.5 rounded-xl bg-black/40 border border-white/10 flex items-start gap-2.5 text-xs text-titanium-400">
+                    <Info className="w-4 h-4 text-emerald-accent flex-shrink-0 mt-0.5" />
+                    <p className="text-[11px] leading-relaxed">
+                      <strong className="text-white">Educational Visualization:</strong> Visual demonstration of {activeMethod.code} physical principles. For actual field inspection, UIIS certified Level II/III specialists execute standardized procedures per ASME Sec V / ASNT / ISO.
+                    </p>
+                  </div>
                 </div>
 
-                <div className="lg:col-span-5 relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/15 bg-navy-950">
-                  <Image
-                    src={activeMethod.image}
-                    alt={activeMethod.fullName}
-                    fill
-                    sizes="450px"
-                    className="object-cover object-center"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060A14]/70 via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-3">
-                    <span className="text-[10px] font-mono text-emerald-accent">
-                      {activeMethod.fullName}
-                    </span>
+                {/* 3D Visualizer / High-Res Photograph Switcher */}
+                <div className="lg:col-span-6 flex flex-col gap-3">
+                  {/* View Mode Toggle Controls */}
+                  {is3DSupported && (
+                    <div className="flex items-center justify-between pb-1">
+                      <span className="text-[11px] font-mono uppercase text-titanium-400 tracking-wider">
+                        Interactive View Mode
+                      </span>
+                      <div className="flex items-center gap-1.5 p-1 rounded-xl bg-black/60 border border-white/10 text-xs font-mono">
+                        <button
+                          type="button"
+                          onClick={() => setViewMode("3d")}
+                          className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all ${
+                            viewMode === "3d"
+                              ? "bg-emerald-accent text-[#060A14] font-bold"
+                              : "text-titanium-400 hover:text-white"
+                          }`}
+                        >
+                          <Box className="w-3.5 h-3.5" />
+                          <span>3D Physics</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setViewMode("photo")}
+                          className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all ${
+                            viewMode === "photo"
+                              ? "bg-emerald-accent text-[#060A14] font-bold"
+                              : "text-titanium-400 hover:text-white"
+                          }`}
+                        >
+                          <Camera className="w-3.5 h-3.5" />
+                          <span>Field Photo</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Media Container */}
+                  <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-navy-950 min-h-[340px] sm:min-h-[380px] flex items-center justify-center">
+                    {is3DSupported && viewMode === "3d" ? (
+                      <div className="w-full h-full relative">
+                        <div className="absolute top-3 left-3 z-10 flex items-center gap-2 px-2.5 py-1 rounded-lg bg-black/70 border border-white/10 text-[10px] font-mono text-emerald-accent">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-accent animate-pulse" />
+                          <span>3D PRINCIPLE: {activeMethod.code}</span>
+                        </div>
+                        <NDTVisualizer3D method={activeMethod.code as NDTMethodType} />
+                      </div>
+                    ) : (
+                      <div className="relative w-full h-full min-h-[340px] sm:min-h-[380px]">
+                        <Image
+                          src={activeMethod.image}
+                          alt={activeMethod.fullName}
+                          fill
+                          sizes="500px"
+                          className="object-cover object-center"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#060A14]/75 via-transparent to-transparent" />
+                        <div className="absolute bottom-3 left-3">
+                          <span className="text-[11px] font-mono text-emerald-accent font-semibold">
+                            {activeMethod.fullName}
+                          </span>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 

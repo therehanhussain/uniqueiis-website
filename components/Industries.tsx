@@ -113,8 +113,12 @@ export default function Industries() {
               <motion.div
                 key={industry.id}
                 onClick={() => setActiveIndex(index)}
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{
+                  y: -8,
+                  scale: 1.015,
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 30px rgba(16, 185, 129, 0.18)",
+                }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 className={`group relative flex-shrink-0 w-[380px] xl:w-[420px] h-[520px] rounded-3xl overflow-hidden border cursor-pointer snap-start transition-all duration-500 flex flex-col justify-between p-8 ${
                   isSelected
                     ? "border-emerald-accent/60 shadow-glass"
