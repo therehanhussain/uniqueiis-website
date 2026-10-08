@@ -1,0 +1,281 @@
+[
+  {
+    "index": 1,
+    "name": "Picture 1",
+    "descr": "Oil and Gas – Lamprell",
+    "rId": "rId4",
+    "target": "media/image1.png",
+    "filename": "partner_01.png",
+    "publicPath": "/images/partners/partner_01.png"
+  },
+  {
+    "index": 2,
+    "name": "Picture 2",
+    "descr": "Nesma Co. -",
+    "rId": "rId5",
+    "target": "media/image2.png",
+    "filename": "partner_02.png",
+    "publicPath": "/images/partners/partner_02.png"
+  },
+  {
+    "index": 3,
+    "name": "Picture 3",
+    "descr": "alpataru Projects International logo in ...",
+    "rId": "rId6",
+    "target": "media/image3.png",
+    "filename": "partner_03.png",
+    "publicPath": "/images/partners/partner_03.png"
+  },
+  {
+    "index": 4,
+    "name": "Picture 4",
+    "descr": "MAPA Insaat Ve Ticaret A.Ş. - IPLOCA",
+    "rId": "rId7",
+    "target": "media/image4.png",
+    "filename": "partner_04.png",
+    "publicPath": "/images/partners/partner_04.png"
+  },
+  {
+    "index": 5,
+    "name": "Picture 5",
+    "descr": "NBTC",
+    "rId": "rId8",
+    "target": "media/image5.jpeg",
+    "filename": "partner_05.jpeg",
+    "publicPath": "/images/partners/partner_05.jpeg"
+  },
+  {
+    "index": 6,
+    "name": "Picture 6",
+    "descr": "Bin Quraya - Wikipedia",
+    "rId": "rId9",
+    "target": "media/image6.png",
+    "filename": "partner_06.png",
+    "publicPath": "/images/partners/partner_06.png"
+  },
+  {
+    "index": 7,
+    "name": "Picture 7",
+    "descr": "Enppi",
+    "rId": "rId10",
+    "target": "media/image7.png",
+    "filename": "partner_07.png",
+    "publicPath": "/images/partners/partner_07.png"
+  },
+  {
+    "index": 8,
+    "name": "Picture 8",
+    "descr": "Welcome to Ali Al Nassar",
+    "rId": "rId11",
+    "target": "media/image8.png",
+    "filename": "partner_08.png",
+    "publicPath": "/images/partners/partner_08.png"
+  },
+  {
+    "index": 9,
+    "name": "Picture 9",
+    "descr": "GAS Arabian Services | LinkedIn",
+    "rId": "rId12",
+    "target": "media/image9.jpeg",
+    "filename": "partner_09.jpeg",
+    "publicPath": "/images/partners/partner_09.jpeg"
+  },
+  {
+    "index": 10,
+    "name": "Picture 10",
+    "descr": "SISCO – Specialized Industrial Services Co.",
+    "rId": "rId13",
+    "target": "media/image10.png",
+    "filename": "partner_10.png",
+    "publicPath": "/images/partners/partner_10.png"
+  },
+  {
+    "index": 11,
+    "name": "Picture 11",
+    "descr": "TECNIMONT | LinkedIn",
+    "rId": "rId14",
+    "target": "media/image11.jpeg",
+    "filename": "partner_11.jpeg",
+    "publicPath": "/images/partners/partner_11.jpeg"
+  },
+  {
+    "index": 12,
+    "name": "Picture 12",
+    "descr": "SICIM S.p.A. - IPLOCA",
+    "rId": "rId15",
+    "target": "media/image12.png",
+    "filename": "partner_12.png",
+    "publicPath": "/images/partners/partner_12.png"
+  },
+  {
+    "index": 13,
+    "name": "Picture 13",
+    "descr": "Hyundai Engineering & Construction Co ...",
+    "rId": "rId16",
+    "target": "media/image13.jpeg",
+    "filename": "partner_13.jpeg",
+    "publicPath": "/images/partners/partner_13.jpeg"
+  },
+  {
+    "index": 14,
+    "name": "Picture 14",
+    "descr": "MASCO",
+    "rId": "rId17",
+    "target": "media/image14.png",
+    "filename": "partner_14.png",
+    "publicPath": "/images/partners/partner_14.png"
+  },
+  {
+    "index": 15,
+    "name": "Picture 15",
+    "descr": "Technip Energies - Wikipedia",
+    "rId": "rId18",
+    "target": "media/image15.jpeg",
+    "filename": "partner_15.jpeg",
+    "publicPath": "/images/partners/partner_15.jpeg"
+  },
+  {
+    "index": 16,
+    "name": "Picture 16",
+    "descr": "Samsung E&A Saudi Arabia | LinkedIn",
+    "rId": "rId19",
+    "target": "media/image16.jpeg",
+    "filename": "partner_16.jpeg",
+    "publicPath": "/images/partners/partner_16.jpeg"
+  },
+  {
+    "index": 17,
+    "name": "Picture 17",
+    "descr": "The Shaw Group | LinkedIn",
+    "rId": "rId20",
+    "target": "media/image17.jpeg",
+    "filename": "partner_17.jpeg",
+    "publicPath": "/images/partners/partner_17.jpeg"
+  },
+  {
+    "index": 18,
+    "name": "Picture 18",
+    "descr": "AlRashed Group :: Since 1950",
+    "rId": "rId21",
+    "target": "media/image18.png",
+    "filename": "partner_18.png",
+    "publicPath": "/images/partners/partner_18.png"
+  },
+  {
+    "index": 19,
+    "name": "Picture 19",
+    "descr": "Nasser S. Al Hajri Corp. | LinkedIn",
+    "rId": "rId22",
+    "target": "media/image19.jpeg",
+    "filename": "partner_19.jpeg",
+    "publicPath": "/images/partners/partner_19.jpeg"
+  },
+  {
+    "index": 20,
+    "name": "Picture 2",
+    "descr": "",
+    "rId": "rId23",
+    "target": "media/image20.jpeg",
+    "filename": "partner_20.jpeg",
+    "publicPath": "/images/partners/partner_20.jpeg"
+  },
+  {
+    "index": 21,
+    "name": "Picture 3",
+    "descr": "",
+    "rId": "rId24",
+    "target": "media/image21.png",
+    "filename": "partner_21.png",
+    "publicPath": "/images/partners/partner_21.png"
+  },
+  {
+    "index": 22,
+    "name": "Picture 4",
+    "descr": "",
+    "rId": "rId25",
+    "target": "media/image22.png",
+    "filename": "partner_22.png",
+    "publicPath": "/images/partners/partner_22.png"
+  },
+  {
+    "index": 23,
+    "name": "Picture 5",
+    "descr": "",
+    "rId": "rId26",
+    "target": "media/image23.png",
+    "filename": "partner_23.png",
+    "publicPath": "/images/partners/partner_23.png"
+  },
+  {
+    "index": 24,
+    "name": "Picture 6",
+    "descr": "",
+    "rId": "rId27",
+    "target": "media/image24.jpeg",
+    "filename": "partner_24.jpeg",
+    "publicPath": "/images/partners/partner_24.jpeg"
+  },
+  {
+    "index": 25,
+    "name": "Picture 7",
+    "descr": "Saipem: news su azioni e quotazioni ...",
+    "rId": "rId28",
+    "target": "media/image25.jpeg",
+    "filename": "partner_25.jpeg",
+    "publicPath": "/images/partners/partner_25.jpeg"
+  },
+  {
+    "index": 26,
+    "name": "Picture 8",
+    "descr": "",
+    "rId": "rId29",
+    "target": "media/image26.png",
+    "filename": "partner_26.png",
+    "publicPath": "/images/partners/partner_26.png"
+  },
+  {
+    "index": 27,
+    "name": "Picture 9",
+    "descr": "",
+    "rId": "rId30",
+    "target": "media/image27.png",
+    "filename": "partner_27.png",
+    "publicPath": "/images/partners/partner_27.png"
+  },
+  {
+    "index": 28,
+    "name": "Picture 10",
+    "descr": "Our Clients-16",
+    "rId": "rId31",
+    "target": "media/image28.png",
+    "filename": "partner_28.png",
+    "publicPath": "/images/partners/partner_28.png"
+  },
+  {
+    "index": 29,
+    "name": "Picture 13",
+    "descr": "",
+    "rId": "rId32",
+    "target": "media/image29.jpeg",
+    "filename": "partner_29.jpeg",
+    "publicPath": "/images/partners/partner_29.jpeg"
+  },
+  {
+    "index": 30,
+    "name": "Picture 14",
+    "descr": "",
+    "rId": "rId33",
+    "target": "media/image30.png",
+    "filename": "partner_30.png",
+    "publicPath": "/images/partners/partner_30.png"
+  },
+  {
+    "index": 31,
+    "name": "Picture 15",
+    "descr": "",
+    "rId": "rId34",
+    "target": "media/image31.png",
+    "filename": "partner_31.png",
+    "publicPath": "/images/partners/partner_31.png"
+  }
+]

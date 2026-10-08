@@ -1,0 +1,393 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Theme Visual Tokens (Default / Dark Mode) */
+  --bg-primary: #060A14;
+  --bg-secondary: #0B1220;
+  --bg-card: #101827;
+  --bg-card-subtle: rgba(255, 255, 255, 0.02);
+  --text-primary: #FFFFFF;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --border-color: rgba(255, 255, 255, 0.10);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --accent-emerald: #10B981;
+  --accent-emerald-glow: #34D399;
+  --accent-gold: #F59E0B;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Transition ONLY visual color properties (No layout / size / spacing changes) */
+  body,
+  header,
+  footer,
+  section,
+  div,
+  span,
+  h1, h2, h3, h4, h5, h6,
+  p,
+  input, select, textarea,
+  button,
+  svg,
+  path {
+    transition-property: background-color, color, border-color, box-shadow, fill, stroke;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    transition-duration: 350ms;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #1E2D4A;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Engineering Blueprint & Grid Styles */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+html:not(.dark) .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+.bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+}
+
+html:not(.dark) .bg-dot-pattern {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.07) 1px, transparent 1px);
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(10, 16, 32, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html:not(.dark) .glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(16, 26, 48, 0.85);
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px rgba(16, 185, 129, 0.15);
+}
+
+html:not(.dark) .glass-panel-hover:hover {
+  background: #FFFFFF;
+  border-color: rgba(5, 150, 105, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08), 0 0 20px -5px rgba(5, 150, 105, 0.15);
+}
+
+/* ==========================================================================
+   LIGHT THEME OVERRIDES (Clean, Corporate, Engineering-Focused)
+   Only affects visual color properties. Preserves 100% of layouts and spacing.
+   ========================================================================== */
+
+html:not(.dark) {
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-subtle: #F1F5F9;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --border-color: #E2E8F0;
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --accent-emerald: #059669;
+  --accent-emerald-glow: #10B981;
+  --accent-gold: #D97706;
+}
+
+/* Backgrounds in Light Mode */
+html:not(.dark) main,
+html:not(.dark) section.bg-navy-950,
+html:not(.dark) section.bg-\[\#03060C\],
+html:not(.dark) .bg-navy-950,
+html:not(.dark) .bg-\[\#03060C\],
+html:not(.dark) .bg-\[\#040812\],
+html:not(.dark) .bg-\[\#060A14\] {
+  background-color: #F8FAFC !important;
+}
+
+html:not(.dark) .bg-\[\#0B1220\],
+html:not(.dark) .bg-navy-900,
+html:not(.dark) .bg-navy-900\/95,
+html:not(.dark) .bg-navy-900\/90,
+html:not(.dark) .bg-navy-900\/80,
+html:not(.dark) .bg-navy-900\/70,
+html:not(.dark) .bg-navy-900\/60,
+html:not(.dark) .bg-navy-900\/50,
+html:not(.dark) .bg-navy-900\/40,
+html:not(.dark) .bg-navy-950\/90,
+html:not(.dark) .bg-navy-950\/85,
+html:not(.dark) .bg-navy-950\/80,
+html:not(.dark) .bg-navy-950\/70,
+html:not(.dark) .bg-navy-950\/60,
+html:not(.dark) .bg-navy-950\/40,
+html:not(.dark) .bg-\[\#101827\] {
+  background-color: #FFFFFF !important;
+}
+
+html:not(.dark) .bg-navy-850,
+html:not(.dark) .bg-navy-800,
+html:not(.dark) .bg-navy-800\/90,
+html:not(.dark) .bg-navy-800\/80,
+html:not(.dark) .bg-navy-800\/70,
+html:not(.dark) .bg-navy-800\/60 {
+  background-color: #F1F5F9 !important;
+}
+
+html:not(.dark) .bg-white\/\[0\.02\],
+html:not(.dark) .bg-white\/\[0\.03\],
+html:not(.dark) .bg-white\/\[0\.04\],
+html:not(.dark) .bg-white\/5 {
+  background-color: #F1F5F9 !important;
+}
+
+/* Borders in Light Mode */
+html:not(.dark) .border-white\/10 {
+  border-color: #E2E8F0 !important;
+}
+
+html:not(.dark) .border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+html:not(.dark) .border-white\/15 {
+  border-color: #CBD5E1 !important;
+}
+
+/* Text Colors in Light Mode */
+html:not(.dark) .text-white {
+  color: #0F172A !important;
+}
+
+/* Preserve White Text inside Dark Gradient Buttons, Hero, and Photographic Cards */
+html:not(.dark) .bg-gradient-to-r.from-emerald-deep .text-white,
+html:not(.dark) .bg-gradient-to-r.from-emerald-deep,
+html:not(.dark) button.bg-gradient-to-r,
+html:not(.dark) a.bg-gradient-to-r,
+html:not(.dark) button.bg-gradient-to-r span,
+html:not(.dark) a.bg-gradient-to-r span,
+html:not(.dark) .group-hover\:text-white:hover,
+html:not(.dark) .hover\:text-white:hover,
+html:not(.dark) #industries .group .text-white,
+html:not(.dark) #industries .group h3,
+html:not(.dark) #industries .group p,
+html:not(.dark) #industries .group span.font-mono {
+  color: #FFFFFF !important;
+}
+
+html:not(.dark) #industries .group p {
+  color: #CBD5E1 !important;
+}
+
+html:not(.dark) .text-titanium-100 {
+  color: #1E293B !important;
+}
+
+html:not(.dark) .text-titanium-200 {
+  color: #334155 !important;
+}
+
+html:not(.dark) .text-titanium-300 {
+  color: #475569 !important;
+}
+
+html:not(.dark) .text-titanium-400 {
+  color: #64748B !important;
+}
+
+html:not(.dark) .text-titanium-500 {
+  color: #94A3B8 !important;
+}
+
+/* Heading Gradients in Light Mode */
+html:not(.dark) .from-white.via-titanium-100.to-titanium-400 {
+  --tw-gradient-from: #0F172A var(--tw-gradient-from-position) !important;
+  --tw-gradient-via: #1E293B var(--tw-gradient-via-position) !important;
+  --tw-gradient-to: #475569 var(--tw-gradient-to-position) !important;
+}
+
+html:not(.dark) .from-emerald-accent.via-white.to-titanium-200,
+html:not(.dark) .from-emerald-accent.via-titanium-200.to-white,
+html:not(.dark) .from-emerald-accent.via-titanium-100.to-white {
+  --tw-gradient-from: #059669 var(--tw-gradient-from-position) !important;
+  --tw-gradient-via: #1E293B var(--tw-gradient-via-position) !important;
+  --tw-gradient-to: #0F172A var(--tw-gradient-to-position) !important;
+}
+
+/* Navigation Light Mode */
+html:not(.dark) header.bg-navy-950\/85 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-bottom-color: #E2E8F0 !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+html:not(.dark) header nav {
+  background-color: rgba(241, 245, 249, 0.8) !important;
+  border-color: #E2E8F0 !important;
+}
+
+html:not(.dark) header nav a {
+  color: #475569 !important;
+}
+
+html:not(.dark) header nav a:hover {
+  color: #0F172A !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Hero Vignette in Light Mode */
+html:not(.dark) .from-navy-950.via-navy-950\/75.to-navy-950\/90 {
+  background-image: linear-gradient(to top, #F8FAFC 0%, rgba(248, 250, 252, 0.85) 60%, rgba(248, 250, 252, 0.95) 100%) !important;
+}
+
+/* Contact Section & Form Inputs in Light Mode */
+html:not(.dark) #contact input,
+html:not(.dark) #contact select,
+html:not(.dark) #contact textarea {
+  background-color: #F8FAFC !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+}
+
+html:not(.dark) #contact input::placeholder,
+html:not(.dark) #contact textarea::placeholder {
+  color: #94A3B8 !important;
+}
+
+html:not(.dark) #contact select option {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+}
+
+/* World Map in Light Mode */
+html:not(.dark) #global-network .bg-\[\#03060C\] {
+  background-color: #F1F5F9 !important;
+  border-color: #E2E8F0 !important;
+}
+
+html:not(.dark) #global-network svg path[fill="#1E293B"] {
+  fill: #CBD5E1 !important;
+  opacity: 0.8 !important;
+}
+
+html:not(.dark) #global-network svg path[fill="#334155"] {
+  fill: #059669 !important;
+  opacity: 0.3 !important;
+}
+
+html:not(.dark) #global-network svg line {
+  stroke: #CBD5E1 !important;
+}
+
+/* NDT Section in Light Mode */
+html:not(.dark) #ndt {
+  background-color: #F8FAFC !important;
+}
+
+html:not(.dark) #ndt .bg-navy-950 {
+  background-color: #FFFFFF !important;
+}
+
+/* Footer in Light Mode */
+html:not(.dark) footer,
+html:not(.dark) footer.bg-\[\#03060C\] {
+  background-color: #F1F5F9 !important;
+  border-top-color: #E2E8F0 !important;
+  color: #475569 !important;
+}
+
+html:not(.dark) footer a:hover {
+  color: #0F172A !important;
+}
+
+/* Marquee Pause on Hover */
+.group-hover-pause:hover .animate-marquee,
+.group-hover-pause:hover .animate-marquee-reverse {
+  animation-play-state: paused;
+}
+
+/* Hide Scrollbar for Horizontal Sliders while keeping scrollable */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
