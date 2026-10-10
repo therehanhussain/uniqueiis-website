@@ -41,7 +41,7 @@ export default function NDTSection() {
   return (
     <section
       id="ndt"
-      className="relative py-28 sm:py-36 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
+      className="relative py-16 sm:py-20 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
     >
       {/* Background blueprint grid & laser line */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
@@ -51,7 +51,7 @@ export default function NDTSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-16 sm:mb-20">
+        <div className="max-w-3xl mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Activity className="w-3.5 h-3.5 text-emerald-accent animate-pulse" />
             <span>NDT Support Services (NSS) • PDF Page 7</span>
@@ -77,7 +77,7 @@ export default function NDTSection() {
         </div>
 
         {/* NDT Technician Hero Spotlight from PDF Page 7 */}
-        <div className="mb-20 rounded-3xl bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 p-8 sm:p-12 backdrop-blur-xl shadow-lg dark:shadow-glass">
+        <div className="mb-14 rounded-3xl bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 p-8 sm:p-12 backdrop-blur-xl shadow-lg dark:shadow-glass">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             <div className="lg:col-span-7">
@@ -138,7 +138,7 @@ export default function NDTSection() {
 
         {/* Interactive NDT Methods Grid (UT, RT, MT, PT, VT, Holiday Testing) */}
         <div>
-          <div className="max-w-2xl mb-12">
+          <div className="max-w-2xl mb-8">
             <span className="text-xs font-mono uppercase tracking-widest text-emerald-deep dark:text-emerald-accent font-semibold block mb-2">
               Core Testing Methods
             </span>
@@ -150,7 +150,7 @@ export default function NDTSection() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mb-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mb-6">
             {NDT_METHODS.map((method, idx) => {
               const isActive = activeMethodIndex === idx;
               return (

@@ -50,7 +50,7 @@ export default function Industries() {
   return (
     <section
       id="industries"
-      className="relative py-28 sm:py-36 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
+      className="relative py-16 sm:py-20 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
     >
       {/* Background radial accent */}
       <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-emerald-accent/[0.03] rounded-full blur-[180px] pointer-events-none" />
@@ -58,7 +58,7 @@ export default function Industries() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header with Horizontal Scroll Controls */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-20">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
               <span>Operational Environments • PDF Page 2</span>

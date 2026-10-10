@@ -43,16 +43,16 @@ export default function TrustPillars() {
     <section
       id="trust"
       ref={containerRef}
-      className="relative min-h-[220vh] bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white border-t border-slate-200 dark:border-white/10"
+      className="relative min-h-[150vh] bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white border-t border-slate-200 dark:border-white/10"
     >
       {/* Sticky Storytelling Stage */}
-      <div className="sticky top-0 min-h-screen flex flex-col justify-center py-20 overflow-hidden">
+      <div className="sticky top-0 min-h-screen flex flex-col justify-center py-12 sm:py-16 overflow-hidden">
         {/* Subtle ambient lighting */}
         <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[700px] h-[500px] bg-emerald-accent/[0.04] rounded-full blur-[160px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
           {/* Eyebrow Label */}
-          <div className="mb-10 sm:mb-14">
+          <div className="mb-6 sm:mb-8">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest shadow-sm">
               <span>Scroll Storytelling • Core Philosophy</span>
             </div>

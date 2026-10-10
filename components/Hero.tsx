@@ -37,7 +37,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center overflow-hidden bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white pt-28 pb-20 lg:py-0"
+      className="relative flex items-center overflow-hidden bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white pt-28 pb-12 lg:pt-32 lg:pb-16"
     >
       {/* Background Industrial Ambience Layer */}
       <motion.div
@@ -61,9 +61,9 @@ export default function Hero() {
       {/* Main Grid: Left Content + Right 3D Engineering Object */}
       <motion.div
         style={{ opacity: contentOpacity, y: contentY }}
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 lg:py-24"
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-4 lg:py-6"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center min-h-[calc(100vh-140px)]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           
           {/* Left Column: Headlines & Brand Credentials */}
           <div className="lg:col-span-7 flex flex-col items-start text-left z-20">
@@ -112,7 +112,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+              className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
             >
               <Link
                 href="#contact"
@@ -135,7 +135,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.55 }}
-              className="mt-12 flex flex-wrap items-center gap-6 sm:gap-8 pt-8 border-t border-slate-200 dark:border-white/10 w-full"
+              className="mt-8 flex flex-wrap items-center gap-6 sm:gap-8 pt-6 border-t border-slate-200 dark:border-white/10 w-full"
             >
               <div className="relative h-8 w-24 sm:h-9 sm:w-28 opacity-80 hover:opacity-100 transition-opacity">
                 <Image
@@ -167,7 +167,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 relative w-full h-[460px] sm:h-[540px] lg:h-[640px] flex items-center justify-center"
+            className="lg:col-span-5 relative w-full h-[440px] sm:h-[500px] lg:h-[580px] flex items-center justify-center"
           >
             {/* Glow backing */}
             <div className="absolute inset-0 bg-radial-at-c from-emerald-accent/[0.08] via-transparent to-transparent blur-3xl pointer-events-none" />
@@ -181,7 +181,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.7 }}
-          className="mt-4 hidden lg:flex flex-col items-center gap-2 cursor-pointer group"
+          className="mt-2 hidden lg:flex flex-col items-center gap-2 cursor-pointer group"
           onClick={() => {
             const el = document.getElementById("trust");
             el?.scrollIntoView({ behavior: "smooth" });

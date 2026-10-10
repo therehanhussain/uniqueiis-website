@@ -21,14 +21,14 @@ export default function About() {
   const [activeTab, setActiveTab] = useState<"vision" | "mission" | "quality">("vision");
 
   return (
-    <section id="about" className="relative py-28 sm:py-36 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10">
+    <section id="about" className="relative py-16 sm:py-20 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10">
       {/* Background Ambience */}
       <div className="absolute top-1/3 left-1/4 w-[700px] h-[500px] bg-emerald-accent/[0.03] rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* 01. Large Split-Screen Statement & Photography */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24 sm:mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-16 sm:mb-20">
           
           {/* Left Column: Massive Statement */}
           <motion.div
@@ -65,7 +65,7 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Right Column: Actual UIIS Photography */}
+          {/* Right Column: Premium 3D Industrial Inspection Render */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -75,8 +75,8 @@ export default function About() {
           >
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-slate-200 dark:border-white/15 bg-slate-900 shadow-xl group">
               <Image
-                src="/images/uiis/weld_inspection.jpg"
-                alt="UIIS Welding and Flange Inspection in Field"
+                src="/images/uiis/about_3d_inspection.jpg"
+                alt="UIIS 3D Industrial Flange and Pressure Vessel Laser Verification"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -87,14 +87,14 @@ export default function About() {
               <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
                 <div>
                   <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-accent font-semibold block mb-1">
-                    Field Verification
+                    3D Digital Verification
                   </span>
                   <p className="text-sm font-semibold text-white">
                     Third-party surveillance and code verification on pressure vessels and piping
                   </p>
                 </div>
                 <div className="hidden sm:block text-right font-mono text-[10px] text-titanium-400">
-                  ISO 9001:2015
+                  ASME & ISO Criteria
                 </div>
               </div>
             </div>
@@ -103,7 +103,7 @@ export default function About() {
         </div>
 
         {/* 02. Interactive Tabs: Vision / Mission / Quality Policy */}
-        <div className="mb-24 p-8 sm:p-12 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 backdrop-blur-xl shadow-sm dark:shadow-none">
+        <div className="mb-16 p-8 sm:p-10 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 backdrop-blur-xl shadow-sm dark:shadow-none">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             <div className="lg:col-span-7">
@@ -248,7 +248,7 @@ export default function About() {
 
         {/* 03. Core Values Grid (The 6 Values from PDF Page 3) */}
         <div>
-          <div className="max-w-2xl mb-12">
+          <div className="max-w-2xl mb-8">
             <span className="text-xs font-mono uppercase tracking-widest text-emerald-deep dark:text-emerald-accent font-semibold block mb-2">
               Operational Standards
             </span>

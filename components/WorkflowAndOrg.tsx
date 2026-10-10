@@ -40,7 +40,7 @@ export default function WorkflowAndOrg() {
   return (
     <section
       id="workflow"
-      className="relative py-28 sm:py-36 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
+      className="relative py-16 sm:py-20 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
     >
       {/* Background radial lighting */}
       <div className="absolute top-1/4 right-1/4 w-[700px] h-[500px] bg-emerald-accent/[0.03] rounded-full blur-[180px] pointer-events-none" />
@@ -50,7 +50,7 @@ export default function WorkflowAndOrg() {
         {/* ============================================================== */}
         {/* 01. INSPECTION WORKFLOW — 11 STEPS SIGNATURE INTERACTION       */}
         {/* ============================================================== */}
-        <div className="max-w-3xl mb-16 sm:mb-20">
+        <div className="max-w-3xl mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Workflow className="w-3.5 h-3.5 text-emerald-accent" />
             <span>Execution Lifecycle • PDF Page 8</span>
@@ -69,7 +69,7 @@ export default function WorkflowAndOrg() {
         </div>
 
         {/* Interactive 11-Step Timeline Interface */}
-        <div className="mb-28 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-6 sm:p-10 lg:p-12 backdrop-blur-xl shadow-lg dark:shadow-glass">
+        <div className="mb-14 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-6 sm:p-10 lg:p-12 backdrop-blur-xl shadow-lg dark:shadow-glass">
           
           {/* Top Progress Bar & Step Numbers */}
           <div className="mb-8 pb-6 border-b border-slate-200 dark:border-white/10">
@@ -192,7 +192,7 @@ export default function WorkflowAndOrg() {
         </div>
 
         {/* Deliverables & Client Benefits from PDF Page 8 */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-28">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-14 sm:mb-16">
           
           {/* Key Deliverables Column */}
           <div className="lg:col-span-6 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-8 sm:p-10 shadow-sm dark:shadow-none">
@@ -257,8 +257,8 @@ export default function WorkflowAndOrg() {
         {/* ============================================================== */}
         {/* 02. OUR PEOPLE — TECHNICAL DISCIPLINES & EXPERTISE             */}
         {/* ============================================================== */}
-        <div className="mb-28">
-          <div className="max-w-3xl mb-12">
+        <div className="mb-14 sm:mb-16">
+          <div className="max-w-3xl mb-8 sm:mb-10">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
               <Users className="w-3.5 h-3.5 text-emerald-accent" />
               <span>Certified Technical Personnel • PDF Page 9</span>
@@ -318,7 +318,7 @@ export default function WorkflowAndOrg() {
         {/* 03. ORGANIZATIONAL COMMITMENTS — HEALTH, SAFETY, ENVIRONMENT   */}
         {/* ============================================================== */}
         <div>
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
             <span className="text-xs font-mono uppercase tracking-widest text-emerald-deep dark:text-emerald-accent font-semibold block mb-2">
               Corporate Governance
             </span>

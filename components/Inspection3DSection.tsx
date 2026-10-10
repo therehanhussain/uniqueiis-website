@@ -63,7 +63,7 @@ export default function Inspection3DSection() {
   return (
     <section
       id="inspection-3d"
-      className="relative py-28 sm:py-36 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
+      className="relative py-16 sm:py-20 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
     >
       {/* Background glow & subtle engineering grid */}
       <div className="absolute top-1/2 left-1/3 w-[650px] h-[650px] bg-emerald-accent/[0.03] rounded-full blur-[180px] pointer-events-none" />
@@ -72,7 +72,7 @@ export default function Inspection3DSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 sm:mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-8 sm:mb-10">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-accent animate-pulse" />
@@ -97,7 +97,7 @@ export default function Inspection3DSection() {
         </div>
 
         {/* 6 Technical Labels Floating Navigation Bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 mb-6">
           {INSPECTION_POINTS.map((pt) => {
             const isSelected = activePoint === pt.id;
             return (

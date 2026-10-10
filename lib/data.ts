@@ -278,7 +278,7 @@ export const INDUSTRIES: IndustryItem[] = [
     category: "Upstream & Downstream",
     description: "Comprehensive third-party inspection, vendor surveillance, and NDT for drilling equipment, exploration units, processing facilities, refineries, and transmission infrastructure.",
     criticality: "High Pressure & Critical Containment",
-    image: "/images/uiis/industries/oil_and_gas.jpg"
+    image: "/images/uiis/industries/oil_and_gas_3d.jpg"
   },
   {
     id: "petrochemical",
@@ -286,7 +286,7 @@ export const INDUSTRIES: IndustryItem[] = [
     category: "Chemical & Refining Plants",
     description: "Quality assurance across high-temperature reactors, cracking furnaces, fractionation towers, chemical piping networks, and specialized alloy vessels.",
     criticality: "Severe Thermal & Corrosive Service",
-    image: "/images/uiis/industries/petrochemical.jpg"
+    image: "/images/uiis/industries/petrochemical_3d.jpg"
   },
   {
     id: "power-utilities",
@@ -294,7 +294,7 @@ export const INDUSTRIES: IndustryItem[] = [
     category: "Generation & Distribution",
     description: "Technical surveillance for heavy power turbines, steam generators, superheaters, high-voltage transformers, switchgear, and utility networks.",
     criticality: "Continuous Grid Reliability",
-    image: "/images/uiis/industries/power_utilities.jpg"
+    image: "/images/uiis/industries/power_utilities_3d.jpg"
   },
   {
     id: "water-infrastructure",
@@ -302,7 +302,7 @@ export const INDUSTRIES: IndustryItem[] = [
     category: "Desalination & Transmission",
     description: "Inspection support for large-scale seawater desalination facilities, pumping stations, water treatment systems, and strategic transmission pipelines.",
     criticality: "Civil & Hydraulic Integrity",
-    image: "/images/uiis/industries/water_infrastructure.jpg"
+    image: "/images/uiis/industries/water_infrastructure_3d.jpg"
   },
   {
     id: "industrial-construction",
@@ -310,7 +310,7 @@ export const INDUSTRIES: IndustryItem[] = [
     category: "Heavy Civil & Manufacturing",
     description: "Structural steel verification, modular skids, foundational assemblies, high-capacity equipment installation, and industrial plant construction oversight.",
     criticality: "Structural Integrity & Code Adherence",
-    image: "/images/uiis/industries/industrial_construction.jpg"
+    image: "/images/uiis/industries/industrial_construction_3d.jpg"
   }
 ];
 
@@ -331,7 +331,7 @@ export const SERVICES: ServiceItem[] = [
       "Final inspection, marking, packing and pre-shipment release certification"
     ],
     stages: ["Kick-off Meeting", "Pre-Inspection Meeting", "Document Review", "Raw Material Inspection", "In-Process Inspection", "Final Inspection", "Final Acceptance Test", "Final Release", "Pre-Shipment Inspection", "Marking, Packing & Loading"],
-    visualImage: "/images/uiis/services/vid_engineers.jpg",
+    visualImage: "/images/uiis/services/vid_3d.jpg",
     accent: "emerald"
   },
   {
@@ -350,7 +350,7 @@ export const SERVICES: ServiceItem[] = [
       "Field and Desk Expediting with transparent progress reporting"
     ],
     stages: ["Manufacturing Progress", "Quality Follow-up", "Documentation Review", "Packing Readiness", "Supplier Coordination", "Delivery Status Reporting"],
-    visualImage: "/images/uiis/services/heat_exchanger_bundle.jpg",
+    visualImage: "/images/uiis/services/ved_3d.jpg",
     accent: "blue"
   },
   {
@@ -369,7 +369,7 @@ export const SERVICES: ServiceItem[] = [
       "Electrical & Instrumentation Equipment installation & pre-commissioning verification"
     ],
     stages: ["Incoming Material Receipt", "Mechanical Equipment", "Piping & Relief Systems", "Welding & NDT", "E&I Verification", "Pre-Commissioning"],
-    visualImage: "/images/uiis/services/pid_site_engineer.jpg",
+    visualImage: "/images/uiis/services/pid_3d.jpg",
     accent: "emerald"
   },
   {
@@ -388,7 +388,7 @@ export const SERVICES: ServiceItem[] = [
       "Delivery Reliability scoring and comprehensive audit reports"
     ],
     stages: ["Existence Checks", "QMS Review", "Capacity Assessment", "Facility Control", "Workforce Assessment", "Audit Scorecard"],
-    visualImage: "/images/uiis/services/vsa_factory_audit.jpg",
+    visualImage: "/images/uiis/services/vsa_3d.jpg",
     accent: "amber"
   },
   {
@@ -407,7 +407,7 @@ export const SERVICES: ServiceItem[] = [
       "Machinery Operators, Equipment Operators & Logistics Support"
     ],
     stages: ["Technical Vetting", "Qualification Matching", "Mobilization", "On-Site Support"],
-    visualImage: "/images/uiis/services/pes_technical_team.jpg",
+    visualImage: "/images/uiis/services/pes_3d.jpg",
     accent: "blue"
   },
   {
@@ -426,7 +426,7 @@ export const SERVICES: ServiceItem[] = [
       "Support during fabrication, construction and in-service turnaround inspection"
     ],
     stages: ["Procedure Review", "Level III Consulting", "Method Execution", "Certification Support"],
-    visualImage: "/images/uiis/ndt/ndt_technician_hero.jpg",
+    visualImage: "/images/uiis/services/nss_3d.jpg",
     accent: "emerald"
   },
   {
@@ -445,7 +445,7 @@ export const SERVICES: ServiceItem[] = [
       "Pre-shipment release certification and handover verification"
     ],
     stages: ["Packaging Inspection", "Preservation Checks", "Markings Verification", "Loading Surveillance", "Release Endorsement"],
-    visualImage: "/images/uiis/services/packing_readiness.jpg",
+    visualImage: "/images/uiis/services/pi_3d.jpg",
     accent: "amber"
   }
 ];

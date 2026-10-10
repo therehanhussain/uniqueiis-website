@@ -10,7 +10,7 @@ export default function PartnerEcosystem() {
   return (
     <section
       id="ecosystem"
-      className="relative py-28 sm:py-36 bg-[#F8FAFC] dark:bg-[#040812] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
+      className="relative py-16 sm:py-20 bg-[#F8FAFC] dark:bg-[#040812] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
     >
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-emerald-accent/[0.02] rounded-full blur-[180px] pointer-events-none" />
@@ -18,7 +18,7 @@ export default function PartnerEcosystem() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Handshake className="w-3.5 h-3.5 text-emerald-accent" />
             <span>Industrial Collaboration • PDF Page 7</span>
@@ -65,7 +65,7 @@ export default function PartnerEcosystem() {
         </div>
 
         {/* Static Grid Presentation for Complete Inspection (12 Logos) */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5 mt-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5 mt-8">
           {PARTNER_ECOSYSTEM_LOGOS.map((partner, idx) => (
             <motion.div
               key={partner.id}
@@ -92,7 +92,7 @@ export default function PartnerEcosystem() {
         </div>
 
         {/* Verification & Impartiality Statement */}
-        <div className="mt-14 p-8 sm:p-10 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm dark:shadow-none">
+        <div className="mt-10 p-8 sm:p-10 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm dark:shadow-none">
           <div className="flex items-start gap-4">
             <div className="p-3 rounded-2xl bg-emerald-accent/15 border border-emerald-accent/30 text-emerald-deep dark:text-emerald-accent shrink-0">
               <ShieldCheck className="w-6 h-6" />

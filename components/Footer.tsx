@@ -12,11 +12,11 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-slate-100 dark:bg-[#03060C] text-slate-600 dark:text-titanium-400 border-t border-slate-200 dark:border-white/10 pt-20 pb-12 overflow-hidden transition-colors duration-250">
+    <footer className="relative bg-slate-100 dark:bg-[#03060C] text-slate-600 dark:text-titanium-400 border-t border-slate-200 dark:border-white/10 pt-14 pb-10 overflow-hidden transition-colors duration-250">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Top Brand & Philosophy Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-slate-200 dark:border-white/10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-12 border-b border-slate-200 dark:border-white/10">
           
           <div className="lg:col-span-5">
             {/* Logo */}

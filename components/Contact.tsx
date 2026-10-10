@@ -43,7 +43,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative py-28 sm:py-36 bg-[#F8FAFC] dark:bg-[#040812] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
+      className="relative py-16 sm:py-20 bg-[#F8FAFC] dark:bg-[#040812] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
     >
       {/* Background radial lighting */}
       <div className="absolute top-1/3 left-1/4 w-[600px] h-[450px] bg-emerald-accent/[0.03] rounded-full blur-[180px] pointer-events-none" />
@@ -52,7 +52,7 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header with exact prompt headline */}
-        <div className="max-w-3xl mb-16 sm:mb-20">
+        <div className="max-w-3xl mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-6 shadow-sm">
             <Building2 className="w-3.5 h-3.5 text-emerald-accent" />
             <span>Talk to Engineers • Al-Khobar Headquarters</span>

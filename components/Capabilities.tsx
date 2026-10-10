@@ -52,7 +52,7 @@ export default function Capabilities() {
   return (
     <section
       id="capabilities"
-      className="relative py-28 sm:py-36 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
+      className="relative py-16 sm:py-20 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
     >
       {/* Background radial lighting */}
       <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[700px] h-[500px] bg-emerald-accent/[0.03] rounded-full blur-[180px] pointer-events-none" />
@@ -60,7 +60,7 @@ export default function Capabilities() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-16 sm:mb-20">
+        <div className="max-w-3xl mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Wrench className="w-3.5 h-3.5 text-emerald-accent" />
             <span>Technical Capabilities & Disciplines • PDF Page 9</span>
@@ -79,7 +79,7 @@ export default function Capabilities() {
         </div>
 
         {/* 3D Machinery Assembly Interactive Spotlight */}
-        <div className="mb-16 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-6 sm:p-10 backdrop-blur-xl shadow-lg dark:shadow-glass">
+        <div className="mb-12 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-6 sm:p-10 backdrop-blur-xl shadow-lg dark:shadow-glass">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             {/* 3D Model Display */}
@@ -137,7 +137,7 @@ export default function Capabilities() {
         </div>
 
         {/* 01. The 10 Technical Disciplines Grid */}
-        <div className="mb-28">
+        <div className="mb-14">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
             {TECHNICAL_DISCIPLINES.map((disc, idx) => (
               <motion.div
@@ -196,7 +196,7 @@ export default function Capabilities() {
         </div>
 
         {/* 02. Technical Standards Minimal Section with Marquee */}
-        <div className="mb-28 p-8 sm:p-10 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
+        <div className="mb-14 p-8 sm:p-10 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
             <div>
               <span className="text-xs font-mono uppercase tracking-widest text-emerald-deep dark:text-emerald-accent font-semibold block mb-1">
@@ -235,7 +235,7 @@ export default function Capabilities() {
         </div>
 
         {/* 03. Inspector Qualifications & Tools (PDF Page 9 & 10) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-28">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
           
           {/* Qualifications Column */}
           <div className="lg:col-span-6 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-8 sm:p-10 shadow-sm dark:shadow-none">
