@@ -584,42 +584,42 @@ export const NDT_METHODS = [
     name: "Ultrasonic Testing",
     fullName: "Ultrasonic Testing (UT)",
     desc: "High-frequency ultrasonic sound waves to detect internal discontinuities, laminations, planar weld flaws, and precision thickness measurements.",
-    image: "/images/uiis/ndt/ut_ultrasonic.jpg"
+    image: "/images/uiis/services/vid_3d.jpg"
   },
   {
     code: "RT",
     name: "Radiographic Testing",
     fullName: "Radiographic Testing (RT)",
     desc: "X-ray and gamma-ray radiographic examination providing permanent volumetric inspection records of weldments, castings, and pressure components.",
-    image: "/images/uiis/ndt/rt_radiography.jpg"
+    image: "/images/uiis/ndt/rt_radiography_3d.jpg"
   },
   {
     code: "MT",
     name: "Magnetic Particle Testing",
     fullName: "Magnetic Particle Testing (MT)",
     desc: "Magnetic flux leakage technique for revealing surface and near-surface linear cracks in ferromagnetic materials and structural welds.",
-    image: "/images/uiis/ndt/mt_magnetic.jpg"
+    image: "/images/uiis/ndt/mt_magnetic_3d.jpg"
   },
   {
     code: "PT",
     name: "Penetrant Testing",
     fullName: "Liquid Penetrant Testing (PT)",
     desc: "Capillary-action dye penetrant testing for identifying surface-breaking discontinuities across non-porous metals, stainless steels, and alloys.",
-    image: "/images/uiis/ndt/pt_penetrant.jpg"
+    image: "/images/uiis/ndt/pt_penetrant_3d.jpg"
   },
   {
     code: "VT",
     name: "Visual Testing",
     fullName: "Visual Testing (VT)",
     desc: "Direct and remote visual inspection utilizing calibrated gauges and optical borescopes to examine surface conditions, weld profiles, and alignment.",
-    image: "/images/uiis/ndt/vt_visual.jpg"
+    image: "/images/uiis/tools/borescope_hd_3d.jpg"
   },
   {
     code: "HT",
     name: "Holiday / Coating Testing",
     fullName: "Holiday / Coating Continuity Testing",
     desc: "High-voltage and low-voltage spark testing to locate pinholes, voids, and continuity defects in protective and anti-corrosive coating films.",
-    image: "/images/uiis/ndt/holiday_testing.jpg"
+    image: "/images/uiis/tools/coating_thickness_gauge_3d.jpg"
   }
 ];
 
@@ -669,16 +669,16 @@ export const WORKFLOW_CLIENT_BENEFITS = [
 ];
 
 export const TECHNICAL_DISCIPLINES: TechnicalDiscipline[] = [
-  { id: "mech-eq", number: "01", title: "Mechanical Equipment", description: "Pressure vessels, tanks, heat exchangers, columns, boilers", scope: "Plate forming, nozzle fit-up, weld surveillance, hydrostatic proof tests, and vessel stamping.", image: "/images/uiis/disciplines/mech_equipment.jpg" },
-  { id: "piping", number: "02", title: "Piping & Pipeline", description: "Carbon steel, stainless steel, alloy, CRA, spools, fabrication & erection", scope: "Material verification, spool dimensions, bevel prep, weld mapping, and hydrotesting.", image: "/images/uiis/disciplines/piping_pipeline.jpg" },
-  { id: "valves", number: "03", title: "Valves & Flow Control", description: "Gate, globe, check, ball, butterfly valves, actuators", scope: "Shell pressure tests, high/low pressure seat leakage, torque tests, and actuator calibration.", image: "/images/uiis/disciplines/valves_flow_control.jpg" },
-  { id: "gre-grp", number: "04", title: "GRE / GRP Piping & Fittings", description: "Pipes, fittings, sleeves, flanges, dismantling joints", scope: "Resin curing checks, lamination surveillance, joint bonding, barcol hardness, and hydrotests.", image: "/images/uiis/disciplines/gre_grp_piping.jpg" },
-  { id: "coatings", number: "05", title: "Coating & Painting", description: "Surface preparation, coating application, DFT measurement", scope: "Blast profile measurement, environmental conditions, dry film thickness, and holiday testing.", image: "/images/uiis/disciplines/coating_painting.jpg" },
-  { id: "structural", number: "06", title: "Structural Steel", description: "Fabrication, welding, dimensional check, bolted structure", scope: "Fit-up inspection, bolt torque verification, beam camber, and ultrasonic weld testing.", image: "/images/uiis/disciplines/structural_steel.jpg" },
-  { id: "electrical", number: "07", title: "Electrical Equipment", description: "LV/MV switchgear, panels, motors, transformers", scope: "Insulation resistance, dielectric tests, busbar alignment, and factory functional tests.", image: "/images/uiis/disciplines/electrical_equipment.jpg" },
-  { id: "instrumentation", number: "08", title: "Instrumentation", description: "Transmitters, gauges, analyzers, control valves, loop check", scope: "Bench calibration, hydrostatic checks, signal response, wiring integrity, and loop checks.", image: "/images/uiis/disciplines/instrumentation.jpg" },
-  { id: "rotating", number: "09", title: "Rotating Equipment", description: "Pumps, compressors, gearboxes, turbines, alignment check", scope: "Rotor dynamic balancing, mechanical run tests, vibration analysis, and shaft alignment.", image: "/images/uiis/disciplines/rotating_equipment.jpg" },
-  { id: "special-proc", number: "10", title: "Materials & Special Processes", description: "Raw materials, castings, forgings, rubber lining, cladding and more", scope: "Chemical analysis, mechanical tests, heat treatment charts, PMI, and clad bonding checks.", image: "/images/uiis/disciplines/special_processes.jpg" }
+  { id: "mech-eq", number: "01", title: "Mechanical Equipment", description: "Pressure vessels, tanks, heat exchangers, columns, boilers", scope: "Plate forming, nozzle fit-up, weld surveillance, hydrostatic proof tests, and vessel stamping.", image: "/images/uiis/services/ved_3d.jpg" },
+  { id: "piping", number: "02", title: "Piping & Pipeline", description: "Carbon steel, stainless steel, alloy, CRA, spools, fabrication & erection", scope: "Material verification, spool dimensions, bevel prep, weld mapping, and hydrotesting.", image: "/images/uiis/services/pid_3d.jpg" },
+  { id: "valves", number: "03", title: "Valves & Flow Control", description: "Gate, globe, check, ball, butterfly valves, actuators", scope: "Shell pressure tests, high/low pressure seat leakage, torque tests, and actuator calibration.", image: "/images/uiis/disciplines/valves_cutaway_3d.jpg" },
+  { id: "gre-grp", number: "04", title: "GRE / GRP Piping & Fittings", description: "Pipes, fittings, sleeves, flanges, dismantling joints", scope: "Resin curing checks, lamination surveillance, joint bonding, barcol hardness, and hydrotests.", image: "/images/uiis/services/grp_pipe_inspection.jpg" },
+  { id: "coatings", number: "05", title: "Coating & Painting", description: "Surface preparation, coating application, DFT measurement", scope: "Blast profile measurement, environmental conditions, dry film thickness, and holiday testing.", image: "/images/uiis/tools/coating_thickness_gauge_3d.jpg" },
+  { id: "structural", number: "06", title: "Structural Steel", description: "Fabrication, welding, dimensional check, bolted structure", scope: "Fit-up inspection, bolt torque verification, beam camber, and ultrasonic weld testing.", image: "/images/uiis/industries/industrial_construction_3d.jpg" },
+  { id: "electrical", number: "07", title: "Electrical Equipment", description: "LV/MV switchgear, panels, motors, transformers", scope: "Insulation resistance, dielectric tests, busbar alignment, and factory functional tests.", image: "/images/uiis/disciplines/electrical_switchgear_3d.jpg" },
+  { id: "instrumentation", number: "08", title: "Instrumentation", description: "Transmitters, gauges, analyzers, control valves, loop check", scope: "Bench calibration, hydrostatic checks, signal response, wiring integrity, and loop checks.", image: "/images/uiis/services/pes_3d.jpg" },
+  { id: "rotating", number: "09", title: "Rotating Equipment", description: "Pumps, compressors, gearboxes, turbines, alignment check", scope: "Rotor dynamic balancing, mechanical run tests, vibration analysis, and shaft alignment.", image: "/images/uiis/disciplines/steam_turbine_rotor_3d.jpg" },
+  { id: "special-proc", number: "10", title: "Materials & Special Processes", description: "Raw materials, castings, forgings, rubber lining, cladding and more", scope: "Chemical analysis, mechanical tests, heat treatment charts, PMI, and clad bonding checks.", image: "/images/uiis/about_3d_inspection.jpg" }
 ];
 
 export const TECHNICAL_STANDARDS = [
@@ -703,14 +703,14 @@ export const INSPECTOR_QUALIFICATIONS = [
 ];
 
 export const INSPECTION_TOOLS: ToolEquipment[] = [
-  { id: "tool-1", name: "DFT Gauge", category: "Coating Inspection", description: "High-precision digital dry film thickness gauge for magnetic and non-magnetic metallic substrates.", image: "/images/uiis/tools/dft_gauge.jpg" },
-  { id: "tool-2", name: "Ultrasonic Thickness Gauge", category: "NDT Equipment", description: "Precision digital acoustic gauge for residual wall thickness measurement and lamination checks.", image: "/images/uiis/tools/ultrasonic_thickness_gauge.jpg" },
-  { id: "tool-3", name: "Coating Holiday Detector", category: "Coating Inspection", description: "High-voltage spark tester for locating microscopic pinholes and discontinuities in protective linings.", image: "/images/uiis/tools/coating_holiday_detector.jpg" },
-  { id: "tool-4", name: "Welding Gauge Set", category: "Welding Inspection", description: "Calibrated bridge cam and fillet weld gauges for throat, bevel angle, undercut, and misalignment.", image: "/images/uiis/tools/welding_gauge_set.jpg" },
-  { id: "tool-5", name: "Calibrated Measuring Tools", category: "Dimensional Control", description: "Vernier calipers, micrometers, and precision dial indicators with valid calibration certificates.", image: "/images/uiis/tools/calibrated_measuring_tools.jpg" },
-  { id: "tool-6", name: "Borescope / Videoscope", category: "Remote Visual", description: "High-definition flexible optical videoscopes for internal pipe and vessel cavity inspection.", image: "/images/uiis/tools/borescope_videoscope.jpg" },
-  { id: "tool-7", name: "NDT Equipment (UT / MT / PT)", category: "NDT Support", description: "Flaw detectors, magnetic electromagnetic yokes, and ultraviolet inspection kits.", image: "/images/uiis/tools/ndt_equipment.jpg" },
-  { id: "tool-8", name: "Inspection Photography", category: "Reporting & Traceability", description: "High-resolution digital optical equipment for clear photographic evidence and dossier records.", image: "/images/uiis/tools/inspection_photography.jpg" }
+  { id: "tool-1", name: "DFT Gauge", category: "Coating Inspection", description: "High-precision digital dry film thickness gauge for magnetic and non-magnetic metallic substrates.", image: "/images/uiis/tools/coating_thickness_gauge_3d.jpg" },
+  { id: "tool-2", name: "Ultrasonic Thickness Gauge", category: "NDT Equipment", description: "Precision digital acoustic gauge for residual wall thickness measurement and lamination checks.", image: "/images/uiis/services/vid_3d.jpg" },
+  { id: "tool-3", name: "Coating Holiday Detector", category: "Coating Inspection", description: "High-voltage spark tester for locating microscopic pinholes and discontinuities in protective linings.", image: "/images/uiis/tools/coating_thickness_gauge_3d.jpg" },
+  { id: "tool-4", name: "Welding Gauge Set", category: "Welding Inspection", description: "Calibrated bridge cam and fillet weld gauges for throat, bevel angle, undercut, and misalignment.", image: "/images/uiis/services/pid_3d.jpg" },
+  { id: "tool-5", name: "Calibrated Measuring Tools", category: "Dimensional Control", description: "Vernier calipers, micrometers, and precision dial indicators with valid calibration certificates.", image: "/images/uiis/services/vsa_3d.jpg" },
+  { id: "tool-6", name: "Borescope / Videoscope", category: "Remote Visual", description: "High-definition flexible optical videoscopes for internal pipe and vessel cavity inspection.", image: "/images/uiis/tools/borescope_hd_3d.jpg" },
+  { id: "tool-7", name: "NDT Equipment (UT / MT / PT)", category: "NDT Support", description: "Flaw detectors, magnetic electromagnetic yokes, and ultraviolet inspection kits.", image: "/images/uiis/ndt/mt_magnetic_3d.jpg" },
+  { id: "tool-8", name: "Inspection Photography", category: "Reporting & Traceability", description: "High-resolution digital optical equipment for clear photographic evidence and dossier records.", image: "/images/uiis/hero_refinery_night_3d.jpg" }
 ];
 
 export const SERVICE_DELIVERY_MODEL = [
@@ -725,11 +725,11 @@ export const SERVICE_DELIVERY_MODEL = [
 ];
 
 export const OUR_PEOPLE_AREAS = [
-  { title: "Field Inspection", desc: "Experienced inspectors conducting rigorous physical verification at manufacturing plants and fabrication yards.", image: "/images/uiis/people/field_inspection.jpg" },
-  { title: "Project Support", desc: "Dedicated coordination personnel ensuring seamless technical alignment between stakeholders.", image: "/images/uiis/people/project_support.jpg" },
-  { title: "Technical Discussion", desc: "Collaborative engineering consultations resolving non-conformities and optimizing quality plans.", image: "/images/uiis/people/technical_discussion.jpg" },
-  { title: "Quality Assurance", desc: "Systematic QA/QC oversight ensuring full adherence to codes, standards, and contractual criteria.", image: "/images/uiis/people/quality_assurance.jpg" },
-  { title: "Teamwork on Site", desc: "Cohesive multidisciplinary execution delivering reliable results on complex industrial jobs.", image: "/images/uiis/people/teamwork_on_site.jpg" }
+  { title: "Field Inspection", desc: "Experienced inspectors conducting rigorous physical verification at manufacturing plants and fabrication yards.", image: "/images/uiis/services/pid_site_engineer.jpg" },
+  { title: "Project Support", desc: "Dedicated coordination personnel ensuring seamless technical alignment between stakeholders.", image: "/images/uiis/services/pes_technical_team.jpg" },
+  { title: "Technical Discussion", desc: "Collaborative engineering consultations resolving non-conformities and optimizing quality plans.", image: "/images/uiis/services/vid_team_review.jpg" },
+  { title: "Quality Assurance", desc: "Systematic QA/QC oversight ensuring full adherence to codes, standards, and contractual criteria.", image: "/images/uiis/services/vsa_3d.jpg" },
+  { title: "Teamwork on Site", desc: "Cohesive multidisciplinary execution delivering reliable results on complex industrial jobs.", image: "/images/uiis/industries/industrial_construction_3d.jpg" }
 ];
 
 export const WORLDWIDE_NETWORK_COUNTRIES = {

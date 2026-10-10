@@ -45,8 +45,8 @@ export default function Hero() {
         className="absolute inset-0 z-0 origin-center pointer-events-none"
       >
         <Image
-          src="/images/uiis/hero_engineers.jpg"
-          alt="UIIS Industrial Inspection Engineer and Refinery Facility"
+          src="/images/uiis/hero_refinery_night_3d.jpg"
+          alt="UIIS Industrial Inspection Infrastructure and Refinery Facility"
           fill
           priority
           sizes="100vw"
