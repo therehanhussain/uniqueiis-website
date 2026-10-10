@@ -191,25 +191,45 @@ export default function HeroVessel3D() {
     scanRing.rotation.x = Math.PI / 2;
     rootGroup.add(scanRing);
 
-    // Lighting System
-    // Ambient - Deep navy fill
+    // Dynamic Theme Lighting System
     const ambientLight = new THREE.AmbientLight(0x0e1726, 0.85);
     scene.add(ambientLight);
 
-    // Key Light - Crisp soft white engineering light
     const keyLight = new THREE.DirectionalLight(0xffffff, 2.0);
     keyLight.position.set(4, 5, 4);
     scene.add(keyLight);
 
-    // Rim Light - Emerald accent from back-left
     const rimLight = new THREE.DirectionalLight(0x10b981, 2.4);
     rimLight.position.set(-5, 2, -4);
     scene.add(rimLight);
 
-    // Secondary Rim - Subtle warm gold
     const goldLight = new THREE.DirectionalLight(0xf59e0b, 0.9);
     goldLight.position.set(3, -4, -2);
     scene.add(goldLight);
+
+    // Synchronize 3D lighting with Active Light / Dark Mode
+    const updateThemeLighting = () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      if (isDark) {
+        ambientLight.color.setHex(0x0e1726);
+        ambientLight.intensity = 0.85;
+        keyLight.intensity = 2.0;
+        darkTitaniumMat.color.setHex(0x1e2638);
+      } else {
+        // High-end titanium / CAD studio lighting in Light mode
+        ambientLight.color.setHex(0xdbeafe);
+        ambientLight.intensity = 1.45;
+        keyLight.intensity = 2.4;
+        darkTitaniumMat.color.setHex(0x2a354d);
+      }
+    };
+    updateThemeLighting();
+
+    const themeObserver = new MutationObserver(updateThemeLighting);
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
 
     // Initial orientation
     rootGroup.rotation.x = 0.2;
@@ -298,6 +318,7 @@ export default function HeroVessel3D() {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("touchstart", handleTouchStart);
+      themeObserver.disconnect();
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
 
@@ -331,29 +352,29 @@ export default function HeroVessel3D() {
       {/* Floating Technical HUD Annotations */}
       <div className="absolute inset-0 pointer-events-none select-none z-10 flex flex-col justify-between p-4 sm:p-6">
         {/* Top-Right Tag */}
-        <div className="self-end inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/60 border border-white/15 backdrop-blur-md text-[11px] font-mono text-titanium-300 shadow-glass">
+        <div className="self-end inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/85 dark:bg-black/60 border border-slate-200 dark:border-white/15 backdrop-blur-md text-[11px] font-mono text-slate-700 dark:text-titanium-300 shadow-sm dark:shadow-glass">
           <span className="w-2 h-2 rounded-full bg-emerald-accent animate-pulse" />
           <span>VESSEL TAG: PV-401A • CL600</span>
         </div>
 
         {/* Mid-Left Annotation */}
-        <div className="self-start hidden sm:flex flex-col gap-1 p-2.5 rounded-lg bg-black/60 border border-white/15 backdrop-blur-md text-[10px] font-mono text-titanium-300 shadow-glass max-w-[210px]">
-          <div className="text-emerald-accent font-semibold tracking-wider flex items-center justify-between">
+        <div className="self-start hidden sm:flex flex-col gap-1 p-2.5 rounded-lg bg-white/85 dark:bg-black/60 border border-slate-200 dark:border-white/15 backdrop-blur-md text-[10px] font-mono text-slate-700 dark:text-titanium-300 shadow-sm dark:shadow-glass max-w-[210px]">
+          <div className="text-emerald-deep dark:text-emerald-accent font-semibold tracking-wider flex items-center justify-between">
             <span>CIRC WELD #W-01</span>
-            <span className="text-[9px] px-1 py-0.5 rounded bg-emerald-accent/20 text-emerald-400">UT 100%</span>
+            <span className="text-[9px] px-1 py-0.5 rounded bg-emerald-accent/20 text-emerald-600 dark:text-emerald-400 font-bold">UT 100%</span>
           </div>
-          <div className="text-titanium-400">Thickness: 38.5 mm</div>
-          <div className="text-titanium-400">Alloy: SA-516 Gr 70</div>
+          <div className="text-slate-500 dark:text-titanium-400">Thickness: 38.5 mm</div>
+          <div className="text-slate-500 dark:text-titanium-400">Alloy: SA-516 Gr 70</div>
         </div>
 
         {/* Bottom Technical Spec Strip */}
-        <div className="self-end flex items-center gap-4 px-3.5 py-1.5 rounded-lg bg-black/60 border border-white/15 backdrop-blur-md text-[10px] font-mono text-titanium-300 shadow-glass">
+        <div className="self-end flex items-center gap-4 px-3.5 py-1.5 rounded-lg bg-white/85 dark:bg-black/60 border border-slate-200 dark:border-white/15 backdrop-blur-md text-[10px] font-mono text-slate-700 dark:text-titanium-300 shadow-sm dark:shadow-glass">
           <div className="flex items-center gap-1.5">
-            <span className="text-titanium-400">STATUS:</span>
-            <span className="text-emerald-400 font-bold">VERIFIED</span>
+            <span className="text-slate-500 dark:text-titanium-400">STATUS:</span>
+            <span className="text-emerald-600 dark:text-emerald-400 font-bold">VERIFIED</span>
           </div>
-          <div className="w-px h-3 bg-white/20" />
-          <div className="text-titanium-400 hidden sm:block">ASME SEC VIII DIV 1</div>
+          <div className="w-px h-3 bg-slate-300 dark:bg-white/20" />
+          <div className="text-slate-500 dark:text-titanium-400 hidden sm:block">ASME SEC VIII DIV 1</div>
         </div>
       </div>
     </div>

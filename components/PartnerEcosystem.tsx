@@ -10,7 +10,7 @@ export default function PartnerEcosystem() {
   return (
     <section
       id="ecosystem"
-      className="relative py-28 sm:py-36 bg-[#040812] text-white overflow-hidden border-t border-white/10"
+      className="relative py-28 sm:py-36 bg-[#F8FAFC] dark:bg-[#040812] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
     >
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-emerald-accent/[0.02] rounded-full blur-[180px] pointer-events-none" />
@@ -19,33 +19,33 @@ export default function PartnerEcosystem() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Handshake className="w-3.5 h-3.5 text-emerald-accent" />
             <span>Industrial Collaboration • PDF Page 7</span>
           </div>
 
-          <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-[1.05] uppercase">
+          <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.05] uppercase">
             UIIS <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-accent via-white to-titanium-200">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-accent via-slate-800 to-slate-600 dark:from-emerald-accent dark:via-white dark:to-titanium-200">
               PARTNER ECOSYSTEM
             </span>
           </h2>
 
-          <p className="mt-4 text-base text-titanium-300 max-w-2xl mx-auto leading-relaxed font-normal">
+          <p className="mt-4 text-base text-slate-600 dark:text-titanium-300 max-w-2xl mx-auto leading-relaxed font-normal">
             Leading engineering, procurement, construction, and industrial organizations represented in the Unique Inspection partner ecosystem.
           </p>
         </div>
 
         {/* Subtle Infinite Marquee (Row 1) */}
         <div className="relative overflow-hidden w-full group group-hover-pause py-4 mb-6">
-          <div className="absolute left-0 inset-y-0 w-20 bg-gradient-to-r from-[#040812] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 inset-y-0 w-20 bg-gradient-to-l from-[#040812] to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 inset-y-0 w-20 bg-gradient-to-r from-[#F8FAFC] dark:from-[#040812] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 inset-y-0 w-20 bg-gradient-to-l from-[#F8FAFC] dark:from-[#040812] to-transparent z-10 pointer-events-none" />
 
           <div className="flex gap-6 w-max animate-marquee">
             {[...PARTNER_ECOSYSTEM_LOGOS, ...PARTNER_ECOSYSTEM_LOGOS].map((partner, idx) => (
               <div
                 key={`marquee-${partner.id}-${idx}`}
-                className="flex flex-col items-center justify-center w-52 h-28 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-emerald-accent/50 p-4 transition-all duration-300 shadow-sm shrink-0"
+                className="flex flex-col items-center justify-center w-52 h-28 rounded-2xl bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 hover:border-emerald-accent/60 dark:hover:border-emerald-accent/50 p-4 transition-all duration-300 shadow-sm shrink-0"
               >
                 <div className="relative w-full h-12 flex items-center justify-center">
                   <Image
@@ -56,7 +56,7 @@ export default function PartnerEcosystem() {
                     className="object-contain filter contrast-105"
                   />
                 </div>
-                <span className="text-[10px] font-mono text-titanium-400 mt-2 truncate max-w-full text-center">
+                <span className="text-[10px] font-mono text-slate-500 dark:text-titanium-400 mt-2 truncate max-w-full text-center">
                   {partner.name}
                 </span>
               </div>
@@ -73,7 +73,7 @@ export default function PartnerEcosystem() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.04 }}
-              className="group relative p-4 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-emerald-accent/50 transition-all duration-300 flex flex-col items-center justify-center aspect-[16/10] hover:-translate-y-1 hover:shadow-glass"
+              className="group relative p-4 rounded-2xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 hover:border-emerald-accent/60 dark:hover:border-emerald-accent/50 transition-all duration-300 flex flex-col items-center justify-center aspect-[16/10] hover:-translate-y-1 shadow-sm dark:shadow-none"
             >
               <div className="relative w-full h-12 flex items-center justify-center p-1">
                 <Image
@@ -84,7 +84,7 @@ export default function PartnerEcosystem() {
                   className="object-contain group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <span className="text-[10px] font-mono text-titanium-400 mt-2 text-center truncate max-w-full">
+              <span className="text-[10px] font-mono text-slate-500 dark:text-titanium-400 mt-2 text-center truncate max-w-full">
                 {partner.category}
               </span>
             </motion.div>
@@ -92,22 +92,22 @@ export default function PartnerEcosystem() {
         </div>
 
         {/* Verification & Impartiality Statement */}
-        <div className="mt-14 p-8 sm:p-10 rounded-3xl bg-white/[0.02] border border-white/10 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="mt-14 p-8 sm:p-10 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm dark:shadow-none">
           <div className="flex items-start gap-4">
-            <div className="p-3 rounded-2xl bg-emerald-accent/15 border border-emerald-accent/30 text-emerald-accent shrink-0">
+            <div className="p-3 rounded-2xl bg-emerald-accent/15 border border-emerald-accent/30 text-emerald-deep dark:text-emerald-accent shrink-0">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="text-base font-bold text-white">
+              <h4 className="text-base font-bold text-slate-900 dark:text-white">
                 Technical Governance & Independent Neutrality
               </h4>
-              <p className="mt-1 text-xs sm:text-sm text-titanium-300 max-w-2xl leading-relaxed">
+              <p className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-titanium-300 max-w-2xl leading-relaxed">
                 As an independent Third-Party Inspection (TPI) services provider, UIIS maintains strict objectivity. All surveillance records, material verifications, and NDT interpretations reflect verified physical facts without commercial conflicts.
               </p>
             </div>
           </div>
           <div className="shrink-0">
-            <span className="px-4 py-2 rounded-full text-xs font-mono font-semibold bg-white/5 border border-white/10 text-emerald-accent">
+            <span className="px-4 py-2 rounded-full text-xs font-mono font-semibold bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-emerald-deep dark:text-emerald-accent">
               ISO 9001:2015 Compliant
             </span>
           </div>

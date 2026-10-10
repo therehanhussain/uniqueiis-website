@@ -43,7 +43,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative py-28 sm:py-36 bg-[#040812] text-white overflow-hidden border-t border-white/10"
+      className="relative py-28 sm:py-36 bg-[#F8FAFC] dark:bg-[#040812] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
     >
       {/* Background radial lighting */}
       <div className="absolute top-1/3 left-1/4 w-[600px] h-[450px] bg-emerald-accent/[0.03] rounded-full blur-[180px] pointer-events-none" />
@@ -53,20 +53,20 @@ export default function Contact() {
         
         {/* Section Header with exact prompt headline */}
         <div className="max-w-3xl mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-titanium-400 text-xs font-mono uppercase tracking-widest mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-6 shadow-sm">
             <Building2 className="w-3.5 h-3.5 text-emerald-accent" />
             <span>Talk to Engineers • Al-Khobar Headquarters</span>
           </div>
 
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-[-0.03em] text-white leading-[1.0] uppercase">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-[-0.03em] text-slate-900 dark:text-white leading-[1.0] uppercase">
             LET&apos;S BUILD <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-accent via-white to-titanium-200">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-accent via-slate-800 to-slate-600 dark:from-emerald-accent dark:via-white dark:to-titanium-200">
               A SAFER,
             </span> <br />
             STRONGER TOMORROW.
           </h2>
 
-          <p className="mt-6 text-base sm:text-lg text-titanium-300 leading-relaxed font-normal">
+          <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-titanium-300 leading-relaxed font-normal">
             Whether you require immediate shop surveillance, NDT procedure approval, supplier capacity audit, or qualified site engineers across the Kingdom and international projects, connect directly with our engineering desk.
           </p>
         </div>
@@ -76,97 +76,97 @@ export default function Contact() {
           
           {/* Left Column: Official PDF Contact Information */}
           <div className="lg:col-span-5 space-y-8">
-            <div className="rounded-3xl bg-white/[0.02] border border-white/10 p-8 backdrop-blur-xl shadow-glass">
-              <span className="text-xs font-mono uppercase tracking-widest text-emerald-accent font-semibold block mb-2">
+            <div className="rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-8 backdrop-blur-xl shadow-lg dark:shadow-glass">
+              <span className="text-xs font-mono uppercase tracking-widest text-emerald-deep dark:text-emerald-accent font-semibold block mb-2">
                 Official Headquarters
               </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-6">
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-6">
                 Unique Inspection Integrated Services
               </h3>
 
               <div className="space-y-5 text-sm">
                 {/* Physical Location */}
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-emerald-accent shrink-0 mt-0.5">
+                  <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-emerald-deep dark:text-emerald-accent shrink-0 mt-0.5">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-mono uppercase text-titanium-500 block mb-1">
+                    <span className="text-xs font-mono uppercase text-slate-500 dark:text-titanium-500 block mb-1">
                       Office Location
                     </span>
-                    <p className="text-white font-medium leading-relaxed">
-                      Building Number: <span className="text-emerald-accent font-semibold">{BRAND_INFO.contact.buildingNumber}</span>, Street {BRAND_INFO.contact.street}
+                    <p className="text-slate-900 dark:text-white font-medium leading-relaxed">
+                      Building Number: <span className="text-emerald-deep dark:text-emerald-accent font-semibold">{BRAND_INFO.contact.buildingNumber}</span>, Street {BRAND_INFO.contact.street}
                       <br />
                       {BRAND_INFO.contact.district}
                       <br />
                       Postal Code: {BRAND_INFO.contact.postalCode}, {BRAND_INFO.contact.city}
                       <br />
-                      <span className="text-titanium-200">{BRAND_INFO.contact.country}</span>
+                      <span className="text-slate-600 dark:text-titanium-200">{BRAND_INFO.contact.country}</span>
                     </p>
                   </div>
                 </div>
 
                 {/* Telephone */}
-                <div className="flex items-start gap-4 pt-4 border-t border-white/5">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-emerald-accent shrink-0 mt-0.5">
+                <div className="flex items-start gap-4 pt-4 border-t border-slate-100 dark:border-white/5">
+                  <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-emerald-deep dark:text-emerald-accent shrink-0 mt-0.5">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-mono uppercase text-titanium-500 block mb-1">
+                    <span className="text-xs font-mono uppercase text-slate-500 dark:text-titanium-500 block mb-1">
                       Direct Telephone
                     </span>
                     <a
                       href={`tel:${BRAND_INFO.contact.mobile.replace(/\s+/g, "")}`}
-                      className="text-white font-mono font-bold hover:text-emerald-accent transition-colors text-base inline-flex items-center gap-1.5"
+                      className="text-slate-900 dark:text-white font-mono font-bold hover:text-emerald-deep dark:hover:text-emerald-accent transition-colors text-base inline-flex items-center gap-1.5"
                     >
                       <span>{BRAND_INFO.contact.mobile}</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-titanium-500" />
+                      <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 dark:text-titanium-500" />
                     </a>
                   </div>
                 </div>
 
                 {/* Corporate Email */}
-                <div className="flex items-start gap-4 pt-4 border-t border-white/5">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-emerald-accent shrink-0 mt-0.5">
+                <div className="flex items-start gap-4 pt-4 border-t border-slate-100 dark:border-white/5">
+                  <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-emerald-deep dark:text-emerald-accent shrink-0 mt-0.5">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-mono uppercase text-titanium-500 block mb-1">
+                    <span className="text-xs font-mono uppercase text-slate-500 dark:text-titanium-500 block mb-1">
                       Official Email
                     </span>
                     <a
                       href={`mailto:${BRAND_INFO.contact.email}`}
-                      className="text-white font-mono font-bold hover:text-emerald-accent transition-colors inline-flex items-center gap-1.5"
+                      className="text-slate-900 dark:text-white font-mono font-bold hover:text-emerald-deep dark:hover:text-emerald-accent transition-colors inline-flex items-center gap-1.5"
                     >
                       <span>{BRAND_INFO.contact.email}</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-titanium-500" />
+                      <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 dark:text-titanium-500" />
                     </a>
                   </div>
                 </div>
 
                 {/* Website */}
-                <div className="flex items-start gap-4 pt-4 border-t border-white/5">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-emerald-accent shrink-0 mt-0.5">
+                <div className="flex items-start gap-4 pt-4 border-t border-slate-100 dark:border-white/5">
+                  <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-emerald-deep dark:text-emerald-accent shrink-0 mt-0.5">
                     <Globe className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-mono uppercase text-titanium-500 block mb-1">
+                    <span className="text-xs font-mono uppercase text-slate-500 dark:text-titanium-500 block mb-1">
                       Web Portal
                     </span>
                     <a
                       href={`https://${BRAND_INFO.domain}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white font-mono font-bold hover:text-emerald-accent transition-colors inline-flex items-center gap-1.5"
+                      className="text-slate-900 dark:text-white font-mono font-bold hover:text-emerald-deep dark:hover:text-emerald-accent transition-colors inline-flex items-center gap-1.5"
                     >
                       <span>{BRAND_INFO.domain}</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-titanium-500" />
+                      <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 dark:text-titanium-500" />
                     </a>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 pt-5 border-t border-white/10 flex items-center gap-3 text-xs font-mono text-titanium-400">
+              <div className="mt-6 pt-5 border-t border-slate-200 dark:border-white/10 flex items-center gap-3 text-xs font-mono text-slate-500 dark:text-titanium-400">
                 <Clock className="w-4 h-4 text-emerald-accent shrink-0" />
                 <span>Response SLA: &lt; 24 hours turnaround</span>
               </div>
@@ -174,7 +174,7 @@ export default function Contact() {
 
             {/* HQ Photos from PDF Page 12 */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-2xl overflow-hidden border border-white/10 bg-navy-950 aspect-[4/3] relative group">
+              <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-slate-900 aspect-[4/3] relative group">
                 <Image
                   src="/images/uiis/uiis_hq_building.jpg"
                   alt="UIIS Headquarters Building Al-Khobar"
@@ -189,7 +189,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="rounded-2xl overflow-hidden border border-white/10 bg-navy-950 aspect-[4/3] relative group">
+              <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-slate-900 aspect-[4/3] relative group">
                 <Image
                   src="/images/uiis/uiis_location_map.jpg"
                   alt="UIIS Location Map"
@@ -208,15 +208,15 @@ export default function Contact() {
 
           {/* Right Column: Talk to Engineers Clean Form */}
           <div className="lg:col-span-7">
-            <div className="rounded-3xl bg-white/[0.02] border border-white/10 p-8 sm:p-10 backdrop-blur-xl shadow-glass">
+            <div className="rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-8 sm:p-10 backdrop-blur-xl shadow-lg dark:shadow-glass">
               <div className="mb-8">
-                <span className="text-xs font-mono uppercase tracking-widest text-emerald-accent font-semibold block mb-1">
+                <span className="text-xs font-mono uppercase tracking-widest text-emerald-deep dark:text-emerald-accent font-semibold block mb-1">
                   Inquiry & Technical Scope
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-black text-white">
+                <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
                   Talk to Engineers
                 </h3>
-                <p className="mt-2 text-sm text-titanium-400">
+                <p className="mt-2 text-sm text-slate-600 dark:text-titanium-400">
                   Submit equipment scope, vendor manufacturing location, or inspection schedule for rapid mobilization.
                 </p>
               </div>
@@ -230,11 +230,11 @@ export default function Contact() {
                   <div className="w-16 h-16 rounded-full bg-emerald-accent/20 border border-emerald-accent/40 flex items-center justify-center text-emerald-accent mb-6 shadow-glow-emerald">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h4 className="text-2xl sm:text-3xl font-bold text-white">
+                  <h4 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
                     Inquiry Transmitted Successfully
                   </h4>
-                  <p className="mt-3 text-sm text-titanium-300 max-w-md">
-                    Thank you, <span className="text-white font-medium">{formData.name}</span>. Your technical inquiry regarding <span className="text-white font-medium">{formData.serviceRequired}</span> has been routed directly to our engineering coordination office at <span className="text-emerald-accent">{BRAND_INFO.contact.email}</span>.
+                  <p className="mt-3 text-sm text-slate-600 dark:text-titanium-300 max-w-md">
+                    Thank you, <span className="text-slate-900 dark:text-white font-medium">{formData.name}</span>. Your technical inquiry regarding <span className="text-slate-900 dark:text-white font-medium">{formData.serviceRequired}</span> has been routed directly to our engineering coordination office at <span className="text-emerald-deep dark:text-emerald-accent font-semibold">{BRAND_INFO.contact.email}</span>.
                   </p>
                   <button
                     type="button"
@@ -250,7 +250,7 @@ export default function Contact() {
                         message: "",
                       });
                     }}
-                    className="mt-8 px-6 py-2.5 rounded-full text-xs font-semibold text-titanium-300 bg-white/5 hover:bg-white/10 border border-white/10 transition-all cursor-pointer"
+                    className="mt-8 px-6 py-2.5 rounded-full text-xs font-semibold text-slate-700 dark:text-titanium-300 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 transition-all cursor-pointer"
                   >
                     Submit Another Inquiry
                   </button>
@@ -259,7 +259,7 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-titanium-400 mb-2">
+                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-titanium-400 mb-2 font-medium">
                         Full Name *
                       </label>
                       <input
@@ -268,12 +268,12 @@ export default function Contact() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Eng. Khalid Al-Mansoor"
-                        className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-titanium-500 text-sm focus:outline-none focus:border-emerald-accent transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-titanium-500 text-sm focus:outline-none focus:border-emerald-accent focus:bg-white dark:focus:bg-white/[0.05] transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-titanium-400 mb-2">
+                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-titanium-400 mb-2 font-medium">
                         Company / EPC Client *
                       </label>
                       <input
@@ -282,14 +282,14 @@ export default function Contact() {
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                         placeholder="e.g. PetroTech Engineering"
-                        className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-titanium-500 text-sm focus:outline-none focus:border-emerald-accent transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-titanium-500 text-sm focus:outline-none focus:border-emerald-accent focus:bg-white dark:focus:bg-white/[0.05] transition-colors"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-titanium-400 mb-2">
+                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-titanium-400 mb-2 font-medium">
                         Corporate Email *
                       </label>
                       <input
@@ -298,12 +298,12 @@ export default function Contact() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="khalid@company.com"
-                        className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-titanium-500 text-sm focus:outline-none focus:border-emerald-accent transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-titanium-500 text-sm focus:outline-none focus:border-emerald-accent focus:bg-white dark:focus:bg-white/[0.05] transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-titanium-400 mb-2">
+                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-titanium-400 mb-2 font-medium">
                         Contact Phone
                       </label>
                       <input
@@ -311,14 +311,14 @@ export default function Contact() {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+966 5X XXX XXXX"
-                        className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-titanium-500 text-sm focus:outline-none focus:border-emerald-accent transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-titanium-500 text-sm focus:outline-none focus:border-emerald-accent focus:bg-white dark:focus:bg-white/[0.05] transition-colors"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-titanium-400 mb-2">
+                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-titanium-400 mb-2 font-medium">
                         Country / Project Location *
                       </label>
                       <input
@@ -327,25 +327,25 @@ export default function Contact() {
                         value={formData.country}
                         onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                         placeholder="e.g. Saudi Arabia, UAE, Italy..."
-                        className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-titanium-500 text-sm focus:outline-none focus:border-emerald-accent transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-titanium-500 text-sm focus:outline-none focus:border-emerald-accent focus:bg-white dark:focus:bg-white/[0.05] transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-titanium-400 mb-2">
+                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-titanium-400 mb-2 font-medium">
                         Service Department *
                       </label>
                       <select
                         value={formData.serviceRequired}
                         onChange={(e) => setFormData({ ...formData, serviceRequired: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-[#060A14] border border-white/10 text-white text-sm focus:outline-none focus:border-emerald-accent transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-white dark:bg-[#060A14] border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-emerald-accent transition-colors"
                       >
                         {SERVICES.map((s) => (
-                          <option key={s.id} value={`${s.title} (${s.departmentCode})`} className="bg-[#060A14] text-white">
+                          <option key={s.id} value={`${s.title} (${s.departmentCode})`} className="bg-white dark:bg-[#060A14] text-slate-900 dark:text-white">
                             {s.number} - {s.title} ({s.departmentCode})
                           </option>
                         ))}
-                        <option value="General Technical Consultation" className="bg-[#060A14] text-white">
+                        <option value="General Technical Consultation" className="bg-white dark:bg-[#060A14] text-slate-900 dark:text-white">
                           General Technical Consultation
                         </option>
                       </select>
@@ -353,7 +353,7 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-titanium-400 mb-2">
+                    <label className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-titanium-400 mb-2 font-medium">
                       Equipment Scope & Technical Specifications *
                     </label>
                     <textarea
@@ -362,7 +362,7 @@ export default function Contact() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Please specify equipment commodities (pressure vessels, piping, valves, NDT, etc.), applicable codes (ASME / API / ISO / specs), vendor facility location, and required dates..."
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-titanium-500 text-sm focus:outline-none focus:border-emerald-accent transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-titanium-500 text-sm focus:outline-none focus:border-emerald-accent focus:bg-white dark:focus:bg-white/[0.05] transition-colors"
                     />
                   </div>
 
@@ -381,12 +381,12 @@ export default function Contact() {
                     )}
                   </button>
 
-                  <div className="flex items-center justify-between text-[11px] text-titanium-500 font-mono pt-1">
+                  <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-titanium-500 font-mono pt-1">
                     <span className="flex items-center gap-1.5">
                       <ShieldCheck className="w-3.5 h-3.5 text-emerald-accent" />
                       <span>Data protected under strict NDA and professional confidentiality</span>
                     </span>
-                    <span className="text-emerald-accent font-semibold">{BRAND_INFO.contact.email}</span>
+                    <span className="text-emerald-deep dark:text-emerald-accent font-semibold">{BRAND_INFO.contact.email}</span>
                   </div>
                 </form>
               )}

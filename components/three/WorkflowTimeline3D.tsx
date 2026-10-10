@@ -142,18 +142,42 @@ export default function WorkflowTimeline3D({ activeStepIndex }: Props) {
     rootGroup.add(beacon);
 
     // Lighting
-    const ambient = new THREE.AmbientLight(0x0e1726, 0.9);
+    const ambient = new THREE.AmbientLight(0x0e1726, 0.85);
     scene.add(ambient);
 
     const keyLight = new THREE.DirectionalLight(0xffffff, 2.0);
-    keyLight.position.set(3, 4, 4);
+    keyLight.position.set(2, 4, 3);
     scene.add(keyLight);
 
-    const rimEmerald = new THREE.DirectionalLight(0x10b981, 2.4);
-    rimEmerald.position.set(-4, -1, -3);
+    const rimEmerald = new THREE.DirectionalLight(0x10b981, 2.0);
+    rimEmerald.position.set(-4, -1, -2);
     scene.add(rimEmerald);
 
-    rootGroup.rotation.x = 0.22;
+    // Dynamic Theme Lighting Synchronization
+    const updateThemeLighting = () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      if (isDark) {
+        ambient.color.setHex(0x0e1726);
+        ambient.intensity = 0.85;
+        keyLight.intensity = 2.0;
+        tubeMat.color.setHex(0x1e293b);
+      } else {
+        ambient.color.setHex(0xdbeafe);
+        ambient.intensity = 1.45;
+        keyLight.intensity = 2.4;
+        tubeMat.color.setHex(0x334155);
+      }
+    };
+    updateThemeLighting();
+
+    const themeObserver = new MutationObserver(updateThemeLighting);
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    rootGroup.rotation.x = 0.15;
+    rootGroup.rotation.y = -0.05;
 
     // Resize
     const handleResize = () => {
@@ -182,41 +206,42 @@ export default function WorkflowTimeline3D({ activeStepIndex }: Props) {
     setIsLoaded(true);
 
     let clock = new THREE.Clock();
-    let currentT = 0;
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
       if (!isVisible) return;
 
       const elapsed = clock.getElapsedTime();
-      const targetIdx = activeIndexRef.current;
-      const targetT = targetIdx / (count - 1);
+      const curIndex = activeIndexRef.current;
 
-      // Lerp beacon to target milestone
-      currentT += (targetT - currentT) * 0.08;
-      const beaconPos = curve.getPoint(Math.max(0, Math.min(1, currentT)));
-      beacon.position.copy(beaconPos);
+      // Update beacon position along curve towards active step
+      const targetT = curIndex / (count - 1);
+      const targetPos = curve.getPoint(targetT);
+      beacon.position.lerp(targetPos, 0.08);
 
-      // Update node materials based on active index
-      nodeSpheres.forEach((sphere, i) => {
-        if (i === targetIdx) {
-          sphere.material = activeMat;
-          sphere.scale.setScalar(1.2 + Math.sin(elapsed * 5) * 0.1);
+      // Node state updates
+      nodeSpheres.forEach((sph, i) => {
+        if (i === curIndex) {
+          sph.material = activeMat;
           nodeRings[i].visible = true;
-          nodeRings[i].rotation.z = elapsed * 1.5;
-        } else if (i < targetIdx) {
-          sphere.material = passedMat;
-          sphere.scale.setScalar(1.0);
+          if (!prefersReducedMotion) {
+            nodeRings[i].rotation.z = elapsed * 1.5;
+            const s = 1 + Math.sin(elapsed * 4) * 0.15;
+            nodeRings[i].scale.set(s, s, s);
+          }
+        } else if (i < curIndex) {
+          sph.material = passedMat;
           nodeRings[i].visible = false;
         } else {
-          sphere.material = inactiveMat;
-          sphere.scale.setScalar(0.85);
+          sph.material = inactiveMat;
           nodeRings[i].visible = false;
         }
       });
 
+      // Camera subtle parallax
       if (!prefersReducedMotion) {
-        rootGroup.rotation.y = Math.sin(elapsed * 0.5) * 0.12;
+        camera.position.x = Math.sin(elapsed * 0.4) * 0.3;
+        camera.lookAt(0, 0, 0);
       }
 
       renderer.render(scene, camera);
@@ -226,6 +251,7 @@ export default function WorkflowTimeline3D({ activeStepIndex }: Props) {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      themeObserver.disconnect();
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
 
@@ -247,6 +273,7 @@ export default function WorkflowTimeline3D({ activeStepIndex }: Props) {
     <div
       ref={containerRef}
       className="relative w-full h-[180px] sm:h-[220px] flex items-center justify-center pointer-events-auto"
+      aria-label="3D Technical Inspection Conduit Pipeline"
     >
       <canvas
         ref={canvasRef}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { useReducedMotion } from "./useReducedMotion";
 
@@ -290,6 +290,29 @@ export default function InspectionVessel3D({ activePoint, onSelectPoint }: Props
     warmFill.position.set(2, -4, 3);
     scene.add(warmFill);
 
+    // Synchronize 3D Lighting with Light / Dark theme
+    const updateThemeLighting = () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      if (isDark) {
+        ambient.color.setHex(0x0e1726);
+        ambient.intensity = 0.9;
+        keyLight.intensity = 2.2;
+        titaniumPipeMat.color.setHex(0x242e42);
+      } else {
+        ambient.color.setHex(0xdbeafe);
+        ambient.intensity = 1.5;
+        keyLight.intensity = 2.5;
+        titaniumPipeMat.color.setHex(0x334155);
+      }
+    };
+    updateThemeLighting();
+
+    const themeObserver = new MutationObserver(updateThemeLighting);
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
     // Pointer Drag / Orbit
     let isDragging = false;
     let prevMouseX = 0;
@@ -320,24 +343,54 @@ export default function InspectionVessel3D({ activePoint, onSelectPoint }: Props
     window.addEventListener("mousemove", onPointerMove);
     window.addEventListener("mouseup", onPointerUp);
 
+    // Touch support for mobile rotation
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        prevMouseX = e.touches[0].clientX;
+        prevMouseY = e.touches[0].clientY;
+      }
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const deltaX = e.touches[0].clientX - prevMouseX;
+      const deltaY = e.touches[0].clientY - prevMouseY;
+      prevMouseX = e.touches[0].clientX;
+      prevMouseY = e.touches[0].clientY;
+
+      rootGroup.rotation.y += deltaX * 0.005;
+      rootGroup.rotation.x += deltaY * 0.005;
+    };
+
+    const onTouchEnd = () => {
+      isDragging = false;
+    };
+
+    canvas.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("touchend", onTouchEnd);
+
     // Resize
     const handleResize = () => {
       if (!container || !renderer || !camera) return;
-      const w = container.clientWidth;
-      const h = container.clientHeight;
-      if (w === 0 || h === 0) return;
-      camera.aspect = w / h;
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      if (width === 0 || height === 0) return;
+
+      camera.aspect = width / height;
       camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
+      renderer.setSize(width, height);
     };
 
     const resizeObserver = new ResizeObserver(handleResize);
     resizeObserver.observe(container);
 
+    // Intersection Observer
     const intersectionObserver = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => {
-          isVisible = e.isIntersecting;
+        entries.forEach((entry) => {
+          isVisible = entry.isIntersecting;
         });
       },
       { threshold: 0.05 }
@@ -350,24 +403,25 @@ export default function InspectionVessel3D({ activePoint, onSelectPoint }: Props
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
+
       if (!isVisible) return;
 
       const elapsed = clock.getElapsedTime();
 
-      // Idle smooth rotation if user is not actively dragging and not reduced motion
-      if (!isDragging && !prefersReducedMotion) {
-        rootGroup.rotation.y += 0.001;
-      }
-
-      // Smooth camera interpolation towards active inspection point
-      camera.position.lerp(camPosRef.current, 0.05);
-      camTargetRef.current.lerp(controlsTargetRef.current, 0.05);
+      // Smooth camera interpolation towards selected point
+      camera.position.lerp(camPosRef.current, 0.04);
+      camTargetRef.current.lerp(controlsTargetRef.current, 0.04);
       camera.lookAt(camTargetRef.current);
 
-      // Pulse reticle ring
-      const targetReticleX = controlsTargetRef.current.x;
-      laserReticle.position.x += (targetReticleX - laserReticle.position.x) * 0.08;
-      laserReticle.scale.setScalar(1 + Math.sin(elapsed * 4) * 0.03);
+      // Idle rotation when not dragging
+      if (!isDragging && !prefersReducedMotion) {
+        rootGroup.rotation.y += 0.0015;
+      }
+
+      // Scanner laser oscillation
+      if (!prefersReducedMotion) {
+        laserReticle.position.x = Math.sin(elapsed * 1.5) * 1.4;
+      }
 
       renderer.render(scene, camera);
     };
@@ -379,6 +433,10 @@ export default function InspectionVessel3D({ activePoint, onSelectPoint }: Props
       canvas.removeEventListener("mousedown", onPointerDown);
       window.removeEventListener("mousemove", onPointerMove);
       window.removeEventListener("mouseup", onPointerUp);
+      canvas.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+      themeObserver.disconnect();
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
 
@@ -400,6 +458,7 @@ export default function InspectionVessel3D({ activePoint, onSelectPoint }: Props
     <div
       ref={containerRef}
       className="relative w-full h-[450px] sm:h-[520px] lg:h-[600px] flex items-center justify-center pointer-events-auto"
+      aria-label="3D Spool Assembly Interactive Inspection"
     >
       <canvas
         ref={canvasRef}

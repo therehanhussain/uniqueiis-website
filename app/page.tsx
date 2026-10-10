@@ -15,7 +15,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#060A14] text-white selection:bg-emerald-accent/30 selection:text-white">
+    <main className="min-h-screen bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white selection:bg-emerald-accent/30 selection:text-white">
       {/* 01. Glassmorphic Navigation */}
       <Navbar />
 

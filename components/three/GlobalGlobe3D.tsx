@@ -75,7 +75,7 @@ export default function GlobalGlobe3D() {
     const globeGroup = new THREE.Group();
     scene.add(globeGroup);
 
-    // 1. Dark Navy Core Sphere
+    // 1. Core Sphere
     const coreGeo = new THREE.SphereGeometry(globeRadius, 48, 48);
     const coreMat = new THREE.MeshStandardMaterial({
       color: 0x060c18,
@@ -158,42 +158,74 @@ export default function GlobalGlobe3D() {
       emissive: 0x10b981,
       emissiveIntensity: 0.8,
       metalness: 0.9,
+      roughness: 0.1,
     });
 
-    const arcGroup = new THREE.Group();
-    globeGroup.add(arcGroup);
+    const pinBeacons: THREE.Mesh[] = [];
 
     HUBS.forEach((hub) => {
       const pos = latLngToVector3(hub.lat, hub.lng, globeRadius);
-      const pinGeo = new THREE.SphereGeometry(hub.isHQ ? 0.055 : 0.032, 16, 16);
-      const pinMesh = new THREE.Mesh(pinGeo, hub.isHQ ? hqPinMat : pinMat);
-      pinMesh.position.copy(pos);
-      globeGroup.add(pinMesh);
 
-      // Connection Arcs originating from HQ to international hubs
-      if (!hub.isHQ) {
-        const midPoint = new THREE.Vector3()
-          .addVectors(hqPos, pos)
-          .multiplyScalar(0.5);
-        const distance = hqPos.distanceTo(pos);
-        // Elevate midpoint above globe surface to create graceful 3D arc
-        midPoint.normalize().multiplyScalar(globeRadius + distance * 0.28);
+      const pinGeo = new THREE.SphereGeometry(hub.isHQ ? 0.065 : 0.04, 16, 16);
+      const pin = new THREE.Mesh(pinGeo, hub.isHQ ? hqPinMat : pinMat);
+      pin.position.copy(pos);
+      globeGroup.add(pin);
+      pinBeacons.push(pin);
 
-        const curve = new THREE.QuadraticBezierCurve3(hqPos, midPoint, pos);
-        const curvePoints = curve.getPoints(36);
-        const arcGeo = new THREE.BufferGeometry().setFromPoints(curvePoints);
-        const arcMat = new THREE.LineBasicMaterial({
+      // HQ pulsating aura ring
+      if (hub.isHQ) {
+        const ringGeo = new THREE.RingGeometry(0.07, 0.09, 24);
+        const ringMat = new THREE.MeshBasicMaterial({
           color: 0x10b981,
+          side: THREE.DoubleSide,
           transparent: true,
-          opacity: 0.45,
+          opacity: 0.8,
         });
-        const arcLine = new THREE.Line(arcGeo, arcMat);
-        arcGroup.add(arcLine);
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.position.copy(pos);
+        ring.lookAt(new THREE.Vector3(0, 0, 0));
+        globeGroup.add(ring);
       }
     });
 
-    // Outer Subtle Atmosphere Glow Ring
-    const atmoRingGeo = new THREE.RingGeometry(globeRadius * 0.99, globeRadius * 1.05, 64);
+    // 5. Great-Circle Flight / Coordination Arcs from Al-Khobar to Key Hubs
+    const arcPoints: THREE.Vector3[][] = [];
+    const arcMaterials: THREE.LineBasicMaterial[] = [];
+
+    const foreignHubs = [
+      HUBS[5], // Houston
+      HUBS[6], // London
+      HUBS[7], // Milan
+      HUBS[9], // Mumbai
+      HUBS[10], // Shanghai
+      HUBS[11], // Tokyo
+      HUBS[13], // Singapore
+    ];
+
+    foreignHubs.forEach((hub, idx) => {
+      const destPos = latLngToVector3(hub.lat, hub.lng, globeRadius);
+      const mid = new THREE.Vector3().addVectors(hqPos, destPos).multiplyScalar(0.5);
+      const distance = hqPos.distanceTo(destPos);
+      mid.normalize().multiplyScalar(globeRadius + distance * 0.25);
+
+      const curve = new THREE.QuadraticBezierCurve3(hqPos, mid, destPos);
+      const pts = curve.getPoints(36);
+
+      const arcGeo = new THREE.BufferGeometry().setFromPoints(pts);
+      const arcMat = new THREE.LineBasicMaterial({
+        color: idx % 2 === 0 ? 0x10b981 : 0x38bdf8,
+        transparent: true,
+        opacity: 0.55,
+      });
+      const arc = new THREE.Line(arcGeo, arcMat);
+      globeGroup.add(arc);
+
+      arcPoints.push(pts);
+      arcMaterials.push(arcMat);
+    });
+
+    // 6. Atmospheric Glow Rim
+    const atmoRingGeo = new THREE.RingGeometry(globeRadius * 0.99, globeRadius * 1.08, 64);
     const atmoMat = new THREE.MeshBasicMaterial({
       color: 0x10b981,
       transparent: true,
@@ -218,6 +250,33 @@ export default function GlobalGlobe3D() {
     const goldAccent = new THREE.DirectionalLight(0xf59e0b, 0.6);
     goldAccent.position.set(3, -4, 2);
     scene.add(goldAccent);
+
+    // Dynamic Theme Synchronization
+    const updateThemeLighting = () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      if (isDark) {
+        coreMat.color.setHex(0x060c18);
+        latRingMat.color.setHex(0x1e293b);
+        latRingMat.opacity = 0.45;
+        ambient.color.setHex(0x0e1726);
+        ambient.intensity = 0.95;
+        keyLight.intensity = 2.2;
+      } else {
+        coreMat.color.setHex(0xf1f5f9);
+        latRingMat.color.setHex(0xcbd5e1);
+        latRingMat.opacity = 0.7;
+        ambient.color.setHex(0xdbeafe);
+        ambient.intensity = 1.5;
+        keyLight.intensity = 2.4;
+      }
+    };
+    updateThemeLighting();
+
+    const themeObserver = new MutationObserver(updateThemeLighting);
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
 
     // Initial orientation: Center Saudi Arabia towards front
     globeGroup.rotation.x = 0.35;
@@ -253,6 +312,34 @@ export default function GlobalGlobe3D() {
     window.addEventListener("mousemove", onPointerMove);
     window.addEventListener("mouseup", onPointerUp);
 
+    // Touch support for mobile rotation
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        prevMouseX = e.touches[0].clientX;
+        prevMouseY = e.touches[0].clientY;
+      }
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const deltaX = e.touches[0].clientX - prevMouseX;
+      const deltaY = e.touches[0].clientY - prevMouseY;
+      prevMouseX = e.touches[0].clientX;
+      prevMouseY = e.touches[0].clientY;
+
+      globeGroup.rotation.y += deltaX * 0.005;
+      globeGroup.rotation.x += deltaY * 0.005;
+    };
+
+    const onTouchEnd = () => {
+      isDragging = false;
+    };
+
+    canvas.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("touchend", onTouchEnd);
+
     // Resize
     const handleResize = () => {
       if (!container || !renderer || !camera) return;
@@ -287,10 +374,19 @@ export default function GlobalGlobe3D() {
 
       const elapsed = clock.getElapsedTime();
 
-      // Continuous gentle rotation if not dragging and not reduced motion
+      // Continuous slow orbital spin when not dragging
       if (!isDragging && !prefersReducedMotion) {
         globeGroup.rotation.y += 0.0018;
       }
+
+      // HQ pin pulse animation
+      const s = 1 + Math.sin(elapsed * 4) * 0.15;
+      pinBeacons[0].scale.set(s, s, s);
+
+      // Pulse coordination arc lines
+      arcMaterials.forEach((mat, idx) => {
+        mat.opacity = 0.4 + Math.sin(elapsed * 2.5 + idx) * 0.25;
+      });
 
       renderer.render(scene, camera);
     };
@@ -302,6 +398,10 @@ export default function GlobalGlobe3D() {
       canvas.removeEventListener("mousedown", onPointerDown);
       window.removeEventListener("mousemove", onPointerMove);
       window.removeEventListener("mouseup", onPointerUp);
+      canvas.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+      themeObserver.disconnect();
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
 
@@ -322,24 +422,14 @@ export default function GlobalGlobe3D() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[400px] sm:h-[480px] lg:h-[540px] flex items-center justify-center pointer-events-auto"
+      className="relative w-full h-full min-h-[400px] sm:min-h-[480px] lg:min-h-[540px] flex items-center justify-center pointer-events-auto"
+      aria-label="3D Interactive Worldwide Network Globe"
     >
       <canvas
         ref={canvasRef}
         className="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-opacity duration-700"
         style={{ opacity: isLoaded ? 1 : 0 }}
       />
-
-      {/* Floating HUD Badges */}
-      <div className="absolute top-4 left-4 z-10 flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/60 border border-white/10 backdrop-blur-md text-[10px] font-mono text-titanium-300">
-        <span className="w-2 h-2 rounded-full bg-emerald-accent animate-pulse" />
-        <span>UIIS GLOBAL COORDINATION NETWORK</span>
-      </div>
-
-      <div className="absolute bottom-4 right-4 z-10 flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/60 border border-white/10 backdrop-blur-md text-[10px] font-mono text-titanium-400">
-        <span className="text-emerald-accent">HQ:</span>
-        <span className="text-white font-bold">AL-KHOBAR, SAUDI ARABIA</span>
-      </div>
     </div>
   );
 }

@@ -161,102 +161,99 @@ export default function NDTVisualizer3D({ method }: Props) {
     const mtGroup = new THREE.Group();
     rootGroup.add(mtGroup);
 
-    // Electromagnetic Yoke (U-shape body)
+    // AC/DC Electromagnetic Yoke
     const yokeMat = new THREE.MeshStandardMaterial({
       color: 0xd97706,
-      metalness: 0.8,
-      roughness: 0.3,
+      metalness: 0.85,
+      roughness: 0.25,
     });
-    const yokeBarGeo = new THREE.BoxGeometry(1.2, 0.22, 0.25);
+    const yokeLegGeo = new THREE.BoxGeometry(0.18, 0.7, 0.2);
+    const yokeLeg1 = new THREE.Mesh(yokeLegGeo, yokeMat);
+    yokeLeg1.position.set(-0.6, 0.35, 0);
+    mtGroup.add(yokeLeg1);
+
+    const yokeLeg2 = new THREE.Mesh(yokeLegGeo, yokeMat);
+    yokeLeg2.position.set(0.6, 0.35, 0);
+    mtGroup.add(yokeLeg2);
+
+    const yokeBarGeo = new THREE.BoxGeometry(1.38, 0.2, 0.2);
     const yokeBar = new THREE.Mesh(yokeBarGeo, yokeMat);
-    yokeBar.position.set(0, 0.6, 0);
+    yokeBar.position.set(0, 0.7, 0);
     mtGroup.add(yokeBar);
 
-    const legGeo = new THREE.BoxGeometry(0.2, 0.5, 0.25);
-    const leftLeg = new THREE.Mesh(legGeo, yokeMat);
-    leftLeg.position.set(-0.5, 0.3, 0);
-    mtGroup.add(leftLeg);
-
-    const rightLeg = new THREE.Mesh(legGeo, yokeMat);
-    rightLeg.position.set(0.5, 0.3, 0);
-    mtGroup.add(rightLeg);
-
-    // Magnetic flux curve lines
+    // Magnetic Flux Lines
     const fluxLines: THREE.Line[] = [];
-    for (let f = 0; f < 5; f++) {
+    for (let i = 0; i < 5; i++) {
       const curve = new THREE.QuadraticBezierCurve3(
-        new THREE.Vector3(-0.45, 0.05, (f - 2) * 0.25),
-        new THREE.Vector3(0, 0.35, (f - 2) * 0.25),
-        new THREE.Vector3(0.45, 0.05, (f - 2) * 0.25)
+        new THREE.Vector3(-0.6, 0.05, -0.4 + i * 0.2),
+        new THREE.Vector3(0, 0.2, -0.4 + i * 0.2),
+        new THREE.Vector3(0.6, 0.05, -0.4 + i * 0.2)
       );
-      const points = curve.getPoints(24);
-      const lineGeo = new THREE.BufferGeometry().setFromPoints(points);
-      const lineMat = new THREE.LineBasicMaterial({
+      const pts = curve.getPoints(24);
+      const fluxGeo = new THREE.BufferGeometry().setFromPoints(pts);
+      const fluxMat = new THREE.LineBasicMaterial({
         color: 0x10b981,
         transparent: true,
         opacity: 0.7,
       });
-      const line = new THREE.Line(lineGeo, lineMat);
-      mtGroup.add(line);
-      fluxLines.push(line);
+      const fluxLine = new THREE.Line(fluxGeo, fluxMat);
+      mtGroup.add(fluxLine);
+      fluxLines.push(fluxLine);
     }
 
-    // 4. PT Group (Penetrant Testing)
+    // 4. PT Group (Liquid Penetrant Testing)
     const ptGroup = new THREE.Group();
     rootGroup.add(ptGroup);
 
     // White Developer Layer
-    const devLayerGeo = new THREE.PlaneGeometry(1.2, 1.8);
-    const devLayerMat = new THREE.MeshStandardMaterial({
+    const devGeo = new THREE.PlaneGeometry(1.2, 1.8);
+    const devMat = new THREE.MeshStandardMaterial({
       color: 0xf8fafc,
-      roughness: 0.9,
-      metalness: 0.05,
-      transparent: true,
-      opacity: 0.85,
+      roughness: 0.8,
+      metalness: 0.1,
     });
-    const devLayer = new THREE.Mesh(devLayerGeo, devLayerMat);
-    devLayer.rotation.x = -Math.PI / 2;
-    devLayer.position.set(0, 0.06, 0);
-    ptGroup.add(devLayer);
+    const devPlane = new THREE.Mesh(devGeo, devMat);
+    devPlane.rotation.x = -Math.PI / 2;
+    devPlane.position.set(0, 0.05, 0);
+    ptGroup.add(devPlane);
 
-    // Red Dye Penetrant Bleed-Out Indication along crack
-    const indicationGeo = new THREE.PlaneGeometry(0.08, 0.6);
-    const indicationMat = new THREE.MeshBasicMaterial({
-      color: 0xe11d48, // Vivid scarlet red penetrant indication
-      side: THREE.DoubleSide,
+    // Red Dye Penetrant Bleed Indication Line
+    const bleedGeo = new THREE.PlaneGeometry(0.04, 0.9);
+    const bleedMat = new THREE.MeshBasicMaterial({
+      color: 0xef4444, // Red dye
     });
-    const bleedMark = new THREE.Mesh(indicationGeo, indicationMat);
+    const bleedMark = new THREE.Mesh(bleedGeo, bleedMat);
     bleedMark.rotation.x = -Math.PI / 2;
-    bleedMark.position.set(0, 0.065, 0);
+    bleedMark.position.set(0, 0.052, 0);
     ptGroup.add(bleedMark);
 
     // 5. VT Group (Visual Testing)
     const vtGroup = new THREE.Group();
     rootGroup.add(vtGroup);
 
-    // High precision optical borescope / inspection camera
-    const camBodyGeo = new THREE.CylinderGeometry(0.12, 0.12, 0.6, 24);
+    // Borescope / Inspection Camera
+    const camGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.6, 24);
     const camMat = new THREE.MeshStandardMaterial({
-      color: 0x0f172a,
+      color: 0x475569,
       metalness: 0.9,
       roughness: 0.2,
     });
-    const vtCamera = new THREE.Mesh(camBodyGeo, camMat);
-    vtCamera.rotation.z = Math.PI / 3;
-    vtCamera.position.set(-0.6, 0.8, 0);
+    const vtCamera = new THREE.Mesh(camGeo, camMat);
+    vtCamera.rotation.z = Math.PI / 4;
+    vtCamera.position.set(-0.3, 0.5, 0);
     vtGroup.add(vtCamera);
 
-    // Spotlight Cone onto weld
-    const spotGeo = new THREE.ConeGeometry(0.5, 0.9, 24, 1, true);
+    // Inspection Spotlight Beam
+    const spotGeo = new THREE.ConeGeometry(0.5, 0.8, 24, 1, true);
     const spotMat = new THREE.MeshBasicMaterial({
       color: 0x38bdf8,
       transparent: true,
-      opacity: 0.35,
+      opacity: 0.28,
       side: THREE.DoubleSide,
     });
     const lightCone = new THREE.Mesh(spotGeo, spotMat);
-    lightCone.rotation.z = -Math.PI / 4;
-    lightCone.position.set(-0.25, 0.45, 0);
+    lightCone.rotation.z = Math.PI / 4;
+    lightCone.position.set(-0.15, 0.35, 0);
     vtGroup.add(lightCone);
 
     // Lighting
@@ -270,6 +267,29 @@ export default function NDTVisualizer3D({ method }: Props) {
     const rimEmerald = new THREE.DirectionalLight(0x10b981, 2.2);
     rimEmerald.position.set(-5, -2, -3);
     scene.add(rimEmerald);
+
+    // Dynamic Theme Lighting Synchronization
+    const updateThemeLighting = () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      if (isDark) {
+        ambient.color.setHex(0x0e1726);
+        ambient.intensity = 0.9;
+        keyLight.intensity = 2.0;
+        steelBlockMat.color.setHex(0x242e42);
+      } else {
+        ambient.color.setHex(0xdbeafe);
+        ambient.intensity = 1.5;
+        keyLight.intensity = 2.4;
+        steelBlockMat.color.setHex(0x334155);
+      }
+    };
+    updateThemeLighting();
+
+    const themeObserver = new MutationObserver(updateThemeLighting);
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
 
     rootGroup.rotation.x = 0.4;
     rootGroup.rotation.y = -0.5;
@@ -397,6 +417,7 @@ export default function NDTVisualizer3D({ method }: Props) {
       canvas.removeEventListener("mousedown", onPointerDown);
       window.removeEventListener("mousemove", onPointerMove);
       window.removeEventListener("mouseup", onPointerUp);
+      themeObserver.disconnect();
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
 

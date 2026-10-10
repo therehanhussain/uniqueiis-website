@@ -14,7 +14,7 @@ export default function ThemeToggle() {
 
   return (
     <div
-      className="inline-flex items-center p-0.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md shadow-sm"
+      className="inline-flex items-center p-0.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 backdrop-blur-md shadow-sm"
       role="group"
       aria-label="Theme selection"
     >
@@ -26,8 +26,8 @@ export default function ThemeToggle() {
         title="Switch to light mode"
         className={`p-1.5 rounded-full text-xs transition-all duration-300 ${
           mounted && theme === "light"
-            ? "bg-white text-slate-900 shadow-sm"
-            : "text-titanium-400 hover:text-white"
+            ? "bg-white text-emerald-600 shadow-sm border border-slate-200/80"
+            : "text-slate-500 dark:text-titanium-400 hover:text-slate-900 dark:hover:text-white"
         }`}
       >
         <Sun className="w-3.5 h-3.5" />
@@ -41,8 +41,8 @@ export default function ThemeToggle() {
         title="Follow system preference"
         className={`p-1.5 rounded-full text-xs transition-all duration-300 ${
           mounted && theme === "system"
-            ? "bg-white/20 text-emerald-glow shadow-sm"
-            : "text-titanium-400 hover:text-white"
+            ? "bg-slate-200 dark:bg-white/20 text-emerald-600 dark:text-emerald-glow shadow-sm"
+            : "text-slate-500 dark:text-titanium-400 hover:text-slate-900 dark:hover:text-white"
         }`}
       >
         <Laptop className="w-3.5 h-3.5" />
@@ -56,8 +56,8 @@ export default function ThemeToggle() {
         title="Switch to dark mode"
         className={`p-1.5 rounded-full text-xs transition-all duration-300 ${
           mounted && theme === "dark"
-            ? "bg-white/20 text-white shadow-sm"
-            : "text-titanium-400 hover:text-white"
+            ? "bg-slate-700/80 dark:bg-white/20 text-white shadow-sm"
+            : "text-slate-500 dark:text-titanium-400 hover:text-slate-900 dark:hover:text-white"
         }`}
       >
         <Moon className="w-3.5 h-3.5" />

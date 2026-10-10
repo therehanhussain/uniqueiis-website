@@ -139,54 +139,40 @@ export default function CapabilitiesMachinery3D({ activeDiscipline }: Props) {
     const valvesGroup = new THREE.Group();
     rootGroup.add(valvesGroup);
 
-    const valveChestGeo = new THREE.CylinderGeometry(0.48, 0.48, 0.45, 24);
-    const valveChest = new THREE.Mesh(valveChestGeo, baseMetalMat);
-    valveChest.position.set(-0.5, 1.1, 0);
-    valvesGroup.add(valveChest);
+    const valveGeo = new THREE.BoxGeometry(0.7, 0.5, 0.5);
+    const valveBody = new THREE.Mesh(valveGeo, steelMat);
+    valveBody.position.set(-0.5, 0.75, 0);
+    valvesGroup.add(valveBody);
 
-    const actuatorStemGeo = new THREE.CylinderGeometry(0.1, 0.1, 0.5, 16);
+    const actuatorStemGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.6, 16);
     const actuatorStem = new THREE.Mesh(actuatorStemGeo, steelMat);
-    actuatorStem.position.set(-0.5, 1.5, 0);
+    actuatorStem.position.set(-0.5, 1.15, 0);
     valvesGroup.add(actuatorStem);
 
-    const handwheelGeo = new THREE.TorusGeometry(0.32, 0.035, 16, 24);
+    const handwheelGeo = new THREE.TorusGeometry(0.35, 0.035, 12, 24);
     const handwheel = new THREE.Mesh(handwheelGeo, goldAccentMat);
     handwheel.rotation.x = Math.PI / 2;
-    handwheel.position.set(-0.5, 1.75, 0);
+    handwheel.position.set(-0.5, 1.45, 0);
     valvesGroup.add(handwheel);
 
-    // 5. GRE/GRP Sleeve / Composite Section
-    const grpGroup = new THREE.Group();
-    rootGroup.add(grpGroup);
-
-    const grpSleeveGeo = new THREE.CylinderGeometry(0.38, 0.38, 0.6, 32);
-    const grpMat = new THREE.MeshStandardMaterial({
-      color: 0x047857,
-      metalness: 0.4,
-      roughness: 0.5,
-    });
-    const grpSleeve = new THREE.Mesh(grpSleeveGeo, grpMat);
-    grpSleeve.position.set(-0.5, 0.3, 0);
-    grpGroup.add(grpSleeve);
-
-    // 6. Electric Motor Drive & Terminal Box (Electrical & Instrumentation)
+    // 5. Electric Motor Drive Unit (Electrical & Instrumentation)
     const electricalGroup = new THREE.Group();
     rootGroup.add(electricalGroup);
 
-    const motorGeo = new THREE.CylinderGeometry(0.65, 0.65, 1.2, 32);
-    const motor = new THREE.Mesh(motorGeo, baseMetalMat);
-    motor.rotation.z = Math.PI / 2;
-    motor.position.set(0.9, -0.2, 0);
-    electricalGroup.add(motor);
+    const motorGeo = new THREE.CylinderGeometry(0.55, 0.55, 1.2, 32);
+    const motorMesh = new THREE.Mesh(motorGeo, baseMetalMat);
+    motorMesh.rotation.z = Math.PI / 2;
+    motorMesh.position.set(0.9, -0.2, 0);
+    electricalGroup.add(motorMesh);
 
-    // Junction Box
-    const jBoxGeo = new THREE.BoxGeometry(0.4, 0.45, 0.4);
-    const jBox = new THREE.Mesh(jBoxGeo, baseMetalMat);
+    // Motor Terminal Box (Junction Box)
+    const jBoxGeo = new THREE.BoxGeometry(0.35, 0.25, 0.35);
+    const jBox = new THREE.Mesh(jBoxGeo, steelMat);
     jBox.position.set(0.9, 0.45, 0);
     electricalGroup.add(jBox);
 
-    // Conduit wire tubing
-    const conduitGeo = new THREE.TorusGeometry(0.25, 0.04, 12, 24, Math.PI);
+    // Rigid Electrical Conduit
+    const conduitGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.5, 12);
     const conduit = new THREE.Mesh(conduitGeo, steelMat);
     conduit.position.set(0.9, 0.2, 0.2);
     electricalGroup.add(conduit);
@@ -206,6 +192,29 @@ export default function CapabilitiesMachinery3D({ activeDiscipline }: Props) {
     const goldLight = new THREE.DirectionalLight(0xf59e0b, 0.8);
     goldLight.position.set(3, -4, 2);
     scene.add(goldLight);
+
+    // Dynamic Theme Lighting Synchronization
+    const updateThemeLighting = () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      if (isDark) {
+        ambient.color.setHex(0x0e1726);
+        ambient.intensity = 0.9;
+        keyLight.intensity = 2.2;
+        baseMetalMat.color.setHex(0x1e293b);
+      } else {
+        ambient.color.setHex(0xdbeafe);
+        ambient.intensity = 1.5;
+        keyLight.intensity = 2.5;
+        baseMetalMat.color.setHex(0x2d3a54);
+      }
+    };
+    updateThemeLighting();
+
+    const themeObserver = new MutationObserver(updateThemeLighting);
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
 
     rootGroup.rotation.x = 0.3;
     rootGroup.rotation.y = -0.55;
@@ -270,32 +279,52 @@ export default function CapabilitiesMachinery3D({ activeDiscipline }: Props) {
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
+
       if (!isVisible) return;
 
       const elapsed = clock.getElapsedTime();
-      const disc = activeRef.current.toLowerCase();
+      const activeName = (activeRef.current || "").toLowerCase();
 
-      // Slow smooth idle rotation
-      if (!isDragging && !prefersReducedMotion) {
-        rootGroup.rotation.y += 0.0018;
-        rotorGroup.rotation.x = elapsed * 2.5; // Impeller spins smoothly
+      // Dynamic Highlight Based on Active Discipline
+      if (activeName.includes("rotating")) {
+        pumpCasing.material = highlightMat;
+      } else {
+        pumpCasing.material = baseMetalMat;
       }
 
-      // Dynamic Highlight switching
-      const isRotating = disc.includes("rotating");
-      const isPiping = disc.includes("piping");
-      const isValves = disc.includes("valve");
-      const isGrp = disc.includes("gre") || disc.includes("grp");
-      const isStructural = disc.includes("structural") || disc.includes("mechanical");
-      const isElectrical = disc.includes("electrical") || disc.includes("instrumentation");
+      if (activeName.includes("valves")) {
+        valveBody.material = highlightMat;
+      } else {
+        valveBody.material = steelMat;
+      }
 
-      pumpCasing.material = isRotating ? highlightMat : baseMetalMat;
-      dischargePipe.material = isPiping ? highlightMat : baseMetalMat;
-      valveChest.material = isValves ? highlightMat : baseMetalMat;
-      grpSleeve.material = isGrp ? highlightMat : grpMat;
-      skidMesh.material = isStructural ? highlightMat : baseMetalMat;
-      motor.material = isElectrical ? highlightMat : baseMetalMat;
-      jBox.material = isElectrical ? highlightMat : baseMetalMat;
+      if (activeName.includes("piping")) {
+        dischargePipe.material = highlightMat;
+      } else {
+        dischargePipe.material = baseMetalMat;
+      }
+
+      if (activeName.includes("electrical") || activeName.includes("instrumentation")) {
+        motorMesh.material = highlightMat;
+      } else {
+        motorMesh.material = baseMetalMat;
+      }
+
+      if (activeName.includes("structural") || activeName.includes("mechanical")) {
+        skidMesh.material = highlightMat;
+      } else {
+        skidMesh.material = baseMetalMat;
+      }
+
+      // Impeller rotation
+      if (!prefersReducedMotion) {
+        rotorGroup.rotation.x += 0.03;
+      }
+
+      // Subtle ambient orbit when idle
+      if (!isDragging && !prefersReducedMotion) {
+        rootGroup.rotation.y += 0.0015;
+      }
 
       renderer.render(scene, camera);
     };
@@ -307,6 +336,7 @@ export default function CapabilitiesMachinery3D({ activeDiscipline }: Props) {
       canvas.removeEventListener("mousedown", onPointerDown);
       window.removeEventListener("mousemove", onPointerMove);
       window.removeEventListener("mouseup", onPointerUp);
+      themeObserver.disconnect();
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
 
@@ -328,21 +358,13 @@ export default function CapabilitiesMachinery3D({ activeDiscipline }: Props) {
     <div
       ref={containerRef}
       className="relative w-full h-[380px] sm:h-[460px] flex items-center justify-center pointer-events-auto"
+      aria-label="3D Machinery Technical Cross-Discipline Assembly"
     >
       <canvas
         ref={canvasRef}
         className="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-opacity duration-700"
         style={{ opacity: isLoaded ? 1 : 0 }}
       />
-
-      <div className="absolute top-3 left-3 z-10 flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/60 border border-white/10 backdrop-blur-md text-[10px] font-mono text-titanium-300">
-        <span className="w-2 h-2 rounded-full bg-emerald-accent animate-pulse" />
-        <span>3D ASSEMBLY • ACTIVE FOCUS: {activeDiscipline.toUpperCase()}</span>
-      </div>
-
-      <div className="absolute bottom-3 right-3 z-10 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/60 border border-white/10 backdrop-blur-md text-[10px] font-mono text-titanium-400">
-        <span>DRAG TO INSPECT SKID</span>
-      </div>
     </div>
   );
 }

@@ -40,7 +40,7 @@ export default function WorkflowAndOrg() {
   return (
     <section
       id="workflow"
-      className="relative py-28 sm:py-36 bg-[#060A14] text-white overflow-hidden border-t border-white/10"
+      className="relative py-28 sm:py-36 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
     >
       {/* Background radial lighting */}
       <div className="absolute top-1/4 right-1/4 w-[700px] h-[500px] bg-emerald-accent/[0.03] rounded-full blur-[180px] pointer-events-none" />
@@ -51,39 +51,39 @@ export default function WorkflowAndOrg() {
         {/* 01. INSPECTION WORKFLOW — 11 STEPS SIGNATURE INTERACTION       */}
         {/* ============================================================== */}
         <div className="max-w-3xl mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Workflow className="w-3.5 h-3.5 text-emerald-accent" />
             <span>Execution Lifecycle • PDF Page 8</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-tight">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
             Inspection Execution <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-accent via-white to-titanium-200">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-accent via-slate-800 to-slate-600 dark:from-emerald-accent dark:via-white dark:to-titanium-200">
               11-Step Workflow.
             </span>
           </h2>
 
-          <p className="mt-5 text-base sm:text-lg text-titanium-300 leading-relaxed font-normal">
+          <p className="mt-5 text-base sm:text-lg text-slate-600 dark:text-titanium-300 leading-relaxed font-normal">
             A structured, transparent lifecycle from initial Notice of Inspection (NOI) to final equipment clearance, ensuring rigorous compliance and zero surprise delays.
           </p>
         </div>
 
         {/* Interactive 11-Step Timeline Interface */}
-        <div className="mb-28 rounded-3xl bg-white/[0.02] border border-white/10 p-6 sm:p-10 lg:p-12 backdrop-blur-xl shadow-glass">
+        <div className="mb-28 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-6 sm:p-10 lg:p-12 backdrop-blur-xl shadow-lg dark:shadow-glass">
           
           {/* Top Progress Bar & Step Numbers */}
-          <div className="mb-8 pb-6 border-b border-white/10">
+          <div className="mb-8 pb-6 border-b border-slate-200 dark:border-white/10">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-mono uppercase tracking-wider text-titanium-400">
+              <span className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-titanium-400">
                 Milestone Progress ({activeStepIndex + 1} of {INSPECTION_WORKFLOW_STEPS.length})
               </span>
-              <span className="text-xs font-mono text-emerald-accent font-bold">
+              <span className="text-xs font-mono text-emerald-deep dark:text-emerald-accent font-bold">
                 {Math.round(((activeStepIndex + 1) / INSPECTION_WORKFLOW_STEPS.length) * 100)}% Complete
               </span>
             </div>
 
             {/* Glowing Progress Line */}
-            <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden relative">
+            <div className="h-1.5 w-full bg-slate-200 dark:bg-white/10 rounded-full overflow-hidden relative">
               <motion.div
                 className="h-full bg-gradient-to-r from-emerald-deep to-emerald-accent"
                 initial={false}
@@ -104,12 +104,12 @@ export default function WorkflowAndOrg() {
                     key={step.step}
                     type="button"
                     onClick={() => setActiveStepIndex(idx)}
-                    className={`py-2 px-1 rounded-xl text-center font-mono text-xs transition-all duration-200 focus:outline-none ${
+                    className={`py-2 px-1 rounded-xl text-center font-mono text-xs transition-all duration-200 focus:outline-none cursor-pointer ${
                       isActive
                         ? "bg-emerald-accent text-navy-950 font-black shadow-glow-emerald"
                         : isPassed
-                        ? "bg-white/10 text-emerald-glow"
-                        : "bg-white/[0.03] text-titanium-500 hover:text-white"
+                        ? "bg-emerald-50 dark:bg-white/10 text-emerald-600 dark:text-emerald-glow"
+                        : "bg-slate-100 dark:bg-white/[0.03] text-slate-500 dark:text-titanium-500 hover:text-slate-900 dark:hover:text-white"
                     }`}
                   >
                     <span>{step.step}</span>
@@ -120,8 +120,8 @@ export default function WorkflowAndOrg() {
           </div>
 
           {/* 3D Technical Inspection Conduit Pipeline */}
-          <div className="mb-8 p-3 rounded-2xl bg-black/40 border border-white/5 overflow-hidden relative">
-            <div className="absolute top-3 left-4 z-10 flex items-center gap-2 text-[10px] font-mono text-titanium-400">
+          <div className="mb-8 p-3 rounded-2xl bg-slate-100/80 dark:bg-black/40 border border-slate-200 dark:border-white/5 overflow-hidden relative">
+            <div className="absolute top-3 left-4 z-10 flex items-center gap-2 text-[10px] font-mono text-slate-500 dark:text-titanium-400">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-accent animate-pulse" />
               <span>3D PIPELINE CONDUIT • ACTIVE MILESTONE [STEP {activeStep.step}]</span>
             </div>
@@ -140,24 +140,24 @@ export default function WorkflowAndOrg() {
             >
               <div className="lg:col-span-8">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="font-mono text-xs font-black px-3 py-1 rounded-full bg-emerald-accent/20 text-emerald-accent border border-emerald-accent/40">
+                  <span className="font-mono text-xs font-black px-3 py-1 rounded-full bg-emerald-accent/20 text-emerald-deep dark:text-emerald-accent border border-emerald-accent/40">
                     Step {activeStep.step}
                   </span>
-                  <span className="text-xs font-mono uppercase tracking-widest text-titanium-400">
+                  <span className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-titanium-400">
                     Workflow Sequence
                   </span>
                 </div>
 
-                <h3 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
+                <h3 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
                   {activeStep.title}
                 </h3>
 
-                <p className="mt-4 text-base sm:text-lg text-titanium-200 leading-relaxed font-normal">
+                <p className="mt-4 text-base sm:text-lg text-slate-700 dark:text-titanium-200 leading-relaxed font-normal">
                   {activeStep.desc}
                 </p>
 
-                <div className="mt-8 flex flex-wrap items-center gap-3 text-xs font-mono text-titanium-400">
-                  <span className="text-emerald-accent font-semibold">Standard SLA Compliant</span>
+                <div className="mt-8 flex flex-wrap items-center gap-3 text-xs font-mono text-slate-500 dark:text-titanium-400">
+                  <span className="text-emerald-deep dark:text-emerald-accent font-semibold">Standard SLA Compliant</span>
                   <span>•</span>
                   <span>Documented in Electronic Dossier</span>
                   <span>•</span>
@@ -172,7 +172,7 @@ export default function WorkflowAndOrg() {
                     type="button"
                     onClick={() => setActiveStepIndex(Math.max(0, activeStepIndex - 1))}
                     disabled={activeStepIndex === 0}
-                    className="flex-1 py-3 px-4 rounded-xl text-xs font-mono font-semibold bg-white/5 border border-white/10 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                    className="flex-1 py-3 px-4 rounded-xl text-xs font-mono font-semibold bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-700 dark:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
                   >
                     ← Previous Step
                   </button>
@@ -180,7 +180,7 @@ export default function WorkflowAndOrg() {
                     type="button"
                     onClick={() => setActiveStepIndex(Math.min(INSPECTION_WORKFLOW_STEPS.length - 1, activeStepIndex + 1))}
                     disabled={activeStepIndex === INSPECTION_WORKFLOW_STEPS.length - 1}
-                    className="flex-1 py-3 px-4 rounded-xl text-xs font-mono font-semibold bg-gradient-to-r from-emerald-deep to-emerald-accent text-white shadow-glow-emerald disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                    className="flex-1 py-3 px-4 rounded-xl text-xs font-mono font-semibold bg-gradient-to-r from-emerald-deep to-emerald-accent text-white shadow-glow-emerald disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
                   >
                     Next Step →
                   </button>
@@ -195,25 +195,25 @@ export default function WorkflowAndOrg() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-28">
           
           {/* Key Deliverables Column */}
-          <div className="lg:col-span-6 rounded-3xl bg-white/[0.02] border border-white/10 p-8 sm:p-10">
+          <div className="lg:col-span-6 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-8 sm:p-10 shadow-sm dark:shadow-none">
             <div className="flex items-center gap-3 mb-6">
               <FileText className="w-5 h-5 text-emerald-accent" />
-              <h3 className="text-xl sm:text-2xl font-bold text-white">
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
                 Client Deliverables
               </h3>
             </div>
 
             <div className="space-y-4">
               {CLIENT_DELIVERABLES.map((deliv, idx) => (
-                <div key={idx} className="flex items-start gap-3.5 p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                  <span className="text-xs font-mono text-emerald-accent font-bold mt-0.5">
+                <div key={idx} className="flex items-start gap-3.5 p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5">
+                  <span className="text-xs font-mono text-emerald-deep dark:text-emerald-accent font-bold mt-0.5">
                     0{idx + 1}
                   </span>
                   <div>
-                    <h4 className="text-sm font-bold text-white">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">
                       {deliv.title}
                     </h4>
-                    <p className="mt-1 text-xs text-titanium-400 leading-relaxed font-normal">
+                    <p className="mt-1 text-xs text-slate-600 dark:text-titanium-400 leading-relaxed font-normal">
                       {deliv.desc}
                     </p>
                   </div>
@@ -223,22 +223,22 @@ export default function WorkflowAndOrg() {
           </div>
 
           {/* Workflow Value to Clients Column */}
-          <div className="lg:col-span-6 rounded-3xl bg-white/[0.02] border border-white/10 p-8 sm:p-10 flex flex-col justify-between">
+          <div className="lg:col-span-6 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-8 sm:p-10 flex flex-col justify-between shadow-sm dark:shadow-none">
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <TrendingUp className="w-5 h-5 text-emerald-accent" />
-                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
                   Measurable Client Value
                 </h3>
               </div>
 
               <div className="space-y-3">
                 {WORKFLOW_CLIENT_BENEFITS.map((ben, idx) => (
-                  <div key={idx} className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/5 flex items-center gap-3">
-                    <span className="text-[10px] font-mono text-emerald-accent uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-accent/15 border border-emerald-accent/30 font-bold">
+                  <div key={idx} className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 flex items-center gap-3">
+                    <span className="text-[10px] font-mono text-emerald-deep dark:text-emerald-accent uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-accent/15 border border-emerald-accent/30 font-bold">
                       0{idx + 1}
                     </span>
-                    <span className="text-xs sm:text-sm font-semibold text-white">
+                    <span className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-white">
                       {ben}
                     </span>
                   </div>
@@ -246,9 +246,9 @@ export default function WorkflowAndOrg() {
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between text-xs font-mono text-titanium-400">
+            <div className="mt-8 pt-6 border-t border-slate-200 dark:border-white/10 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-titanium-400">
               <span>Electronic QA/QC Dossiers</span>
-              <span className="text-emerald-accent font-semibold">100% Traceability</span>
+              <span className="text-emerald-deep dark:text-emerald-accent font-semibold">100% Traceability</span>
             </div>
           </div>
 
@@ -259,19 +259,19 @@ export default function WorkflowAndOrg() {
         {/* ============================================================== */}
         <div className="mb-28">
           <div className="max-w-3xl mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
               <Users className="w-3.5 h-3.5 text-emerald-accent" />
               <span>Certified Technical Personnel • PDF Page 9</span>
             </div>
 
-            <h3 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+            <h3 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
               Our People. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-accent via-white to-titanium-200">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-accent via-slate-800 to-slate-600 dark:from-emerald-accent dark:via-white dark:to-titanium-200">
                 Experience, Competence & Commitment.
               </span>
             </h3>
 
-            <p className="mt-4 text-base text-titanium-300 leading-relaxed">
+            <p className="mt-4 text-base text-slate-600 dark:text-titanium-300 leading-relaxed">
               Our personnel are qualified, experienced, and hold international credentials with major approvals across demanding sectors. We deploy multidisciplinary teams rigorously vetted for technical competence and safety commitment.
             </p>
           </div>
@@ -280,10 +280,10 @@ export default function WorkflowAndOrg() {
             {OUR_PEOPLE_AREAS.map((area, idx) => (
               <div
                 key={idx}
-                className="rounded-3xl bg-white/[0.02] border border-white/10 p-6 flex flex-col justify-between hover:border-white/20 transition-all group"
+                className="rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-6 flex flex-col justify-between hover:border-slate-300 dark:hover:border-white/20 shadow-sm dark:shadow-none transition-all group"
               >
                 <div>
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-5 border border-white/10 bg-navy-950">
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-5 border border-slate-200 dark:border-white/10 bg-slate-900">
                     <Image
                       src={area.image}
                       alt={area.title}
@@ -294,20 +294,20 @@ export default function WorkflowAndOrg() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#060A14] via-transparent to-transparent opacity-80" />
                   </div>
 
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-accent font-semibold block mb-1">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-deep dark:text-emerald-accent font-semibold block mb-1">
                     Area 0{idx + 1}
                   </span>
-                  <h4 className="text-base sm:text-lg font-bold text-white mb-2">
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-2">
                     {area.title}
                   </h4>
-                  <p className="text-xs text-titanium-300 leading-relaxed font-normal">
+                  <p className="text-xs text-slate-600 dark:text-titanium-300 leading-relaxed font-normal">
                     {area.desc}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-titanium-400">
+                <div className="mt-6 pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-titanium-400">
                   <span>Deployment</span>
-                  <span className="text-white font-semibold">Immediate Dispatch</span>
+                  <span className="text-slate-900 dark:text-white font-semibold">Immediate Dispatch</span>
                 </div>
               </div>
             ))}
@@ -319,13 +319,13 @@ export default function WorkflowAndOrg() {
         {/* ============================================================== */}
         <div>
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs font-mono uppercase tracking-widest text-emerald-accent font-semibold block mb-2">
+            <span className="text-xs font-mono uppercase tracking-widest text-emerald-deep dark:text-emerald-accent font-semibold block mb-2">
               Corporate Governance
             </span>
-            <h3 className="text-2xl sm:text-4xl font-black text-white">
+            <h3 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white">
               Company Commitments
             </h3>
-            <p className="mt-3 text-sm text-titanium-400">
+            <p className="mt-3 text-sm text-slate-600 dark:text-titanium-400">
               Guiding principles across Health, Safety, Environment, Quality, People, and Sustainability.
             </p>
           </div>
@@ -334,19 +334,19 @@ export default function WorkflowAndOrg() {
             {COMPANY_COMMITMENTS.map((item, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/15 transition-all text-left flex flex-col justify-between"
+                className="p-6 rounded-2xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 hover:border-slate-300 dark:hover:border-white/15 shadow-sm dark:shadow-none transition-all text-left flex flex-col justify-between"
               >
                 <div>
-                  <span className="text-[10px] font-mono text-emerald-accent block mb-2">
+                  <span className="text-[10px] font-mono text-emerald-deep dark:text-emerald-accent block mb-2 font-bold">
                     0{idx + 1}
                   </span>
-                  <h4 className="text-sm font-bold text-white mb-2">
+                  <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-2">
                     {item.title}
                   </h4>
-                  <p className="text-xs text-titanium-300 font-medium mb-3">
+                  <p className="text-xs text-slate-700 dark:text-titanium-300 font-medium mb-3">
                     {item.statement}
                   </p>
-                  <p className="text-xs text-titanium-500 leading-relaxed font-normal">
+                  <p className="text-xs text-slate-500 dark:text-titanium-500 leading-relaxed font-normal">
                     {item.desc}
                   </p>
                 </div>
