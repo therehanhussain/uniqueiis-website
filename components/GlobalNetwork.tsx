@@ -5,7 +5,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import { Globe, MapPin, Radio, Shield, CheckCircle, ArrowRight, Check, Box, FileText } from "lucide-react";
-import { GLOBAL_NETWORK, WORLDWIDE_NETWORK_COUNTRIES, NetworkHub } from "@/lib/data";
+import { GLOBAL_NETWORK, WORLDWIDE_NETWORK_COUNTRIES, COUNTRY_FLAG_CODES, NetworkHub } from "@/lib/data";
 
 const GlobalGlobe3D = dynamic(() => import("./three/GlobalGlobe3D"), {
   ssr: false,
@@ -273,15 +273,31 @@ export default function GlobalNetwork() {
 
           {/* Countries Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
-            {getDisplayedCountries().map((country, idx) => (
-              <div
-                key={idx}
-                className="px-3 py-2 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 text-xs text-slate-700 dark:text-titanium-200 flex items-center gap-2 hover:border-slate-300 dark:hover:border-white/20 transition-colors"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-accent/80" />
-                <span className="truncate">{country}</span>
-              </div>
-            ))}
+            {getDisplayedCountries().map((country, idx) => {
+              const flagCode = COUNTRY_FLAG_CODES[country];
+              return (
+                <div
+                  key={idx}
+                  className="px-3 py-2 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 text-xs text-slate-700 dark:text-titanium-200 flex items-center gap-2.5 hover:border-slate-300 dark:hover:border-white/20 transition-colors"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-accent/80 shrink-0" />
+                  {flagCode && (
+                    <div className="relative w-[22px] h-[15px] shrink-0 rounded-[3px] overflow-hidden border border-slate-300/80 dark:border-white/20 shadow-[0_1px_2px_rgba(0,0,0,0.06)] bg-slate-100 dark:bg-slate-800">
+                      <Image
+                        src={`/flags/${flagCode}.svg`}
+                        alt=""
+                        aria-hidden="true"
+                        width={22}
+                        height={15}
+                        className="w-full h-full object-cover object-center"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <span className="truncate font-medium">{country}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
 
