@@ -45,18 +45,19 @@ export default function PartnerEcosystem() {
             {[...PARTNER_ECOSYSTEM_LOGOS, ...PARTNER_ECOSYSTEM_LOGOS].map((partner, idx) => (
               <div
                 key={`marquee-${partner.id}-${idx}`}
-                className="flex flex-col items-center justify-center w-52 h-28 rounded-2xl bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 hover:border-emerald-accent/60 dark:hover:border-emerald-accent/50 p-4 transition-all duration-300 shadow-sm shrink-0"
+                className="flex flex-col items-center justify-center w-52 h-28 rounded-2xl bg-white dark:bg-white border border-slate-200 dark:border-white/20 hover:border-emerald-accent/60 dark:hover:border-emerald-accent/50 p-4 transition-all duration-300 shadow-sm shrink-0"
               >
                 <div className="relative w-full h-12 flex items-center justify-center">
                   <Image
                     src={partner.image}
                     alt={`${partner.name} logo`}
                     fill
+                    unoptimized
                     sizes="180px"
                     className="object-contain filter contrast-105"
                   />
                 </div>
-                <span className="text-[10px] font-mono text-slate-500 dark:text-titanium-400 mt-2 truncate max-w-full text-center">
+                <span className="text-[10px] font-mono text-slate-600 dark:text-slate-600 mt-2 truncate max-w-full text-center font-medium">
                   {partner.name}
                 </span>
               </div>
@@ -73,18 +74,19 @@ export default function PartnerEcosystem() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.04 }}
-              className="group relative p-4 rounded-2xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 hover:border-emerald-accent/60 dark:hover:border-emerald-accent/50 transition-all duration-300 flex flex-col items-center justify-center aspect-[16/10] hover:-translate-y-1 shadow-sm dark:shadow-none"
+              className="group relative p-4 rounded-2xl bg-white dark:bg-white border border-slate-200 dark:border-white/20 hover:border-emerald-accent/60 dark:hover:border-emerald-accent/50 transition-all duration-300 flex flex-col items-center justify-center aspect-[16/10] hover:-translate-y-1 shadow-sm"
             >
               <div className="relative w-full h-12 flex items-center justify-center p-1">
                 <Image
                   src={partner.image}
                   alt={`${partner.name} logo`}
                   fill
+                  unoptimized
                   sizes="160px"
                   className="object-contain group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <span className="text-[10px] font-mono text-slate-500 dark:text-titanium-400 mt-2 text-center truncate max-w-full">
+              <span className="text-[10px] font-mono text-slate-600 dark:text-slate-600 mt-2 text-center truncate max-w-full font-medium">
                 {partner.category}
               </span>
             </motion.div>
