@@ -53,7 +53,7 @@ export default function WorkflowAndOrg() {
         <div className="max-w-3xl mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Workflow className="w-3.5 h-3.5 text-emerald-accent" />
-            <span>Execution Lifecycle • PDF Page 8</span>
+            <span>Execution Lifecycle</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
@@ -191,7 +191,7 @@ export default function WorkflowAndOrg() {
 
         </div>
 
-        {/* Deliverables & Client Benefits from PDF Page 8 */}
+        {/* Deliverables & Client Benefits */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-14 sm:mb-16">
           
           {/* Key Deliverables Column */}
@@ -261,7 +261,7 @@ export default function WorkflowAndOrg() {
           <div className="max-w-3xl mb-8 sm:mb-10">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
               <Users className="w-3.5 h-3.5 text-emerald-accent" />
-              <span>Certified Technical Personnel • PDF Page 9</span>
+              <span>Certified Technical Personnel</span>
             </div>
 
             <h3 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
@@ -288,7 +288,7 @@ export default function WorkflowAndOrg() {
                       src={area.image}
                       alt={area.title}
                       fill
-                      sizes="300px"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#060A14] via-transparent to-transparent opacity-80" />
@@ -305,9 +305,14 @@ export default function WorkflowAndOrg() {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-titanium-400">
-                  <span>Deployment</span>
-                  <span className="text-slate-900 dark:text-white font-semibold">Immediate Dispatch</span>
+                <div className="mt-6 pt-3.5 border-t border-slate-200 dark:border-white/10 flex flex-col gap-1 font-mono">
+                  <span className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-titanium-400 font-medium">
+                    Deployment
+                  </span>
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 dark:text-white">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-accent shrink-0 animate-pulse" />
+                    <span>Immediate Dispatch</span>
+                  </div>
                 </div>
               </div>
             ))}

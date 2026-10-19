@@ -61,7 +61,7 @@ export default function Industries() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
-              <span>Operational Environments • PDF Page 2</span>
+              <span>Operational Environments</span>
             </div>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
               Industries We Serve. <br />

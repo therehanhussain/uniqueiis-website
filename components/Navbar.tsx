@@ -52,7 +52,7 @@ export default function Navbar() {
               <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white dark:bg-navy-900/90 border border-slate-200 dark:border-white/15 p-1 flex items-center justify-center overflow-hidden shadow-sm group-hover:border-emerald-accent/50 transition-all duration-300">
                 <Image
                   src="/images/uiis-logo-transparent.png"
-                  alt="UIIS Official Logo"
+                  alt="Uniqueiis Official Logo"
                   width={44}
                   height={44}
                   className="object-contain w-full h-full transform group-hover:scale-105 transition-transform duration-300"
@@ -65,7 +65,7 @@ export default function Navbar() {
                     Unique Inspection
                   </span>
                   <span className="hidden sm:inline-flex text-[9px] font-mono uppercase px-1.5 py-0.5 rounded bg-emerald-accent/15 text-emerald-deep dark:text-emerald-glow border border-emerald-accent/30 font-bold">
-                    UIIS
+                    Uniqueiis
                   </span>
                 </div>
                 <span className="text-[9px] sm:text-[10px] tracking-[0.22em] uppercase font-semibold text-slate-500 dark:text-titanium-400 group-hover:text-slate-800 dark:group-hover:text-titanium-200 transition-colors">
@@ -139,14 +139,14 @@ export default function Navbar() {
                   <div className="flex items-center gap-2.5">
                     <Image
                       src="/images/uiis-logo-transparent.png"
-                      alt="UIIS Logo"
+                      alt="Uniqueiis Logo"
                       width={34}
                       height={34}
                       className="rounded-lg object-contain"
                     />
                     <div className="flex flex-col">
                       <span className="font-bold text-slate-900 dark:text-white text-sm">Unique Inspection</span>
-                      <span className="text-[10px] text-slate-500 dark:text-titanium-400">Integrated Services (UIIS)</span>
+                      <span className="text-[10px] text-slate-500 dark:text-titanium-400">Integrated Services (Uniqueiis)</span>
                     </div>
                   </div>
                   <button

@@ -64,7 +64,7 @@ export interface PartnerLogo {
 
 export const BRAND_INFO = {
   name: "UNIQUE INSPECTION INTEGRATED SERVICES",
-  shortName: "UIIS",
+  shortName: "Uniqueiis",
   domain: "uniqueiis.com",
   tagline: "A Safer, Stronger Tomorrow",
   slogan: "INSPECT • ASSURE • DELIVER • ADD VALUE",
@@ -725,11 +725,11 @@ export const SERVICE_DELIVERY_MODEL = [
 ];
 
 export const OUR_PEOPLE_AREAS = [
-  { title: "Field Inspection", desc: "Experienced inspectors conducting rigorous physical verification at manufacturing plants and fabrication yards.", image: "/images/uiis/services/pid_site_engineer.jpg" },
-  { title: "Project Support", desc: "Dedicated coordination personnel ensuring seamless technical alignment between stakeholders.", image: "/images/uiis/services/pes_technical_team.jpg" },
-  { title: "Technical Discussion", desc: "Collaborative engineering consultations resolving non-conformities and optimizing quality plans.", image: "/images/uiis/services/vid_team_review.jpg" },
-  { title: "Quality Assurance", desc: "Systematic QA/QC oversight ensuring full adherence to codes, standards, and contractual criteria.", image: "/images/uiis/services/vsa_3d.jpg" },
-  { title: "Teamwork on Site", desc: "Cohesive multidisciplinary execution delivering reliable results on complex industrial jobs.", image: "/images/uiis/industries/industrial_construction_3d.jpg" }
+  { title: "Field Inspection", desc: "Experienced inspectors conducting rigorous physical verification at manufacturing plants and fabrication yards.", image: "/images/uiis/people/field_inspection_3d.jpg" },
+  { title: "Project Support", desc: "Dedicated coordination personnel ensuring seamless technical alignment between stakeholders.", image: "/images/uiis/people/project_support_3d.jpg" },
+  { title: "Technical Discussion", desc: "Collaborative engineering consultations resolving non-conformities and optimizing quality plans.", image: "/images/uiis/people/technical_discussion_3d.jpg" },
+  { title: "Quality Assurance", desc: "Systematic QA/QC oversight ensuring full adherence to codes, standards, and contractual criteria.", image: "/images/uiis/people/quality_assurance_3d.jpg" },
+  { title: "Teamwork on Site", desc: "Cohesive multidisciplinary execution delivering reliable results on complex industrial jobs.", image: "/images/uiis/people/teamwork_on_site_3d.jpg" }
 ];
 
 export const WORLDWIDE_NETWORK_COUNTRIES = {
@@ -835,16 +835,16 @@ export const GLOBAL_NETWORK: NetworkHub[] = [
 ];
 
 export const PARTNER_ECOSYSTEM_LOGOS: PartnerLogo[] = [
-  { id: "sepco", name: "SEPCO", category: "EPC & Infrastructure", image: "/images/uiis/partners/sepco_card.png" },
-  { id: "subsea7", name: "Subsea7", category: "Offshore & Subsea", image: "/images/uiis/partners/subsea7_card.png" },
-  { id: "jgc-gulf", name: "JGC Gulf International", category: "EPC & Engineering", image: "/images/uiis/partners/jgc_gulf_card.png" },
-  { id: "tecnicas-reunidas", name: "Técnicas Reunidas", category: "Global Engineering & Construction", image: "/images/uiis/partners/tecnicas_reunidas_card.png" },
-  { id: "larsen-toubro", name: "Larsen & Toubro", category: "Technology, Engineering & Construction", image: "/images/uiis/partners/larsen_toubro_card.png" },
-  { id: "saipem", name: "Saipem", category: "Energy Engineering & Infrastructure", image: "/images/uiis/partners/saipem_card.png" },
-  { id: "cbi", name: "CB&I", category: "Storage & Energy Infrastructure", image: "/images/uiis/partners/cbi_card.png" },
-  { id: "klc", name: "KLC", category: "Contracting & Engineering", image: "/images/uiis/partners/klc_card.png" },
-  { id: "br-cat", name: "BR CAT International Company", category: "Industrial Construction & Contracting", image: "/images/uiis/partners/br_cat_card.png" },
-  { id: "wison", name: "Wison", category: "Engineering & High-Tech Services", image: "/images/uiis/partners/wison_card.png" },
-  { id: "osc", name: "OSC", category: "Oil & Gas Industrial Services", image: "/images/uiis/partners/osc_card.png" },
-  { id: "sinopec", name: "Sinopec", category: "Energy & Chemical Engineering", image: "/images/uiis/partners/sinopec_card.png" }
+  { id: "sepco", name: "SEPCO", category: "EPC & Infrastructure", image: "/images/uiis/partners/sepco_card.svg" },
+  { id: "subsea7", name: "Subsea7", category: "Offshore & Subsea", image: "/images/uiis/partners/subsea7_card.svg" },
+  { id: "jgc-gulf", name: "JGC Gulf International", category: "EPC & Engineering", image: "/images/uiis/partners/jgc_gulf_card.svg" },
+  { id: "tecnicas-reunidas", name: "Técnicas Reunidas", category: "Global Engineering & Construction", image: "/images/uiis/partners/tecnicas_reunidas_card.svg" },
+  { id: "larsen-toubro", name: "Larsen & Toubro", category: "Technology, Engineering & Construction", image: "/images/uiis/partners/larsen_toubro_card.svg" },
+  { id: "saipem", name: "Saipem", category: "Energy Engineering & Infrastructure", image: "/images/uiis/partners/saipem_card.svg" },
+  { id: "cbi", name: "CB&I", category: "Storage & Energy Infrastructure", image: "/images/uiis/partners/cbi_card.svg" },
+  { id: "klc", name: "KLC", category: "Contracting & Engineering", image: "/images/uiis/partners/klc_card.svg" },
+  { id: "br-cat", name: "BR CAT International Company", category: "Industrial Construction & Contracting", image: "/images/uiis/partners/br_cat_card.svg" },
+  { id: "wison", name: "Wison", category: "Engineering & High-Tech Services", image: "/images/uiis/partners/wison_card.svg" },
+  { id: "osc", name: "OSC", category: "Oil & Gas Industrial Services", image: "/images/uiis/partners/osc_card.svg" },
+  { id: "sinopec", name: "Sinopec", category: "Energy & Chemical Engineering", image: "/images/uiis/partners/sinopec_card.svg" }
 ];

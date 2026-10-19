@@ -63,7 +63,7 @@ export default function Capabilities() {
         <div className="max-w-3xl mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Wrench className="w-3.5 h-3.5 text-emerald-accent" />
-            <span>Technical Capabilities & Disciplines • PDF Page 9</span>
+            <span>Technical Capabilities & Disciplines</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
@@ -200,7 +200,7 @@ export default function Capabilities() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
             <div>
               <span className="text-xs font-mono uppercase tracking-widest text-emerald-deep dark:text-emerald-accent font-semibold block mb-1">
-                International Standards Familiarity • PDF Page 9
+                International Standards Familiarity
               </span>
               <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
                 Technical Codes & Standards
@@ -234,7 +234,7 @@ export default function Capabilities() {
           </div>
         </div>
 
-        {/* 03. Inspector Qualifications & Tools (PDF Page 9 & 10) */}
+        {/* 03. Inspector Qualifications & Tools */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
           
           {/* Qualifications Column */}

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail,
@@ -13,7 +12,9 @@ import {
   ShieldCheck,
   Building2,
   Clock,
-  ArrowUpRight
+  ArrowUpRight,
+  Navigation,
+  Compass
 } from "lucide-react";
 import { BRAND_INFO, SERVICES } from "@/lib/data";
 
@@ -74,40 +75,20 @@ export default function Contact() {
         {/* 2-Column Minimal & Premium Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column: Official PDF Contact Information */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-8 backdrop-blur-xl shadow-lg dark:shadow-glass">
+          {/* Left Column: Official Contact Channels & Headquarters */}
+          <div className="lg:col-span-5 space-y-6">
+            {/* Direct Communications Desk */}
+            <div className="rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-6 sm:p-8 backdrop-blur-xl shadow-lg dark:shadow-glass">
               <span className="text-xs font-mono uppercase tracking-widest text-emerald-deep dark:text-emerald-accent font-semibold block mb-2">
-                Official Headquarters
+                Direct Communications
               </span>
               <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-6">
-                Unique Inspection Integrated Services
+                Engineering Contact Desk
               </h3>
 
-              <div className="space-y-5 text-sm">
-                {/* Physical Location */}
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-emerald-deep dark:text-emerald-accent shrink-0 mt-0.5">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-mono uppercase text-slate-500 dark:text-titanium-500 block mb-1">
-                      Office Location
-                    </span>
-                    <p className="text-slate-900 dark:text-white font-medium leading-relaxed">
-                      Building Number: <span className="text-emerald-deep dark:text-emerald-accent font-semibold">{BRAND_INFO.contact.buildingNumber}</span>, Street {BRAND_INFO.contact.street}
-                      <br />
-                      {BRAND_INFO.contact.district}
-                      <br />
-                      Postal Code: {BRAND_INFO.contact.postalCode}, {BRAND_INFO.contact.city}
-                      <br />
-                      <span className="text-slate-600 dark:text-titanium-200">{BRAND_INFO.contact.country}</span>
-                    </p>
-                  </div>
-                </div>
-
+              <div className="space-y-4 text-sm">
                 {/* Telephone */}
-                <div className="flex items-start gap-4 pt-4 border-t border-slate-100 dark:border-white/5">
+                <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-emerald-deep dark:text-emerald-accent shrink-0 mt-0.5">
                     <Phone className="w-5 h-5" />
                   </div>
@@ -172,36 +153,132 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* HQ Photos from PDF Page 12 */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-slate-900 aspect-[4/3] relative group">
-                <Image
-                  src="/images/uiis/uiis_hq_building.jpg"
-                  alt="UIIS Headquarters Building Al-Khobar"
-                  fill
-                  sizes="250px"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#060A14] via-transparent to-transparent opacity-80" />
-                <div className="absolute bottom-2.5 left-3">
-                  <span className="text-[10px] font-mono text-emerald-accent block">HQ Facility</span>
-                  <span className="text-xs font-bold text-white">Al-Khobar, KSA</span>
+            {/* Our Headquarters Section */}
+            <div id="our-headquarters" className="rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-6 sm:p-8 backdrop-blur-xl shadow-lg dark:shadow-glass relative overflow-hidden">
+              {/* Header Badge */}
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <span className="text-xs font-mono uppercase tracking-widest text-emerald-deep dark:text-emerald-accent font-semibold block mb-1">
+                    Central Operations Hub
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                    Our Headquarters
+                  </h3>
+                </div>
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-deep dark:text-emerald-accent">
+                  <Compass className="w-5 h-5" />
                 </div>
               </div>
 
-              <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-slate-900 aspect-[4/3] relative group">
-                <Image
-                  src="/images/uiis/uiis_location_map.jpg"
-                  alt="UIIS Location Map"
-                  fill
-                  sizes="250px"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#060A14] via-transparent to-transparent opacity-80" />
-                <div className="absolute bottom-2.5 left-3">
-                  <span className="text-[10px] font-mono text-emerald-accent block">Location</span>
-                  <span className="text-xs font-bold text-white">Eastern Province</span>
+              {/* Minimalist Location & Coordinate Graphics Banner */}
+              <div className="relative w-full h-36 rounded-2xl overflow-hidden border border-slate-200/90 dark:border-white/10 bg-slate-50 dark:bg-[#070D1A] my-4 select-none">
+                <svg
+                  className="absolute inset-0 w-full h-full"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <defs>
+                    <pattern id="hqCoordGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+                      <path d="M 24 0 L 0 0 0 24" fill="none" strokeWidth="0.5" className="stroke-slate-300/60 dark:stroke-white/5" />
+                    </pattern>
+                    <radialGradient id="hqPulseGlow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#10B981" stopOpacity="0.25" />
+                      <stop offset="100%" stopColor="#10B981" stopOpacity="0" />
+                    </radialGradient>
+                  </defs>
+                  
+                  {/* Grid background */}
+                  <rect width="100%" height="100%" fill="url(#hqCoordGrid)" />
+
+                  {/* Abstract Street / Route Grid Lines */}
+                  <g className="stroke-slate-300/80 dark:stroke-white/10" strokeWidth="1.5">
+                    <line x1="0" y1="30%" x2="100%" y2="30%" />
+                    <line x1="0" y1="70%" x2="100%" y2="70%" />
+                    <line x1="20%" y1="0" x2="20%" y2="100%" />
+                    <line x1="80%" y1="0" x2="80%" y2="100%" />
+                  </g>
+
+                  {/* Main Axis: Street 26 & Madinat Al-Ummal */}
+                  <g className="stroke-emerald-500/35 dark:stroke-emerald-400/30" strokeWidth="2.5" strokeLinecap="round">
+                    <line x1="0" y1="50%" x2="100%" y2="50%" />
+                    <line x1="50%" y1="0" x2="50%" y2="100%" />
+                  </g>
+
+                  {/* Radar Pulse Range Rings */}
+                  <circle cx="50%" cy="50%" r="48" fill="url(#hqPulseGlow)" />
+                  <circle cx="50%" cy="50%" r="46" fill="none" strokeWidth="1" strokeDasharray="3 3" className="stroke-emerald-500/40 dark:stroke-emerald-400/35" />
+                  <circle cx="50%" cy="50%" r="24" fill="none" strokeWidth="1" className="stroke-emerald-500/50 dark:stroke-emerald-400/45" />
+                  
+                  {/* Crosshair Target Marks */}
+                  <line x1="50%" y1="36%" x2="50%" y2="64%" className="stroke-emerald-500/60 dark:stroke-emerald-400/60" strokeWidth="1" />
+                  <line x1="42%" y1="50%" x2="58%" y2="50%" className="stroke-emerald-500/60 dark:stroke-emerald-400/60" strokeWidth="1" />
+                </svg>
+
+                {/* Top Overlay Badges */}
+                <div className="absolute top-2 left-2.5 flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/85 dark:bg-[#060A14]/85 backdrop-blur-md border border-slate-200 dark:border-white/10 text-[10px] font-mono text-slate-700 dark:text-titanium-300 font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-accent animate-pulse" />
+                  <span>26°17&apos;08&quot;N 50°12&apos;11&quot;E</span>
                 </div>
+
+                <div className="absolute top-2 right-2.5 px-2 py-0.5 rounded-md bg-white/85 dark:bg-[#060A14]/85 backdrop-blur-md border border-slate-200 dark:border-white/10 text-[10px] font-mono text-slate-600 dark:text-titanium-400 font-medium">
+                  STREET 26 • BLDG 7952
+                </div>
+
+                {/* Center Pin & Beacon */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                  <div className="relative flex items-center justify-center">
+                    <span className="absolute w-8 h-8 rounded-full bg-emerald-accent/25 animate-ping" />
+                    <span className="absolute w-6 h-6 rounded-full bg-emerald-accent/30" />
+                    <div className="relative w-8 h-8 rounded-full bg-emerald-deep dark:bg-emerald-accent text-white dark:text-slate-950 flex items-center justify-center shadow-md shadow-emerald-500/20">
+                      <MapPin className="w-4 h-4" />
+                    </div>
+                  </div>
+                  <div className="mt-1 px-2 py-0.5 rounded bg-slate-900/90 dark:bg-black/90 text-[9px] font-mono font-semibold text-emerald-accent tracking-wider uppercase">
+                    Al-Khobar Operations Hub
+                  </div>
+                </div>
+
+                {/* Bottom Overlay Badges */}
+                <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-[9px] font-mono text-slate-500 dark:text-titanium-400">
+                  <span>MADINAT AL-UMMAL DIST.</span>
+                  <span>POSTAL CODE 3441</span>
+                </div>
+              </div>
+
+              {/* Verified Address Block */}
+              <div className="mt-4 pt-1">
+                <span className="text-[11px] font-mono uppercase text-slate-500 dark:text-titanium-500 font-medium block mb-1">
+                  Verified Headquarters Address
+                </span>
+                <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-white tracking-tight uppercase">
+                  UNIQUE INSPECTION INTEGRATED SERVICES
+                </p>
+                <div className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-titanium-300 leading-relaxed font-normal space-y-0.5">
+                  <p>Building Number 7952, Street 26,</p>
+                  <p>Madinat Al-Ummal District,</p>
+                  <p>Postal Code 3441, Al-Khobar,</p>
+                  <p className="font-semibold text-emerald-deep dark:text-emerald-accent">
+                    Kingdom of Saudi Arabia.
+                  </p>
+                </div>
+              </div>
+
+              {/* Get Directions Link */}
+              <div className="mt-5 pt-4 border-t border-slate-200 dark:border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Unique+Inspection+Integrated+Services,+Building+Number+7952,+Street+26,+Madinat+Al-Ummal+District,+Al-Khobar+3441,+Kingdom+of+Saudi+Arabia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white dark:bg-emerald-accent dark:hover:bg-emerald-400 dark:text-slate-950 text-xs font-semibold tracking-wide transition-all shadow-sm active:scale-[0.98] group"
+                >
+                  <Navigation className="w-3.5 h-3.5 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+                  <span>Get Directions</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
+                </a>
+
+                <span className="text-[11px] font-mono text-slate-500 dark:text-titanium-400 flex items-center gap-1.5">
+                  <MapPin className="w-3 h-3 text-emerald-accent shrink-0" />
+                  <span>Google Maps Navigation</span>
+                </span>
               </div>
             </div>
           </div>

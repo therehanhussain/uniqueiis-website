@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 200" fill="none">
+  <defs>
+    <radialGradient id="globeGrad" cx="45%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="40%" stop-color="#1D4ED8" />
+      <stop offset="85%" stop-color="#1E3A8A" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </radialGradient>
+    <clipPath id="globeClip">
+      <ellipse cx="180" cy="100" rx="95" ry="92" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#globeClip)">
+    <ellipse cx="180" cy="100" rx="95" ry="92" fill="url(#globeGrad)" />
+    <ellipse cx="180" cy="100" rx="25" ry="92" stroke="rgba(255,255,255,0.45)" stroke-width="2" fill="none" />
+    <ellipse cx="180" cy="100" rx="55" ry="92" stroke="rgba(255,255,255,0.45)" stroke-width="2" fill="none" />
+    <ellipse cx="180" cy="100" rx="80" ry="92" stroke="rgba(255,255,255,0.45)" stroke-width="2" fill="none" />
+    <line x1="180" y1="5" x2="180" y2="195" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" />
+    <ellipse cx="180" cy="100" rx="95" ry="25" stroke="rgba(255,255,255,0.45)" stroke-width="2" fill="none" />
+    <ellipse cx="180" cy="100" rx="95" ry="55" stroke="rgba(255,255,255,0.45)" stroke-width="2" fill="none" />
+    <ellipse cx="180" cy="100" rx="95" ry="78" stroke="rgba(255,255,255,0.45)" stroke-width="2" fill="none" />
+    <line x1="80" y1="100" x2="280" y2="100" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" />
+  </g>
+  <ellipse cx="180" cy="100" rx="95" ry="92" stroke="#1D4ED8" stroke-width="4" fill="none" />
+  <text x="175" y="128" text-anchor="middle" font-family="'Times New Roman', Times, Georgia, serif" font-weight="900" font-size="94" fill="#FFFFFF" letter-spacing="-1px" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.5))">CBI</text>
+  <text x="245" y="132" font-family="'Times New Roman', Times, Georgia, serif" font-weight="700" font-size="20" fill="#FFFFFF" filter="drop-shadow(0 1px 2px rgba(0,0,0,0.5))">Co.</text>
+</svg>

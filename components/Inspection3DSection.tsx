@@ -217,7 +217,7 @@ export default function Inspection3DSection() {
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-accent" />
                 <span>Zero Non-Conformance</span>
               </span>
-              <span>UIIS Level III Verified</span>
+              <span>Uniqueiis Level III Verified</span>
             </div>
           </div>
 

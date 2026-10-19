@@ -144,7 +144,7 @@ export default function PartnerNetwork() {
                 Multi-Sector Engineering Reach
               </h4>
               <p className="mt-1 text-xs sm:text-sm text-titanium-400 max-w-2xl leading-relaxed">
-                UIIS provides specialized engineering verification, quality surveillance, and technical inspection services aligned with the exacting requirements of major EPC contractors, operators, and equipment fabricators worldwide.
+                Uniqueiis provides specialized engineering verification, quality surveillance, and technical inspection services aligned with the exacting requirements of major EPC contractors, operators, and equipment fabricators worldwide.
               </p>
             </div>
           </div>

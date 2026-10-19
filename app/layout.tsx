@@ -27,11 +27,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://uniqueiis.com"),
-  title: "UNIQUE INSPECTION INTEGRATED SERVICES (UIIS) | A Safer, Stronger Tomorrow",
+  title: "UNIQUE INSPECTION INTEGRATED SERVICES (Uniqueiis) | A Safer, Stronger Tomorrow",
   description: "Independent Third-Party Inspection, verification, vendor audit, expediting, and NDT engineering services. Inspect • Assure • Deliver • Add Value.",
   keywords: [
     "Unique Inspection Integrated Services",
-    "UIIS",
+    "Uniqueiis",
     "Vendor Inspection Department",
     "Vendor Expediting Department",
     "Project Inspection Department",
@@ -51,13 +51,13 @@ export const metadata: Metadata = {
     title: "UNIQUE INSPECTION INTEGRATED SERVICES | Inspect • Assure • Deliver • Add Value",
     description: "Independent Third-Party Inspection, verification, vendor audit, expediting, and NDT engineering services. A Safer, Stronger Tomorrow.",
     url: "https://uniqueiis.com",
-    siteName: "UNIQUE INSPECTION INTEGRATED SERVICES (UIIS)",
+    siteName: "UNIQUE INSPECTION INTEGRATED SERVICES (Uniqueiis)",
     images: [
       {
         url: "/images/uiis/logo_official_complete.png",
         width: 1200,
         height: 630,
-        alt: "UIIS - Unique Inspection Integrated Services",
+        alt: "Uniqueiis - Unique Inspection Integrated Services",
       },
     ],
     locale: "en_US",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "UNIQUE INSPECTION INTEGRATED SERVICES (UIIS)",
+    title: "UNIQUE INSPECTION INTEGRATED SERVICES (Uniqueiis)",
     description: "A Safer, Stronger Tomorrow. Inspect • Assure • Deliver • Add Value.",
     images: ["/images/uiis/logo_official_complete.png"],
   },

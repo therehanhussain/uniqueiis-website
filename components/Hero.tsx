@@ -5,13 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, ChevronRight, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, ChevronRight } from "lucide-react";
 
 // Dynamic import for 3D Hero Scene (client-side only, high performance)
 const HeroVessel3D = dynamic(() => import("./three/HeroVessel3D"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full min-h-[460px] lg:min-h-[640px] flex items-center justify-center">
+    <div className="w-full h-full min-h-[360px] sm:min-h-[420px] lg:min-h-[480px] xl:min-h-[520px] flex items-center justify-center">
       <div className="flex flex-col items-center gap-3">
         <div className="w-10 h-10 rounded-full border-2 border-emerald-accent/30 border-t-emerald-accent animate-spin" />
         <span className="text-xs font-mono text-slate-500 dark:text-titanium-400 uppercase tracking-widest">
@@ -37,7 +37,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative flex items-center overflow-hidden bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white pt-28 pb-12 lg:pt-32 lg:pb-16"
+      className="relative flex items-center overflow-hidden bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white pt-24 sm:pt-28 lg:pt-28 pb-8 sm:pb-10 lg:pb-12"
     >
       {/* Background Industrial Ambience Layer */}
       <motion.div
@@ -46,7 +46,7 @@ export default function Hero() {
       >
         <Image
           src="/images/uiis/hero_refinery_night_3d.jpg"
-          alt="UIIS Industrial Inspection Infrastructure and Refinery Facility"
+          alt="Uniqueiis Industrial Inspection Infrastructure and Refinery Facility"
           fill
           priority
           sizes="100vw"
@@ -61,33 +61,17 @@ export default function Hero() {
       {/* Main Grid: Left Content + Right 3D Engineering Object */}
       <motion.div
         style={{ opacity: contentOpacity, y: contentY }}
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-4 lg:py-6"
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-0 pb-4 sm:pt-0 sm:pb-6 lg:pt-0 lg:pb-8"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
           
           {/* Left Column: Headlines & Brand Credentials */}
           <div className="lg:col-span-7 flex flex-col items-start text-left z-20">
-            {/* Small Eyebrow */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 backdrop-blur-md mb-8 shadow-sm"
-            >
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-accent opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-accent" />
-              </span>
-              <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-slate-700 dark:text-titanium-300 font-medium">
-                UNIQUE INSPECTION INTEGRATED SERVICES
-              </span>
-            </motion.div>
-
             {/* Headline */}
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="text-4xl sm:text-6xl md:text-7xl font-black tracking-[-0.03em] text-slate-900 dark:text-white leading-[1.04]"
             >
               ENGINEERING <br />
@@ -102,7 +86,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-6 sm:mt-8 text-base sm:text-lg text-slate-600 dark:text-titanium-300 max-w-xl font-normal leading-relaxed"
+              className="mt-4 sm:mt-5 text-base sm:text-lg text-slate-600 dark:text-titanium-300 max-w-xl font-normal leading-relaxed"
             >
               Independent inspection, verification, technical support and quality assurance for critical industrial and infrastructure projects.
             </motion.p>
@@ -112,7 +96,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+              className="mt-6 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
             >
               <Link
                 href="#contact"
@@ -130,34 +114,46 @@ export default function Hero() {
               </Link>
             </motion.div>
 
-            {/* Trust Credentials: Saudi Vision 2030 & ISO 9001 */}
+            {/* National Alignment & Quality Accreditation Logos */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.55 }}
-              className="mt-8 flex flex-wrap items-center gap-6 sm:gap-8 pt-6 border-t border-slate-200 dark:border-white/10 w-full"
+              transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-8 sm:mt-10 flex items-center gap-6 sm:gap-7"
             >
-              <div className="relative h-8 w-24 sm:h-9 sm:w-28 opacity-80 hover:opacity-100 transition-opacity">
+              {/* Saudi Vision 2030 Logo */}
+              <div className="relative h-11 sm:h-13 w-20 sm:w-24 shrink-0 transition-transform duration-300 hover:scale-105">
                 <Image
                   src="/images/uiis/vision_2030.png"
                   alt="Saudi Vision 2030"
                   fill
-                  className="object-contain"
+                  sizes="(max-width: 640px) 80px, 96px"
+                  className="object-contain object-left dark:hidden"
+                  priority
+                />
+                <Image
+                  src="/images/uiis/vision_2030_dark.png"
+                  alt="Saudi Vision 2030"
+                  fill
+                  sizes="(max-width: 640px) 80px, 96px"
+                  className="object-contain object-left hidden dark:block"
+                  priority
                 />
               </div>
-              <div className="h-5 w-px bg-slate-300 dark:bg-white/15" />
-              <div className="relative h-8 w-20 sm:h-9 sm:w-24 opacity-80 hover:opacity-100 transition-opacity">
+
+              {/* Subtle Vertical Divider */}
+              <div className="h-7 w-px bg-slate-300 dark:bg-white/15 shrink-0" />
+
+              {/* ISO 9001:2015 Certification Badge */}
+              <div className="relative h-11 sm:h-13 w-11 sm:w-13 shrink-0 transition-transform duration-300 hover:scale-105">
                 <Image
                   src="/images/uiis/iso_9001.png"
                   alt="ISO 9001:2015 Certified"
                   fill
+                  sizes="(max-width: 640px) 44px, 52px"
                   className="object-contain"
+                  priority
                 />
-              </div>
-              <div className="h-5 w-px bg-slate-300 dark:bg-white/15 hidden sm:block" />
-              <div className="flex items-center gap-2 text-xs font-mono text-slate-600 dark:text-titanium-400">
-                <ShieldCheck className="w-4 h-4 text-emerald-accent" />
-                <span>Independent TPI Assurance</span>
               </div>
             </motion.div>
           </div>

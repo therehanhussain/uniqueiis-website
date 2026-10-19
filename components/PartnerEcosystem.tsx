@@ -21,11 +21,11 @@ export default function PartnerEcosystem() {
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Handshake className="w-3.5 h-3.5 text-emerald-accent" />
-            <span>Industrial Collaboration • PDF Page 7</span>
+            <span>Industrial Collaboration</span>
           </div>
 
           <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.05] uppercase">
-            UIIS <br />
+            UNIQUEIIS <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-accent via-slate-800 to-slate-600 dark:from-emerald-accent dark:via-white dark:to-titanium-200">
               PARTNER ECOSYSTEM
             </span>
@@ -102,7 +102,7 @@ export default function PartnerEcosystem() {
                 Technical Governance & Independent Neutrality
               </h4>
               <p className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-titanium-300 max-w-2xl leading-relaxed">
-                As an independent Third-Party Inspection (TPI) services provider, UIIS maintains strict objectivity. All surveillance records, material verifications, and NDT interpretations reflect verified physical facts without commercial conflicts.
+                As an independent Third-Party Inspection (TPI) services provider, Uniqueiis maintains strict objectivity. All surveillance records, material verifications, and NDT interpretations reflect verified physical facts without commercial conflicts.
               </p>
             </div>
           </div>

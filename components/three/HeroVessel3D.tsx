@@ -18,7 +18,7 @@ export default function HeroVessel3D() {
     let isVisible = true;
     let animationFrameId: number;
 
-    // Renderer
+    // High-performance WebGL Renderer
     const renderer = new THREE.WebGLRenderer({
       canvas,
       alpha: true,
@@ -28,265 +28,282 @@ export default function HeroVessel3D() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.1;
+    renderer.toneMappingExposure = 1.15;
 
-    // Scene & Camera
+    // Scene & Perspective Camera
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      40,
-      container.clientWidth / container.clientHeight,
-      0.1,
-      100
-    );
-    camera.position.set(0, 0, 7.2);
+    const aspect = container.clientWidth / container.clientHeight;
+    const camera = new THREE.PerspectiveCamera(40, aspect, 0.1, 100);
+    const baseZ = 6.6;
+    const computeCameraZ = (a: number) => {
+      return a < 1 ? baseZ / Math.max(0.68, a) : baseZ;
+    };
+    camera.position.set(0, 0, computeCameraZ(aspect));
 
-    // Root Assembly Group
+    // Root 3D Logo Assembly
     const rootGroup = new THREE.Group();
     scene.add(rootGroup);
 
-    // Materials - Industrial Graphite Titanium, Brushed Steel, Emerald & Gold Accents
-    const darkTitaniumMat = new THREE.MeshStandardMaterial({
-      color: 0x2e384d,
-      metalness: 0.85,
-      roughness: 0.32,
-    });
+    // Initial heroic tilt & balanced upward position matching Screenshot 2
+    const baseY = 0.14;
+    rootGroup.position.set(0, baseY, 0);
+    rootGroup.rotation.x = 0.14;
+    rootGroup.rotation.y = -0.22;
 
-    const brushedSteelMat = new THREE.MeshStandardMaterial({
-      color: 0x64748b,
-      metalness: 0.90,
+    // ==========================================
+    // MATERIALS: Premium Industrial Engineering
+    // ==========================================
+    const outerBezelMat = new THREE.MeshStandardMaterial({
+      color: 0x64748b, // Polished slate titanium
+      metalness: 0.92,
       roughness: 0.22,
     });
 
-    const polishedFlangeMat = new THREE.MeshStandardMaterial({
-      color: 0x94a3b8,
-      metalness: 0.94,
+    const brushedRimMat = new THREE.MeshStandardMaterial({
+      color: 0x94a3b8, // Polished brushed steel
+      metalness: 0.95,
       roughness: 0.16,
     });
 
-    const boltMat = new THREE.MeshStandardMaterial({
-      color: 0x718096,
-      metalness: 0.92,
-      roughness: 0.24,
+    const faceplateMat = new THREE.MeshStandardMaterial({
+      color: 0xe2e8f0, // Satin titanium dial in light mode
+      metalness: 0.82,
+      roughness: 0.32,
     });
 
-    const saddleMat = new THREE.MeshStandardMaterial({
-      color: 0x334155,
-      metalness: 0.80,
-      roughness: 0.38,
-    });
-
-    const weldSeamMat = new THREE.MeshStandardMaterial({
-      color: 0x059669,
-      metalness: 0.8,
-      roughness: 0.3,
+    const emeraldRingMat = new THREE.MeshStandardMaterial({
+      color: 0x10b981,
       emissive: 0x10b981,
-      emissiveIntensity: 0.55,
+      emissiveIntensity: 0.75,
+      metalness: 0.85,
+      roughness: 0.15,
     });
 
     const goldAccentMat = new THREE.MeshStandardMaterial({
       color: 0xd97706,
-      metalness: 0.88,
-      roughness: 0.22,
+      metalness: 0.94,
+      roughness: 0.18,
+    });
+
+    const boltMat = new THREE.MeshStandardMaterial({
+      color: 0x94a3b8,
+      metalness: 0.95,
+      roughness: 0.14,
     });
 
     const laserScanMat = new THREE.MeshBasicMaterial({
       color: 0x10b981,
       transparent: true,
-      opacity: 0.75,
+      opacity: 0.80,
+    });
+
+    const outerTrackMat = new THREE.MeshBasicMaterial({
+      color: 0x38bdf8,
+      transparent: true,
+      opacity: 0.30,
       wireframe: true,
     });
 
-    // 1. Vessel Main Shell (Cylinder)
-    const shellGeo = new THREE.CylinderGeometry(1.2, 1.2, 3.4, 48);
-    const shell = new THREE.Mesh(shellGeo, darkTitaniumMat);
-    rootGroup.add(shell);
+    const sapphireGlassMat = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.05,
+      roughness: 0.05,
+      metalness: 0.2,
+    });
 
-    // 2. Torispherical / Dished Heads (Top & Bottom caps)
-    const headGeo = new THREE.SphereGeometry(1.2, 48, 24, 0, Math.PI * 2, 0, Math.PI * 0.45);
-    const topHead = new THREE.Mesh(headGeo, brushedSteelMat);
-    topHead.position.y = 1.7;
-    rootGroup.add(topHead);
+    // ==========================================
+    // 1. 3D EMBLEM CHASSIS & BEVELED CASING
+    // ==========================================
+    const emblemGroup = new THREE.Group();
+    rootGroup.add(emblemGroup);
 
-    const bottomHead = new THREE.Mesh(headGeo, brushedSteelMat);
-    bottomHead.position.y = -1.7;
-    bottomHead.rotation.x = Math.PI;
-    rootGroup.add(bottomHead);
+    const radius = 1.95;
+    const depth = 0.20;
 
-    // 3. Stiffening Rings / Reinforcement Bands
-    const ringGeo = new THREE.TorusGeometry(1.22, 0.035, 16, 48);
-    const ringTop = new THREE.Mesh(ringGeo, brushedSteelMat);
-    ringTop.rotation.x = Math.PI / 2;
-    ringTop.position.y = 0.9;
-    rootGroup.add(ringTop);
+    // Rear base chassis
+    const baseGeo = new THREE.CylinderGeometry(radius * 1.02, radius * 1.05, depth, 64);
+    baseGeo.rotateX(Math.PI / 2);
+    const baseMesh = new THREE.Mesh(baseGeo, outerBezelMat);
+    emblemGroup.add(baseMesh);
 
-    const ringBottom = new THREE.Mesh(ringGeo, brushedSteelMat);
-    ringBottom.rotation.x = Math.PI / 2;
-    ringBottom.position.y = -0.9;
-    rootGroup.add(ringBottom);
+    // Stepped chamfered outer bezel ring
+    const chamferRingGeo = new THREE.TorusGeometry(radius * 1.02, 0.045, 16, 64);
+    const chamferRing = new THREE.Mesh(chamferRingGeo, brushedRimMat);
+    chamferRing.position.z = depth * 0.48;
+    emblemGroup.add(chamferRing);
 
-    // 4. Circumferential & Head Weld Seams (Emerald inspection pulse)
-    const weldGeo = new THREE.TorusGeometry(1.208, 0.022, 16, 48);
-    const weldCenter = new THREE.Mesh(weldGeo, weldSeamMat);
-    weldCenter.rotation.x = Math.PI / 2;
-    weldCenter.position.y = 0;
-    rootGroup.add(weldCenter);
+    // Front recessed faceplate (dial)
+    const faceplateGeo = new THREE.CylinderGeometry(radius * 0.98, radius * 0.98, 0.04, 64);
+    faceplateGeo.rotateX(Math.PI / 2);
+    const faceplateMesh = new THREE.Mesh(faceplateGeo, faceplateMat);
+    faceplateMesh.position.z = depth * 0.5 + 0.01;
+    emblemGroup.add(faceplateMesh);
 
-    const weldTop = new THREE.Mesh(weldGeo, weldSeamMat);
-    weldTop.rotation.x = Math.PI / 2;
-    weldTop.position.y = 1.68;
-    rootGroup.add(weldTop);
+    // Precision emerald concentric accent groove
+    const emeraldAccentRingGeo = new THREE.TorusGeometry(radius * 0.96, 0.018, 16, 64);
+    const emeraldAccentRing = new THREE.Mesh(emeraldAccentRingGeo, emeraldRingMat);
+    emeraldAccentRing.position.z = depth * 0.5 + 0.035;
+    emblemGroup.add(emeraldAccentRing);
 
-    const weldBottom = new THREE.Mesh(weldGeo, weldSeamMat);
-    weldBottom.rotation.x = Math.PI / 2;
-    weldBottom.position.y = -1.68;
-    rootGroup.add(weldBottom);
+    // Secondary subtle titanium inner track
+    const innerTrackGeo = new THREE.TorusGeometry(radius * 0.92, 0.008, 12, 64);
+    const innerTrack = new THREE.Mesh(innerTrackGeo, brushedRimMat);
+    innerTrack.position.z = depth * 0.5 + 0.035;
+    emblemGroup.add(innerTrack);
 
-    // Longitudinal Weld Seam
-    const longWeldGeo = new THREE.BoxGeometry(0.02, 3.36, 0.02);
-    const longWeld = new THREE.Mesh(longWeldGeo, weldSeamMat);
-    longWeld.position.set(0, 0, 1.205);
-    rootGroup.add(longWeld);
-
-    // 5. Heavy Process Nozzle & Raised Face Flange (Right side)
-    const nozzleGroup = new THREE.Group();
-    nozzleGroup.position.set(1.15, 0.4, 0);
-    nozzleGroup.rotation.z = -Math.PI / 2;
-
-    const nozzleNeckGeo = new THREE.CylinderGeometry(0.32, 0.38, 0.9, 32);
-    const nozzleNeck = new THREE.Mesh(nozzleNeckGeo, darkTitaniumMat);
-    nozzleNeck.position.y = 0.45;
-    nozzleGroup.add(nozzleNeck);
-
-    const nozzleWeldGeo = new THREE.TorusGeometry(0.33, 0.015, 16, 32);
-    const nozzleWeld = new THREE.Mesh(nozzleWeldGeo, weldSeamMat);
-    nozzleWeld.rotation.x = Math.PI / 2;
-    nozzleWeld.position.y = 0.88;
-    nozzleGroup.add(nozzleWeld);
-
-    const flangeGeo = new THREE.CylinderGeometry(0.56, 0.56, 0.16, 32);
-    const flange = new THREE.Mesh(flangeGeo, polishedFlangeMat);
-    flange.position.y = 0.98;
-    nozzleGroup.add(flange);
-
-    // Raised Face Flange Ring
-    const raisedFaceGeo = new THREE.CylinderGeometry(0.38, 0.38, 0.05, 32);
-    const raisedFace = new THREE.Mesh(raisedFaceGeo, brushedSteelMat);
-    raisedFace.position.y = 1.07;
-    nozzleGroup.add(raisedFace);
-
-    // Flange Stud Bolts (12 Studs)
-    const boltGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.22, 12);
-    const boltCount = 12;
-    const boltRadius = 0.46;
-    for (let i = 0; i < boltCount; i++) {
-      const angle = (i / boltCount) * Math.PI * 2;
-      const bolt = new THREE.Mesh(boltGeo, boltMat);
-      bolt.position.set(Math.cos(angle) * boltRadius, 1.0, Math.sin(angle) * boltRadius);
-      nozzleGroup.add(bolt);
+    // Precision Dial Calibration Ticks (12 Radial Markers at 30° intervals)
+    const tickGeo = new THREE.BoxGeometry(0.02, 0.08, 0.015);
+    const tickCount = 12;
+    const tickRadius = radius * 0.94;
+    for (let i = 0; i < tickCount; i++) {
+      const angle = (i / tickCount) * Math.PI * 2;
+      const tick = new THREE.Mesh(tickGeo, i % 3 === 0 ? emeraldRingMat : brushedRimMat);
+      tick.position.set(
+        Math.cos(angle) * tickRadius,
+        Math.sin(angle) * tickRadius,
+        depth * 0.5 + 0.04
+      );
+      tick.rotation.z = angle + Math.PI / 2;
+      emblemGroup.add(tick);
     }
-    rootGroup.add(nozzleGroup);
 
-    // 6. Top Manway / Blind Flange Assembly
-    const topManwayGroup = new THREE.Group();
-    topManwayGroup.position.set(0, 2.15, 0);
+    // 4 Precision Corner Mounting Rivets / Hex Bolts (45°, 135°, 225°, 315°)
+    const rivetGeo = new THREE.CylinderGeometry(0.045, 0.045, 0.05, 16);
+    rivetGeo.rotateX(Math.PI / 2);
+    const rivetAngles = [Math.PI / 4, (3 * Math.PI) / 4, (5 * Math.PI) / 4, (7 * Math.PI) / 4];
+    const rivetRadius = radius * 1.0;
+    rivetAngles.forEach((angle) => {
+      const rivet = new THREE.Mesh(rivetGeo, boltMat);
+      rivet.position.set(
+        Math.cos(angle) * rivetRadius,
+        Math.sin(angle) * rivetRadius,
+        depth * 0.5 + 0.025
+      );
+      emblemGroup.add(rivet);
+    });
 
-    const manwayNeckGeo = new THREE.CylinderGeometry(0.35, 0.4, 0.45, 32);
-    const manwayNeck = new THREE.Mesh(manwayNeckGeo, darkTitaniumMat);
-    manwayNeck.position.y = 0.22;
-    topManwayGroup.add(manwayNeck);
+    // ==========================================
+    // 2. OFFICIAL UNIQUEIIS 3D LOGO LAYER
+    // ==========================================
+    // Official Logo dimensions: 1254 x 1041 (aspect ratio: 1.2046)
+    // Matches Screenshot 2 proportion: prominent gear emblem + company name
+    const logoHeight = 2.25;
+    const logoWidth = logoHeight * 1.2046; // ~2.71
+    const logoGeo = new THREE.PlaneGeometry(logoWidth, logoHeight);
 
-    const manwayFlangeGeo = new THREE.CylinderGeometry(0.55, 0.55, 0.14, 32);
-    const manwayFlange = new THREE.Mesh(manwayFlangeGeo, polishedFlangeMat);
-    manwayFlange.position.y = 0.48;
-    topManwayGroup.add(manwayFlange);
+    // Texture Loader with official transparent PNG containing emblem + company name
+    const textureLoader = new THREE.TextureLoader();
+    const logoTexture = textureLoader.load(
+      "/images/uiis-logo-transparent.png",
+      () => {
+        setIsLoaded(true);
+      },
+      undefined,
+      (err) => {
+        console.warn("Could not load logo texture, retrying fallback", err);
+        setIsLoaded(true);
+      }
+    );
+    logoTexture.colorSpace = THREE.SRGBColorSpace;
+    logoTexture.minFilter = THREE.LinearMipmapLinearFilter;
+    logoTexture.magFilter = THREE.LinearFilter;
+    logoTexture.generateMipmaps = true;
 
-    const blindFlangeCoverGeo = new THREE.CylinderGeometry(0.55, 0.55, 0.08, 32);
-    const blindFlangeCover = new THREE.Mesh(blindFlangeCoverGeo, brushedSteelMat);
-    blindFlangeCover.position.y = 0.57;
-    topManwayGroup.add(blindFlangeCover);
+    // Elevated 3D Logo Plate with natural depth
+    const logoMat = new THREE.MeshStandardMaterial({
+      map: logoTexture,
+      transparent: true,
+      alphaTest: 0.005,
+      roughness: 0.28,
+      metalness: 0.12,
+      depthWrite: false,
+    });
+    const logoMesh = new THREE.Mesh(logoGeo, logoMat);
+    logoMesh.position.z = depth * 0.5 + 0.065; // Elevated in front of faceplate
+    emblemGroup.add(logoMesh);
 
-    // Lifting Eye Lug on Blind Flange
-    const lugGeo = new THREE.TorusGeometry(0.09, 0.025, 16, 24);
-    const lug = new THREE.Mesh(lugGeo, goldAccentMat);
-    lug.position.set(0, 0.68, 0);
-    topManwayGroup.add(lug);
+    // Dimensional Emboss Drop Shadow Decal (creates tangible physical depth)
+    const shadowMat = new THREE.MeshBasicMaterial({
+      map: logoTexture,
+      color: 0x000000,
+      transparent: true,
+      opacity: 0.40,
+      depthWrite: false,
+    });
+    const shadowMesh = new THREE.Mesh(logoGeo, shadowMat);
+    shadowMesh.position.set(0.015, -0.015, depth * 0.5 + 0.035);
+    shadowMesh.scale.set(0.99, 0.99, 1);
+    emblemGroup.add(shadowMesh);
 
-    rootGroup.add(topManwayGroup);
+    // Protective Sapphire Crystal Lens Facet (front surface glass glare)
+    const glassGeo = new THREE.CylinderGeometry(radius * 0.97, radius * 0.97, 0.01, 64);
+    glassGeo.rotateX(Math.PI / 2);
+    const glassMesh = new THREE.Mesh(glassGeo, sapphireGlassMat);
+    glassMesh.position.z = depth * 0.5 + 0.08;
+    emblemGroup.add(glassMesh);
 
-    // 7. Grounding Saddle Support Brackets
-    const saddleGeo = new THREE.BoxGeometry(0.2, 0.8, 1.8);
-    const saddle1 = new THREE.Mesh(saddleGeo, saddleMat);
-    saddle1.position.set(-1.1, -1.0, 0);
-    rootGroup.add(saddle1);
+    // ==========================================
+    // 3. TECHNICAL INSPECTION LASER & GAUGE RINGS
+    // ==========================================
+    // Outer Orbital Inspection Gauge Ring
+    const outerRingGeo = new THREE.TorusGeometry(radius * 1.15, 0.012, 16, 64);
+    const outerRing = new THREE.Mesh(outerRingGeo, outerTrackMat);
+    rootGroup.add(outerRing);
 
-    const saddle2 = new THREE.Mesh(saddleGeo, saddleMat);
-    saddle2.position.set(-1.1, 0.5, 0);
-    rootGroup.add(saddle2);
+    // Orbiting Emerald Inspection Node
+    const nodeGeo = new THREE.SphereGeometry(0.045, 16, 16);
+    const nodeMesh = new THREE.Mesh(nodeGeo, emeraldRingMat);
+    rootGroup.add(nodeMesh);
 
-    // 8. Secondary Instrument Port (Left side)
-    const instNozzleGroup = new THREE.Group();
-    instNozzleGroup.position.set(-1.18, -0.6, 0.4);
-    instNozzleGroup.rotation.set(0, 0.3, Math.PI / 2);
+    // Sweeping Technical Laser Inspection Line
+    const laserLineGeo = new THREE.BoxGeometry(logoWidth * 1.1, 0.015, 0.015);
+    const laserLine = new THREE.Mesh(laserLineGeo, laserScanMat);
+    laserLine.position.z = depth * 0.5 + 0.09;
+    emblemGroup.add(laserLine);
 
-    const instNeckGeo = new THREE.CylinderGeometry(0.18, 0.22, 0.6, 24);
-    const instNeck = new THREE.Mesh(instNeckGeo, darkTitaniumMat);
-    instNeck.position.y = 0.3;
-    instNozzleGroup.add(instNeck);
-
-    const instFlangeGeo = new THREE.CylinderGeometry(0.32, 0.32, 0.1, 24);
-    const instFlange = new THREE.Mesh(instFlangeGeo, goldAccentMat);
-    instFlange.position.y = 0.65;
-    instNozzleGroup.add(instFlange);
-    rootGroup.add(instNozzleGroup);
-
-    // 9. ASME Nameplate / Data Plate
-    const plateGeo = new THREE.BoxGeometry(0.65, 0.4, 0.03);
-    const plate = new THREE.Mesh(plateGeo, polishedFlangeMat);
-    plate.position.set(0, 0.3, 1.215);
-    rootGroup.add(plate);
-
-    // 10. Technical Laser Gauge Ring (Inspection Scanner)
-    const scanRingGeo = new THREE.TorusGeometry(1.4, 0.012, 16, 64);
-    const scanRing = new THREE.Mesh(scanRingGeo, laserScanMat);
-    scanRing.rotation.x = Math.PI / 2;
-    rootGroup.add(scanRing);
-
-    // Comprehensive Studio & Dynamic Engineering Lighting System
-    const ambientLight = new THREE.AmbientLight(0x1e293b, 1.1);
+    // ==========================================
+    // 4. CINEMATIC STUDIO LIGHTING
+    // ==========================================
+    const ambientLight = new THREE.AmbientLight(0xdbeafe, 1.6);
     scene.add(ambientLight);
 
-    const keyLight = new THREE.DirectionalLight(0xffffff, 2.4);
-    keyLight.position.set(4, 5, 4);
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.7);
+    keyLight.position.set(4, 5, 4.5);
     scene.add(keyLight);
 
-    const frontFillLight = new THREE.DirectionalLight(0x94a3b8, 1.2);
-    frontFillLight.position.set(-3, -1, 4);
+    const emeraldRimLight = new THREE.DirectionalLight(0x10b981, 2.4);
+    emeraldRimLight.position.set(-5, 2, -3.5);
+    scene.add(emeraldRimLight);
+
+    const frontFillLight = new THREE.DirectionalLight(0x94a3b8, 1.4);
+    frontFillLight.position.set(-3, -2, 4);
     scene.add(frontFillLight);
 
-    const rimLight = new THREE.DirectionalLight(0x10b981, 2.2);
-    rimLight.position.set(-5, 2, -4);
-    scene.add(rimLight);
+    const goldAccentLight = new THREE.DirectionalLight(0xf59e0b, 0.8);
+    goldAccentLight.position.set(3, -4, -2);
+    scene.add(goldAccentLight);
 
-    const goldLight = new THREE.DirectionalLight(0xf59e0b, 1.0);
-    goldLight.position.set(3, -4, -2);
-    scene.add(goldLight);
-
-    // Synchronize 3D lighting with Active Light / Dark Mode
+    // Dynamic Theme Synchronization
     const updateThemeLighting = () => {
       const isDark = document.documentElement.classList.contains("dark");
       if (isDark) {
         ambientLight.color.setHex(0x1e293b);
-        ambientLight.intensity = 1.1;
-        keyLight.intensity = 2.4;
-        frontFillLight.intensity = 1.2;
-        darkTitaniumMat.color.setHex(0x2e384d);
+        ambientLight.intensity = 1.25;
+        keyLight.intensity = 2.7;
+        emeraldRimLight.intensity = 2.6;
+        outerBezelMat.color.setHex(0x334155);
+        faceplateMat.color.setHex(0x1e293b);
+        sapphireGlassMat.opacity = 0.10;
       } else {
-        // High-end titanium / CAD studio lighting in Light mode
+        // High-end satin titanium in Light mode matching Reference Screenshot 2
         ambientLight.color.setHex(0xdbeafe);
-        ambientLight.intensity = 1.6;
-        keyLight.intensity = 2.6;
-        frontFillLight.intensity = 1.4;
-        darkTitaniumMat.color.setHex(0x475569);
+        ambientLight.intensity = 1.7;
+        keyLight.intensity = 2.8;
+        emeraldRimLight.intensity = 2.0;
+        outerBezelMat.color.setHex(0x64748b);
+        faceplateMat.color.setHex(0xe2e8f0);
+        sapphireGlassMat.opacity = 0.05;
       }
     };
     updateThemeLighting();
@@ -297,13 +314,11 @@ export default function HeroVessel3D() {
       attributeFilter: ["class"],
     });
 
-    // Initial orientation
-    rootGroup.rotation.x = 0.2;
-    rootGroup.rotation.y = -0.55;
-
-    // Mouse Tracking for subtle parallax
-    let targetRotX = 0.2;
-    let targetRotY = -0.55;
+    // ==========================================
+    // 5. MOUSE TRACKING & PARALLAX
+    // ==========================================
+    let targetRotX = 0.14;
+    let targetRotY = -0.22;
     let isTouch = false;
 
     const handlePointerMove = (e: MouseEvent) => {
@@ -312,8 +327,8 @@ export default function HeroVessel3D() {
       const normX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       const normY = ((e.clientY - rect.top) / rect.height) * 2 - 1;
 
-      targetRotY = -0.55 + normX * 0.35;
-      targetRotX = 0.2 - normY * 0.25;
+      targetRotY = -0.22 + normX * 0.42;
+      targetRotX = 0.14 - normY * 0.32;
     };
 
     const handleTouchStart = () => {
@@ -323,14 +338,16 @@ export default function HeroVessel3D() {
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
 
-    // Resize Observer
+    // Resize Observer with responsive camera distance
     const handleResize = () => {
       if (!container || !renderer || !camera) return;
       const width = container.clientWidth;
       const height = container.clientHeight;
       if (width === 0 || height === 0) return;
 
-      camera.aspect = width / height;
+      const currentAspect = width / height;
+      camera.aspect = currentAspect;
+      camera.position.z = computeCameraZ(currentAspect);
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
     };
@@ -338,7 +355,7 @@ export default function HeroVessel3D() {
     const resizeObserver = new ResizeObserver(handleResize);
     resizeObserver.observe(container);
 
-    // Intersection Observer (Performance: pause RAF when off-screen)
+    // Intersection Observer
     const intersectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -351,29 +368,45 @@ export default function HeroVessel3D() {
 
     setIsLoaded(true);
 
-    // Animation Loop
-    let clock = new THREE.Clock();
+    // ==========================================
+    // 6. ANIMATION LOOP
+    // ==========================================
+    const clock = new THREE.Clock();
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
-
       if (!isVisible) return;
 
       const elapsed = clock.getElapsedTime();
 
-      // Continuous extremely slow rotation if reduced motion is false
       if (!prefersReducedMotion) {
-        rootGroup.rotation.y += 0.0018;
-        targetRotY += 0.0018;
+        // Continuous subtle floating levitation
+        rootGroup.position.y = baseY + Math.sin(elapsed * 1.4) * 0.04;
+        rootGroup.rotation.z = Math.sin(elapsed * 0.9) * 0.015;
 
-        // Scanner ring vertical sweep
-        scanRing.position.y = Math.sin(elapsed * 1.2) * 1.5;
-        scanRing.rotation.z = elapsed * 0.2;
+        // Slow cinematic precession when mouse is still
+        targetRotY += 0.0009;
+
+        // Laser scanner vertical sweep across logo
+        laserLine.position.y = Math.sin(elapsed * 1.5) * (logoHeight * 0.48);
+        laserScanMat.opacity = 0.5 + Math.sin(elapsed * 3) * 0.35;
+
+        // Outer inspection node orbiting the emblem
+        const orbitAngle = elapsed * 0.8;
+        const orbitRadius = radius * 1.15;
+        nodeMesh.position.set(
+          Math.cos(orbitAngle) * orbitRadius,
+          Math.sin(orbitAngle) * orbitRadius,
+          0.05
+        );
+
+        // Counter-rotation of outer gauge ring
+        outerRing.rotation.z = -elapsed * 0.15;
       }
 
-      // Smooth lerp towards target mouse rotation
-      rootGroup.rotation.x += (targetRotX - rootGroup.rotation.x) * 0.04;
-      rootGroup.rotation.y += (targetRotY - rootGroup.rotation.y) * 0.04;
+      // Smooth lerp towards mouse parallax target
+      rootGroup.rotation.x += (targetRotX - rootGroup.rotation.x) * 0.05;
+      rootGroup.rotation.y += (targetRotY - rootGroup.rotation.y) * 0.05;
 
       renderer.render(scene, camera);
     };
@@ -388,7 +421,6 @@ export default function HeroVessel3D() {
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
 
-      // Memory cleanup
       scene.traverse((obj) => {
         if (obj instanceof THREE.Mesh) {
           obj.geometry.dispose();
@@ -399,6 +431,7 @@ export default function HeroVessel3D() {
           }
         }
       });
+      logoTexture.dispose();
       renderer.dispose();
     };
   }, [prefersReducedMotion]);
@@ -406,43 +439,14 @@ export default function HeroVessel3D() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full min-h-[460px] sm:min-h-[520px] lg:min-h-[640px] flex items-center justify-center pointer-events-auto"
-      aria-label="3D Pressure Vessel Inspection Component"
+      className="relative w-full h-full flex items-center justify-center pointer-events-auto"
+      aria-label="3D Uniqueiis Official Company Logo Presentation"
     >
       <canvas
         ref={canvasRef}
         className="w-full h-full object-contain cursor-grab active:cursor-grabbing transition-opacity duration-1000"
         style={{ opacity: isLoaded ? 1 : 0 }}
       />
-
-      {/* Floating Technical HUD Annotations */}
-      <div className="absolute inset-0 pointer-events-none select-none z-10 flex flex-col justify-between p-4 sm:p-6">
-        {/* Top-Right Tag */}
-        <div className="self-end inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/95 dark:bg-black/75 border border-slate-300 dark:border-white/20 backdrop-blur-md text-[11px] font-mono text-slate-800 dark:text-white shadow-md dark:shadow-glass">
-          <span className="w-2 h-2 rounded-full bg-emerald-accent animate-pulse" />
-          <span>VESSEL TAG: PV-401A • CL600</span>
-        </div>
-
-        {/* Mid-Left Annotation */}
-        <div className="self-start hidden sm:flex flex-col gap-1 p-2.5 rounded-lg bg-white/95 dark:bg-black/75 border border-slate-300 dark:border-white/20 backdrop-blur-md text-[10px] font-mono text-slate-800 dark:text-white shadow-md dark:shadow-glass max-w-[210px]">
-          <div className="text-emerald-deep dark:text-emerald-accent font-semibold tracking-wider flex items-center justify-between">
-            <span>CIRC WELD #W-01</span>
-            <span className="text-[9px] px-1 py-0.5 rounded bg-emerald-accent/20 text-emerald-600 dark:text-emerald-400 font-bold">UT 100%</span>
-          </div>
-          <div className="text-slate-600 dark:text-titanium-300">Thickness: 38.5 mm</div>
-          <div className="text-slate-600 dark:text-titanium-300">Alloy: SA-516 Gr 70</div>
-        </div>
-
-        {/* Bottom Technical Spec Strip */}
-        <div className="self-end flex items-center gap-4 px-3.5 py-1.5 rounded-lg bg-white/95 dark:bg-black/75 border border-slate-300 dark:border-white/20 backdrop-blur-md text-[10px] font-mono text-slate-800 dark:text-white shadow-md dark:shadow-glass">
-          <div className="flex items-center gap-1.5">
-            <span className="text-slate-600 dark:text-titanium-300">STATUS:</span>
-            <span className="text-emerald-600 dark:text-emerald-400 font-bold">VERIFIED</span>
-          </div>
-          <div className="w-px h-3 bg-slate-300 dark:bg-white/25" />
-          <div className="text-slate-600 dark:text-titanium-300 hidden sm:block">ASME SEC VIII DIV 1</div>
-        </div>
-      </div>
     </div>
   );
 }

@@ -79,7 +79,7 @@ export default function Services() {
               onClick={() => setSelectedService(service)}
               className="group relative rounded-3xl bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 hover:border-emerald-accent/60 dark:hover:border-emerald-accent/50 overflow-hidden transition-all duration-500 cursor-pointer flex flex-col justify-between shadow-sm hover:shadow-xl dark:hover:shadow-glass hover:-translate-y-1.5"
             >
-              {/* Large Relevant UIIS Image */}
+              {/* Large Relevant Uniqueiis Image */}
               <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-900">
                 <Image
                   src={service.visualImage}
@@ -102,7 +102,7 @@ export default function Services() {
 
                 <div className="absolute top-5 right-5">
                   <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-slate-200 border border-white/10">
-                    UIIS Core Scope
+                    Uniqueiis Core Scope
                   </span>
                 </div>
               </div>

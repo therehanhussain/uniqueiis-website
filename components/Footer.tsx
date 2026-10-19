@@ -18,61 +18,78 @@ export default function Footer() {
         {/* Top Brand & Philosophy Row */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-12 border-b border-slate-200 dark:border-white/10">
           
-          <div className="lg:col-span-5">
-            {/* Logo */}
-            <Link href="/" className="inline-flex items-center gap-3.5 group mb-6">
-              <div className="relative w-11 h-11 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/15 p-1 flex items-center justify-center overflow-hidden shadow-sm dark:shadow-none">
-                <Image
-                  src="/images/uiis-logo-transparent.png"
-                  alt="UIIS Official Logo"
-                  width={44}
-                  height={44}
-                  className="object-contain"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-extrabold text-slate-900 dark:text-white text-base tracking-tight uppercase leading-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                  Unique Inspection
-                </span>
-                <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-emerald-600 dark:text-emerald-accent">
-                  Integrated Services (UIIS)
-                </span>
-              </div>
-            </Link>
+          <div className="lg:col-span-5 flex flex-col items-center">
+            <div className="w-full max-w-sm flex flex-col items-center text-center">
+              {/* Logo */}
+              <Link href="/" className="inline-flex items-center gap-3.5 group mb-6">
+                <div className="relative w-11 h-11 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/15 p-1 flex items-center justify-center overflow-hidden shadow-sm dark:shadow-none">
+                  <Image
+                    src="/images/uiis-logo-transparent.png"
+                    alt="Uniqueiis Official Logo"
+                    width={44}
+                    height={44}
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="font-extrabold text-slate-900 dark:text-white text-base tracking-tight uppercase leading-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                    Unique Inspection
+                  </span>
+                  <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-emerald-600 dark:text-emerald-accent">
+                    Integrated Services (Uniqueiis)
+                  </span>
+                </div>
+              </Link>
 
-            <p className="text-sm text-slate-600 dark:text-titanium-400 max-w-sm leading-relaxed mb-6 font-normal">
-              Independent Third-Party Inspection, verification, technical support and quality assurance for critical industrial and infrastructure projects.
-            </p>
+              <p className="text-sm text-slate-600 dark:text-titanium-400 leading-relaxed mb-6 font-normal text-center">
+                Independent Third-Party Inspection, verification, technical support and quality assurance for critical industrial and infrastructure projects.
+              </p>
 
-            {/* Core Message */}
-            <div className="text-xs font-mono tracking-wider text-slate-800 dark:text-white flex flex-wrap items-center gap-2 mb-6">
-              <span className="text-emerald-600 dark:text-emerald-accent font-semibold">INSPECT</span>
-              <span className="text-slate-400 dark:text-titanium-500">•</span>
-              <span className="text-emerald-600 dark:text-emerald-accent font-semibold">ASSURE</span>
-              <span className="text-slate-400 dark:text-titanium-500">•</span>
-              <span className="text-emerald-600 dark:text-emerald-accent font-semibold">DELIVER</span>
-              <span className="text-slate-400 dark:text-titanium-500">•</span>
-              <span className="text-emerald-600 dark:text-emerald-accent font-semibold">ADD VALUE</span>
-            </div>
-
-            {/* Saudi Vision 2030 & ISO 9001 */}
-            <div className="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-white/5">
-              <div className="relative h-8 w-24 opacity-80 hover:opacity-100 transition-opacity">
-                <Image
-                  src="/images/uiis/vision_2030.png"
-                  alt="Saudi Vision 2030"
-                  fill
-                  className="object-contain object-left"
-                />
+              {/* Core Message */}
+              <div className="text-xs font-mono tracking-wider text-slate-800 dark:text-white flex flex-wrap items-center justify-center gap-2 mb-6">
+                <span className="text-emerald-600 dark:text-emerald-accent font-semibold">INSPECT</span>
+                <span className="text-slate-400 dark:text-titanium-500">•</span>
+                <span className="text-emerald-600 dark:text-emerald-accent font-semibold">ASSURE</span>
+                <span className="text-slate-400 dark:text-titanium-500">•</span>
+                <span className="text-emerald-600 dark:text-emerald-accent font-semibold">DELIVER</span>
+                <span className="text-slate-400 dark:text-titanium-500">•</span>
+                <span className="text-emerald-600 dark:text-emerald-accent font-semibold">ADD VALUE</span>
               </div>
-              <div className="h-5 w-px bg-slate-300 dark:bg-white/10" />
-              <div className="relative h-8 w-20 opacity-80 hover:opacity-100 transition-opacity">
-                <Image
-                  src="/images/uiis/iso_9001.png"
-                  alt="ISO 9001:2015 Certified"
-                  fill
-                  className="object-contain object-left"
-                />
+
+              {/* Saudi Vision 2030 & ISO 9001 */}
+              <div className="w-full flex items-center justify-center gap-4 pt-4 border-t border-slate-200 dark:border-white/5">
+                <div className="relative h-[60px] w-[90px] opacity-90 hover:opacity-100 transition-opacity">
+                  <Image
+                    src="/images/uiis/vision_2030.png"
+                    alt="Saudi Vision 2030"
+                    fill
+                    sizes="120px"
+                    unoptimized
+                    priority
+                    className="object-contain object-center dark:hidden"
+                  />
+                  <Image
+                    src="/images/uiis/vision_2030_dark.png"
+                    alt="Saudi Vision 2030"
+                    fill
+                    sizes="120px"
+                    unoptimized
+                    priority
+                    className="object-contain object-center hidden dark:block"
+                  />
+                </div>
+                <div className="h-7 w-px bg-slate-300 dark:bg-white/10" />
+                <div className="relative h-[60px] w-[60px] opacity-90 hover:opacity-100 transition-opacity">
+                  <Image
+                    src="/images/uiis/iso_9001.png"
+                    alt="ISO 9001:2015 Certified"
+                    fill
+                    sizes="100px"
+                    unoptimized
+                    priority
+                    className="object-contain object-center"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -111,7 +128,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link href="#about" className="hover:text-slate-900 dark:hover:text-white transition-colors">
-                    About UIIS
+                    About Uniqueiis
                   </Link>
                 </li>
               </ul>

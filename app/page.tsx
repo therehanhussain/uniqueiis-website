@@ -25,7 +25,7 @@ export default function Home() {
       {/* 03. Scroll Storytelling Trust Section: INSPECT • ASSURE • DELIVER • ADD VALUE */}
       <TrustPillars />
 
-      {/* 04. About UIIS: Split-Screen "INSPECTION WITHOUT COMPROMISE" */}
+      {/* 04. About Uniqueiis: Split-Screen "INSPECTION WITHOUT COMPROMISE" */}
       <About />
 
       {/* 05. 3D Inspection Verification: MATERIAL • WELD • THICKNESS • SURFACE • DIMENSION • QUALITY */}
@@ -49,7 +49,7 @@ export default function Home() {
       {/* 11. Global Network with 3D Engineering Globe & Deployment Hubs */}
       <GlobalNetwork />
 
-      {/* 12. UIIS Partner Ecosystem: 12 Verified Logos Marquee */}
+      {/* 12. Uniqueiis Partner Ecosystem: 12 Verified Logos Marquee */}
       <PartnerEcosystem />
 
       {/* 13. Contact: "LET'S BUILD A SAFER, STRONGER TOMORROW" & HQ */}

@@ -3,9 +3,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { motion, AnimatePresence } from "framer-motion";
-import { Globe, MapPin, Radio, Shield, CheckCircle, ArrowRight, Check, Box, FileText } from "lucide-react";
-import { GLOBAL_NETWORK, WORLDWIDE_NETWORK_COUNTRIES, COUNTRY_FLAG_CODES, NetworkHub } from "@/lib/data";
+import { Radio, Box, ImageIcon } from "lucide-react";
+import { GLOBAL_NETWORK, WORLDWIDE_NETWORK_COUNTRIES, NetworkHub } from "@/lib/data";
 
 const GlobalGlobe3D = dynamic(() => import("./three/GlobalGlobe3D"), {
   ssr: false,
@@ -24,31 +23,8 @@ const GlobalGlobe3D = dynamic(() => import("./three/GlobalGlobe3D"), {
 export default function GlobalNetwork() {
   const [activeHub, setActiveHub] = useState<NetworkHub>(GLOBAL_NETWORK[0]);
   const [activeRegionTab, setActiveRegionTab] = useState<"all" | "middleEast" | "asiaPacific" | "europe" | "americasAfrica">("all");
-  const [displayMode, setDisplayMode] = useState<"3d" | "pdf">("3d");
-
-  const getAllCountries = () => {
-    return [
-      ...WORLDWIDE_NETWORK_COUNTRIES.middleEast,
-      ...WORLDWIDE_NETWORK_COUNTRIES.asiaPacific,
-      ...WORLDWIDE_NETWORK_COUNTRIES.europe,
-      ...WORLDWIDE_NETWORK_COUNTRIES.americasAfrica,
-    ];
-  };
-
-  const getDisplayedCountries = () => {
-    switch (activeRegionTab) {
-      case "middleEast":
-        return WORLDWIDE_NETWORK_COUNTRIES.middleEast;
-      case "asiaPacific":
-        return WORLDWIDE_NETWORK_COUNTRIES.asiaPacific;
-      case "europe":
-        return WORLDWIDE_NETWORK_COUNTRIES.europe;
-      case "americasAfrica":
-        return WORLDWIDE_NETWORK_COUNTRIES.americasAfrica;
-      default:
-        return getAllCountries();
-    }
-  };
+  const [displayMode, setDisplayMode] = useState<"3d" | "infographic">("3d");
+  const [selectedCountry, setSelectedCountry] = useState<string>("Saudi Arabia");
 
   const networkPillars = [
     { title: "Dependable Inspection Services", desc: "Consistent execution standards across all vendor locations worldwide." },
@@ -72,7 +48,7 @@ export default function GlobalNetwork() {
         <div className="max-w-3xl mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Radio className="w-3.5 h-3.5 text-emerald-accent animate-pulse" />
-            <span>Our Worldwide Network • PDF Page 11</span>
+            <span>Our Worldwide Network</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
@@ -95,7 +71,7 @@ export default function GlobalNetwork() {
         <div className="rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-6 sm:p-10 lg:p-12 backdrop-blur-xl shadow-lg dark:shadow-glass mb-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* Left: 3D Global Network Globe / PDF Visual with Switcher */}
+            {/* Left: 3D Global Network Globe / Infographic Visual with Switcher */}
             <div className="lg:col-span-7 flex flex-col gap-3">
               <div className="flex items-center justify-between pb-1">
                 <span className="text-[11px] font-mono uppercase text-slate-500 dark:text-titanium-400 tracking-wider">
@@ -116,30 +92,44 @@ export default function GlobalNetwork() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => setDisplayMode("pdf")}
+                    onClick={() => setDisplayMode("infographic")}
                     className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all cursor-pointer ${
-                      displayMode === "pdf"
+                      displayMode === "infographic"
                         ? "bg-emerald-accent text-navy-950 font-bold shadow-sm"
                         : "text-slate-600 dark:text-titanium-400 hover:text-slate-900 dark:hover:text-white"
                     }`}
                   >
-                    <FileText className="w-3.5 h-3.5" />
-                    <span>PDF Graphic</span>
+                    <ImageIcon className="w-3.5 h-3.5" />
+                    <span>Network Infographic</span>
                   </button>
                 </div>
               </div>
 
               <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-slate-900 flex items-center justify-center">
                 {displayMode === "3d" ? (
-                  <GlobalGlobe3D />
+                  <GlobalGlobe3D
+                    selectedCountry={selectedCountry}
+                    onSelectCountry={(countryName) => {
+                      setSelectedCountry(countryName);
+                      for (const [regionKey, countries] of Object.entries(WORLDWIDE_NETWORK_COUNTRIES)) {
+                        if (countries.includes(countryName) && activeRegionTab !== "all" && activeRegionTab !== regionKey) {
+                           setActiveRegionTab(regionKey as any);
+                          break;
+                        }
+                      }
+                    }}
+                    activeRegion={activeRegionTab}
+                  />
                 ) : (
-                  <div className="relative w-full h-full p-3 flex items-center justify-center">
+                  <div className="relative w-full h-full p-2 sm:p-3 flex items-center justify-center bg-slate-100 dark:bg-slate-950/80">
                     <Image
-                      src="/images/uiis/worldwide_globe.jpg"
-                      alt="UIIS Worldwide Network Visual"
+                      src="/images/uiis/network_infographic.svg"
+                      alt="Uniqueiis Worldwide Network Infographic"
                       fill
+                      unoptimized
                       sizes="(max-width: 1024px) 100vw, 55vw"
                       className="object-contain"
+                      priority
                     />
                   </div>
                 )}
@@ -163,7 +153,22 @@ export default function GlobalNetwork() {
                       <button
                         key={hub.id}
                         type="button"
-                        onClick={() => setActiveHub(hub)}
+                        onClick={() => {
+                          setActiveHub(hub);
+                          if (hub.id === "hub-ksa") {
+                            setActiveRegionTab("middleEast");
+                            setSelectedCountry("Saudi Arabia");
+                          } else if (hub.id === "hub-asia") {
+                            setActiveRegionTab("asiaPacific");
+                            setSelectedCountry("Singapore");
+                          } else if (hub.id === "hub-europe") {
+                            setActiveRegionTab("europe");
+                            setSelectedCountry("Germany");
+                          } else if (hub.id === "hub-americas") {
+                            setActiveRegionTab("americasAfrica");
+                            setSelectedCountry("U.S.A.");
+                          }
+                        }}
                         className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 cursor-pointer ${
                           isActive
                             ? "bg-emerald-50 dark:bg-white/[0.06] border-emerald-accent shadow-sm dark:shadow-glass"
@@ -193,111 +198,6 @@ export default function GlobalNetwork() {
               </div>
             </div>
 
-          </div>
-        </div>
-
-        {/* Countries Represented in Worldwide Network (PDF Page 11) */}
-        <div className="rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 p-8 sm:p-10 mb-12 shadow-sm dark:shadow-none">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-emerald-deep dark:text-emerald-accent font-semibold block mb-1">
-                Global Network Coverage
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
-                Countries Represented in Worldwide Network
-              </h3>
-              <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-titanium-400 max-w-2xl">
-                As stated in the official UIIS company profile, international inspection and technical coordination is supported across key manufacturing corridors:
-              </p>
-            </div>
-
-            {/* Region Filter Tabs */}
-            <div className="flex flex-wrap gap-2">
-              <button
-                type="button"
-                onClick={() => setActiveRegionTab("all")}
-                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all cursor-pointer ${
-                  activeRegionTab === "all"
-                    ? "bg-slate-900 text-white dark:bg-white dark:text-navy-950 font-bold shadow-sm"
-                    : "bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-titanium-400 hover:text-slate-900 dark:hover:text-white"
-                }`}
-              >
-                All Regions ({getAllCountries().length})
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveRegionTab("middleEast")}
-                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all cursor-pointer ${
-                  activeRegionTab === "middleEast"
-                    ? "bg-emerald-deep text-white dark:bg-emerald-accent dark:text-navy-950 font-bold shadow-sm"
-                    : "bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-titanium-400 hover:text-slate-900 dark:hover:text-white"
-                }`}
-              >
-                Middle East ({WORLDWIDE_NETWORK_COUNTRIES.middleEast.length})
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveRegionTab("asiaPacific")}
-                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all cursor-pointer ${
-                  activeRegionTab === "asiaPacific"
-                    ? "bg-emerald-deep text-white dark:bg-emerald-accent dark:text-navy-950 font-bold shadow-sm"
-                    : "bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-titanium-400 hover:text-slate-900 dark:hover:text-white"
-                }`}
-              >
-                Asia Pacific ({WORLDWIDE_NETWORK_COUNTRIES.asiaPacific.length})
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveRegionTab("europe")}
-                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all cursor-pointer ${
-                  activeRegionTab === "europe"
-                    ? "bg-emerald-deep text-white dark:bg-emerald-accent dark:text-navy-950 font-bold shadow-sm"
-                    : "bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-titanium-400 hover:text-slate-900 dark:hover:text-white"
-                }`}
-              >
-                Europe ({WORLDWIDE_NETWORK_COUNTRIES.europe.length})
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveRegionTab("americasAfrica")}
-                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all cursor-pointer ${
-                  activeRegionTab === "americasAfrica"
-                    ? "bg-emerald-deep text-white dark:bg-emerald-accent dark:text-navy-950 font-bold shadow-sm"
-                    : "bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-titanium-400 hover:text-slate-900 dark:hover:text-white"
-                }`}
-              >
-                Americas & Africa ({WORLDWIDE_NETWORK_COUNTRIES.americasAfrica.length})
-              </button>
-            </div>
-          </div>
-
-          {/* Countries Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
-            {getDisplayedCountries().map((country, idx) => {
-              const flagCode = COUNTRY_FLAG_CODES[country];
-              return (
-                <div
-                  key={idx}
-                  className="px-3 py-2 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 text-xs text-slate-700 dark:text-titanium-200 flex items-center gap-2.5 hover:border-slate-300 dark:hover:border-white/20 transition-colors"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-accent/80 shrink-0" />
-                  {flagCode && (
-                    <div className="relative w-[22px] h-[15px] shrink-0 rounded-[3px] overflow-hidden border border-slate-300/80 dark:border-white/20 shadow-[0_1px_2px_rgba(0,0,0,0.06)] bg-slate-100 dark:bg-slate-800">
-                      <Image
-                        src={`/flags/${flagCode}.svg`}
-                        alt=""
-                        aria-hidden="true"
-                        width={22}
-                        height={15}
-                        className="w-full h-full object-cover object-center"
-                        loading="lazy"
-                      />
-                    </div>
-                  )}
-                  <span className="truncate font-medium">{country}</span>
-                </div>
-              );
-            })}
           </div>
         </div>
 

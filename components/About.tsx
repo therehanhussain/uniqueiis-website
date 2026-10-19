@@ -39,7 +39,7 @@ export default function About() {
             className="lg:col-span-6 flex flex-col justify-center"
           >
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-6 w-fit shadow-sm">
-              <span>About Unique Inspection (UIIS)</span>
+              <span>About Unique Inspection (Uniqueiis)</span>
             </div>
 
             <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-[-0.03em] text-slate-900 dark:text-white leading-[1.0] uppercase">
@@ -76,7 +76,7 @@ export default function About() {
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-slate-200 dark:border-white/15 bg-slate-900 shadow-xl group">
               <Image
                 src="/images/uiis/about_3d_inspection.jpg"
-                alt="UIIS 3D Industrial Flange and Pressure Vessel Laser Verification"
+                alt="Uniqueiis 3D Industrial Flange and Pressure Vessel Laser Verification"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -221,12 +221,12 @@ export default function About() {
               )}
             </div>
 
-            {/* Right: UIIS Emblem & Statement Box */}
+            {/* Right: Uniqueiis Emblem & Statement Box */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center p-8 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 text-center">
               <div className="relative w-32 h-32 mb-4">
                 <Image
                   src="/images/uiis-logo-transparent.png"
-                  alt="UIIS Official Logo"
+                  alt="Uniqueiis Official Logo"
                   fill
                   sizes="128px"
                   className="object-contain"
@@ -246,7 +246,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* 03. Core Values Grid (The 6 Values from PDF Page 3) */}
+        {/* 03. Core Values Grid */}
         <div>
           <div className="max-w-2xl mb-8">
             <span className="text-xs font-mono uppercase tracking-widest text-emerald-deep dark:text-emerald-accent font-semibold block mb-2">

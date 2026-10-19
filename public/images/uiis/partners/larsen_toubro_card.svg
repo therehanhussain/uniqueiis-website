@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 3600" fill="none">
+  <g fill="#0055A5">
+    <circle cx="1500" cy="1300" r="1150" stroke="#0055A5" stroke-width="220" fill="none" />
+    <path fill="#0055A5" d="M 1029.4164,286.80935 L 203.4893,1707.2444 L 1260.8356,1711.2344 L 1496.2449,1292.2859 L 750.11741,1292.2859 L 1404.4752,199.02965 L 1029.4164,286.80935 z " />
+    <path fill="#0055A5" d="M 1252.8557,2744.6409 L 1891.2535,1699.2644 L 1484.2748,1695.2744 L 1707.7142,1306.2508 L 2753.0905,1308.2458 L 2545.6112,1691.2845 L 2134.6427,1687.2945 L 1508.2148,2760.6008 L 1252.8557,2744.6409 z " />
+  </g>
+  <text x="1500" y="3150" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-weight="900" font-size="280" fill="#0055A5" letter-spacing="8px">LARSEN &amp; TOUBRO</text>
+</svg>

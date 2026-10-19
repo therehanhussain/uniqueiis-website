@@ -54,7 +54,7 @@ export default function NDTSection() {
         <div className="max-w-3xl mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-titanium-400 text-xs font-mono uppercase tracking-widest mb-4 shadow-sm">
             <Activity className="w-3.5 h-3.5 text-emerald-accent animate-pulse" />
-            <span>NDT Support Services (NSS) • PDF Page 7</span>
+            <span>NDT Support Services (NSS)</span>
           </div>
 
           <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-[-0.03em] text-slate-900 dark:text-white leading-[1.0] uppercase">
@@ -76,7 +76,7 @@ export default function NDTSection() {
           </div>
         </div>
 
-        {/* NDT Technician Hero Spotlight from PDF Page 7 */}
+        {/* NDT Technician Hero Spotlight */}
         <div className="mb-14 rounded-3xl bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 p-8 sm:p-12 backdrop-blur-xl shadow-lg dark:shadow-glass">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
@@ -113,11 +113,11 @@ export default function NDTSection() {
               </div>
             </div>
 
-            {/* Actual PDF Page 7 Technician Image */}
+            {/* NDT Technician Image */}
             <div className="lg:col-span-5 relative aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200 dark:border-white/15 shadow-xl bg-slate-900 group">
               <Image
-                src="/images/uiis/ndt/ndt_technician_hero.jpg"
-                alt="UIIS NDT Inspection Engineer on Industrial Pipeline"
+                src="/images/uiis/ndt/ndt_technician_3d.jpg"
+                alt="Uniqueiis NDT Inspection Engineer on Industrial Pipeline"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -227,7 +227,7 @@ export default function NDTSection() {
                   <div className="mt-6 p-3.5 rounded-xl bg-slate-50 dark:bg-black/40 border border-slate-200 dark:border-white/10 flex items-start gap-2.5 text-xs text-slate-600 dark:text-titanium-400">
                     <Info className="w-4 h-4 text-emerald-accent flex-shrink-0 mt-0.5" />
                     <p className="text-[11px] leading-relaxed">
-                      <strong className="text-slate-900 dark:text-white">Educational Visualization:</strong> Visual demonstration of {activeMethod.code} physical principles. For actual field inspection, UIIS certified Level II/III specialists execute standardized procedures per ASME Sec V / ASNT / ISO.
+                      <strong className="text-slate-900 dark:text-white">Educational Visualization:</strong> Visual demonstration of {activeMethod.code} physical principles. For actual field inspection, Uniqueiis certified Level II/III specialists execute standardized procedures per ASME Sec V / ASNT / ISO.
                     </p>
                   </div>
                 </div>
@@ -303,7 +303,7 @@ export default function NDTSection() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Key Benefits of NDT Strip from PDF Page 7 */}
+          {/* Key Benefits of NDT Strip */}
           <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
             <span className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-titanium-400 font-semibold block mb-4 text-center">
               Key Benefits of NDT Support
