@@ -21,14 +21,14 @@ export default function About() {
   const [activeTab, setActiveTab] = useState<"vision" | "mission" | "quality">("vision");
 
   return (
-    <section id="about" className="relative py-16 sm:py-20 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10">
+    <section id="about" className="relative pt-16 sm:pt-20 pb-12 sm:pb-16 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10">
       {/* Background Ambience */}
       <div className="absolute top-1/3 left-1/4 w-[700px] h-[500px] bg-emerald-accent/[0.03] rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* 01. Large Split-Screen Statement & Photography */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-16 sm:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-12 sm:mb-14">
           
           {/* Left Column: Massive Statement */}
           <motion.div
@@ -103,7 +103,7 @@ export default function About() {
         </div>
 
         {/* 02. Interactive Tabs: Vision / Mission / Quality Policy */}
-        <div className="mb-16 p-8 sm:p-10 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 backdrop-blur-xl shadow-sm dark:shadow-none">
+        <div className="mb-12 sm:mb-14 p-8 sm:p-10 rounded-3xl bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 backdrop-blur-xl shadow-sm dark:shadow-none">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             <div className="lg:col-span-7">

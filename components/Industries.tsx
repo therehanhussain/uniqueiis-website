@@ -50,7 +50,7 @@ export default function Industries() {
   return (
     <section
       id="industries"
-      className="relative py-16 sm:py-20 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
+      className="relative pt-16 sm:pt-20 pb-12 sm:pb-16 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
     >
       {/* Background radial accent */}
       <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-emerald-accent/[0.03] rounded-full blur-[180px] pointer-events-none" />
@@ -105,7 +105,7 @@ export default function Industries() {
         {/* Desktop Horizontal Storytelling Container (Framer-style horizontal scroll-track) */}
         <div
           ref={scrollContainerRef}
-          className="hidden lg:flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-8 pt-2"
+          className="hidden lg:flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-3 pt-2"
         >
           {INDUSTRIES.map((industry, index) => {
             const isSelected = activeIndex === index;

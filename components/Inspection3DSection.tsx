@@ -63,7 +63,7 @@ export default function Inspection3DSection() {
   return (
     <section
       id="inspection-3d"
-      className="relative py-16 sm:py-20 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
+      className="relative pt-16 sm:pt-20 pb-12 sm:pb-16 bg-[#F8FAFC] dark:bg-[#060A14] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
     >
       {/* Background glow & subtle engineering grid */}
       <div className="absolute top-1/2 left-1/3 w-[650px] h-[650px] bg-emerald-accent/[0.03] rounded-full blur-[180px] pointer-events-none" />

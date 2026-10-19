@@ -10,7 +10,7 @@ export default function PartnerEcosystem() {
   return (
     <section
       id="ecosystem"
-      className="relative py-16 sm:py-20 bg-[#F8FAFC] dark:bg-[#040812] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
+      className="relative pt-16 sm:pt-20 pb-12 sm:pb-16 bg-[#F8FAFC] dark:bg-[#040812] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10"
     >
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-emerald-accent/[0.02] rounded-full blur-[180px] pointer-events-none" />
@@ -65,7 +65,7 @@ export default function PartnerEcosystem() {
         </div>
 
         {/* Static Grid Presentation for Complete Inspection (12 Logos) */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5 mt-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5 mt-2 sm:mt-3">
           {PARTNER_ECOSYSTEM_LOGOS.map((partner, idx) => (
             <motion.div
               key={partner.id}
