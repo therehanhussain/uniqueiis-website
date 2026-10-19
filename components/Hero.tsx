@@ -91,71 +91,74 @@ export default function Hero() {
               Independent inspection, verification, technical support and quality assurance for critical industrial and infrastructure projects.
             </motion.p>
 
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-6 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
-            >
-              <Link
-                href="#contact"
-                className="w-full sm:w-auto px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide text-white bg-gradient-to-r from-emerald-deep to-emerald-accent shadow-glow-emerald hover:brightness-110 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group"
+            {/* CTAs & Accreditation Badges */}
+            <div className="w-full sm:w-fit flex flex-col items-center">
+              {/* CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-6 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
               >
-                <span>Talk to Engineers</span>
-                <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </Link>
-              <Link
-                href="#capabilities"
-                className="w-full sm:w-auto px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide text-slate-800 dark:text-white bg-slate-100 dark:bg-white/[0.05] border border-slate-300 dark:border-white/15 hover:bg-slate-200 dark:hover:bg-white/[0.1] hover:border-slate-400 dark:hover:border-white/30 backdrop-blur-md active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group"
+                <Link
+                  href="#contact"
+                  className="w-full sm:w-auto px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide text-white bg-gradient-to-r from-emerald-deep to-emerald-accent shadow-glow-emerald hover:brightness-110 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group"
+                >
+                  <span>Talk to Engineers</span>
+                  <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </Link>
+                <Link
+                  href="#capabilities"
+                  className="w-full sm:w-auto px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide text-slate-800 dark:text-white bg-slate-100 dark:bg-white/[0.05] border border-slate-300 dark:border-white/15 hover:bg-slate-200 dark:hover:bg-white/[0.1] hover:border-slate-400 dark:hover:border-white/30 backdrop-blur-md active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group"
+                >
+                  <span>Explore Capabilities</span>
+                  <ChevronRight className="w-4 h-4 text-slate-500 dark:text-titanium-400 group-hover:translate-x-0.5 group-hover:text-slate-900 dark:group-hover:text-white transition-all" />
+                </Link>
+              </motion.div>
+
+              {/* National Alignment & Quality Accreditation Logos */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-8 sm:mt-10 flex items-center justify-center gap-6 sm:gap-7 w-full"
               >
-                <span>Explore Capabilities</span>
-                <ChevronRight className="w-4 h-4 text-slate-500 dark:text-titanium-400 group-hover:translate-x-0.5 group-hover:text-slate-900 dark:group-hover:text-white transition-all" />
-              </Link>
-            </motion.div>
+                {/* Saudi Vision 2030 Logo */}
+                <div className="relative h-[50px] sm:h-[60px] w-[96px] sm:w-[120px] shrink-0 transition-transform duration-300 hover:scale-105">
+                  <Image
+                    src="/images/uiis/vision_2030.png"
+                    alt="Saudi Vision 2030"
+                    fill
+                    sizes="(max-width: 640px) 96px, 120px"
+                    className="object-contain object-center dark:hidden"
+                    priority
+                  />
+                  <Image
+                    src="/images/uiis/vision_2030_dark.png"
+                    alt="Saudi Vision 2030"
+                    fill
+                    sizes="(max-width: 640px) 96px, 120px"
+                    className="object-contain object-center hidden dark:block"
+                    priority
+                  />
+                </div>
 
-            {/* National Alignment & Quality Accreditation Logos */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-8 sm:mt-10 flex items-center gap-6 sm:gap-7"
-            >
-              {/* Saudi Vision 2030 Logo */}
-              <div className="relative h-11 sm:h-13 w-20 sm:w-24 shrink-0 transition-transform duration-300 hover:scale-105">
-                <Image
-                  src="/images/uiis/vision_2030.png"
-                  alt="Saudi Vision 2030"
-                  fill
-                  sizes="(max-width: 640px) 80px, 96px"
-                  className="object-contain object-left dark:hidden"
-                  priority
-                />
-                <Image
-                  src="/images/uiis/vision_2030_dark.png"
-                  alt="Saudi Vision 2030"
-                  fill
-                  sizes="(max-width: 640px) 80px, 96px"
-                  className="object-contain object-left hidden dark:block"
-                  priority
-                />
-              </div>
+                {/* Subtle Vertical Divider */}
+                <div className="h-8 sm:h-9 w-px bg-slate-300 dark:bg-white/15 shrink-0" />
 
-              {/* Subtle Vertical Divider */}
-              <div className="h-7 w-px bg-slate-300 dark:bg-white/15 shrink-0" />
-
-              {/* ISO 9001:2015 Certification Badge */}
-              <div className="relative h-11 sm:h-13 w-11 sm:w-13 shrink-0 transition-transform duration-300 hover:scale-105">
-                <Image
-                  src="/images/uiis/iso_9001.png"
-                  alt="ISO 9001:2015 Certified"
-                  fill
-                  sizes="(max-width: 640px) 44px, 52px"
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            </motion.div>
+                {/* ISO 9001:2015 Certification Badge */}
+                <div className="relative h-[52px] sm:h-[65px] w-[52px] sm:w-[65px] shrink-0 transition-transform duration-300 hover:scale-105">
+                  <Image
+                    src="/images/uiis/iso_9001.png"
+                    alt="ISO 9001:2015 Certified"
+                    fill
+                    sizes="(max-width: 640px) 52px, 65px"
+                    className="object-contain object-center"
+                    priority
+                  />
+                </div>
+              </motion.div>
+            </div>
           </div>
 
           {/* Right Column: 3D Industrial Inspection Component */}
