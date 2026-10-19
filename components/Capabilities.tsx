@@ -154,18 +154,18 @@ export default function Capabilities() {
                 }`}
               >
                 {/* Discipline Image with subtle zoom */}
-                <div className="relative h-40 w-full overflow-hidden bg-slate-900">
+                <div className="relative h-40 w-full overflow-hidden bg-slate-100 dark:bg-slate-900">
                   <Image
                     src={disc.image}
                     alt={disc.title}
                     fill
+                    unoptimized
+                    loading="eager"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060A14] via-[#060A14]/40 to-transparent" />
-                  
                   {/* Discipline Number */}
-                  <span className="absolute top-2.5 left-2.5 font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-emerald-accent border border-white/10">
+                  <span className="absolute top-2.5 left-2.5 font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-emerald-accent border border-white/10 shadow-sm">
                     {disc.number}
                   </span>
                 </div>
