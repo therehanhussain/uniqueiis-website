@@ -331,7 +331,7 @@ export const SERVICES: ServiceItem[] = [
       "Final inspection, marking, packing and pre-shipment release certification"
     ],
     stages: ["Kick-off Meeting", "Pre-Inspection Meeting", "Document Review", "Raw Material Inspection", "In-Process Inspection", "Final Inspection", "Final Acceptance Test", "Final Release", "Pre-Shipment Inspection", "Marking, Packing & Loading"],
-    visualImage: "/images/uiis/services/vid_3d.jpg",
+    visualImage: "/images/uiis/services/vid_real.jpg",
     accent: "emerald"
   },
   {
@@ -350,7 +350,7 @@ export const SERVICES: ServiceItem[] = [
       "Field and Desk Expediting with transparent progress reporting"
     ],
     stages: ["Manufacturing Progress", "Quality Follow-up", "Documentation Review", "Packing Readiness", "Supplier Coordination", "Delivery Status Reporting"],
-    visualImage: "/images/uiis/services/ved_3d.jpg",
+    visualImage: "/images/uiis/services/ved_real.jpg",
     accent: "blue"
   },
   {
@@ -369,7 +369,7 @@ export const SERVICES: ServiceItem[] = [
       "Electrical & Instrumentation Equipment installation & pre-commissioning verification"
     ],
     stages: ["Incoming Material Receipt", "Mechanical Equipment", "Piping & Relief Systems", "Welding & NDT", "E&I Verification", "Pre-Commissioning"],
-    visualImage: "/images/uiis/services/pid_3d.jpg",
+    visualImage: "/images/uiis/services/pid_real.jpg",
     accent: "emerald"
   },
   {
@@ -388,7 +388,7 @@ export const SERVICES: ServiceItem[] = [
       "Delivery Reliability scoring and comprehensive audit reports"
     ],
     stages: ["Existence Checks", "QMS Review", "Capacity Assessment", "Facility Control", "Workforce Assessment", "Audit Scorecard"],
-    visualImage: "/images/uiis/services/vsa_3d.jpg",
+    visualImage: "/images/uiis/services/vsa_real.jpg",
     accent: "amber"
   },
   {
@@ -407,7 +407,7 @@ export const SERVICES: ServiceItem[] = [
       "Machinery Operators, Equipment Operators & Logistics Support"
     ],
     stages: ["Technical Vetting", "Qualification Matching", "Mobilization", "On-Site Support"],
-    visualImage: "/images/uiis/services/pes_3d.jpg",
+    visualImage: "/images/uiis/services/pes_real.jpg",
     accent: "blue"
   },
   {
@@ -426,7 +426,7 @@ export const SERVICES: ServiceItem[] = [
       "Support during fabrication, construction and in-service turnaround inspection"
     ],
     stages: ["Procedure Review", "Level III Consulting", "Method Execution", "Certification Support"],
-    visualImage: "/images/uiis/services/nss_3d.jpg",
+    visualImage: "/images/uiis/services/nss_real.jpg",
     accent: "emerald"
   },
   {
@@ -445,7 +445,7 @@ export const SERVICES: ServiceItem[] = [
       "Pre-shipment release certification and handover verification"
     ],
     stages: ["Packaging Inspection", "Preservation Checks", "Markings Verification", "Loading Surveillance", "Release Endorsement"],
-    visualImage: "/images/uiis/services/pi_3d.jpg",
+    visualImage: "/images/uiis/services/pi_real.jpg",
     accent: "amber"
   }
 ];
