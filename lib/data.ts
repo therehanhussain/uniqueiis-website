@@ -703,14 +703,14 @@ export const INSPECTOR_QUALIFICATIONS = [
 ];
 
 export const INSPECTION_TOOLS: ToolEquipment[] = [
-  { id: "tool-1", name: "DFT Gauge", category: "Coating Inspection", description: "High-precision digital dry film thickness gauge for magnetic and non-magnetic metallic substrates.", image: "/images/uiis/tools/dft_gauge_clean.jpg" },
-  { id: "tool-2", name: "Ultrasonic Thickness Gauge", category: "NDT Equipment", description: "Precision digital acoustic gauge for residual wall thickness measurement and lamination checks.", image: "/images/uiis/tools/ultrasonic_thickness_gauge_clean.jpg" },
-  { id: "tool-3", name: "Coating Holiday Detector", category: "Coating Inspection", description: "High-voltage spark tester for locating microscopic pinholes and discontinuities in protective linings.", image: "/images/uiis/tools/coating_holiday_detector_clean.jpg" },
-  { id: "tool-4", name: "Welding Gauge Set", category: "Welding Inspection", description: "Calibrated bridge cam and fillet weld gauges for throat, bevel angle, undercut, and misalignment.", image: "/images/uiis/tools/welding_gauge_set_clean.jpg" },
-  { id: "tool-5", name: "Calibrated Measuring Tools", category: "Dimensional Control", description: "Vernier calipers, micrometers, and precision dial indicators with valid calibration certificates.", image: "/images/uiis/tools/calibrated_measuring_tools_clean.jpg" },
-  { id: "tool-6", name: "Borescope / Videoscope", category: "Remote Visual", description: "High-definition flexible optical videoscopes for internal pipe and vessel cavity inspection.", image: "/images/uiis/tools/borescope_videoscope_clean.jpg" },
-  { id: "tool-7", name: "NDT Equipment (UT / MT / PT)", category: "NDT Support", description: "Flaw detectors, magnetic electromagnetic yokes, and ultraviolet inspection kits.", image: "/images/uiis/tools/ndt_equipment_clean.jpg" },
-  { id: "tool-8", name: "Inspection Photography", category: "Reporting & Traceability", description: "High-resolution digital optical equipment for clear photographic evidence and dossier records.", image: "/images/uiis/tools/inspection_photography_clean.jpg" }
+  { id: "tool-1", name: "DFT Gauge", category: "Coating Inspection", description: "High-precision digital dry film thickness gauge for magnetic and non-magnetic metallic substrates.", image: "/images/uiis/tools/dft_gauge.jpg" },
+  { id: "tool-2", name: "Ultrasonic Thickness Gauge", category: "NDT Equipment", description: "Precision digital acoustic gauge for residual wall thickness measurement and lamination checks.", image: "/images/uiis/tools/ultrasonic_thickness_gauge.jpg" },
+  { id: "tool-3", name: "Coating Holiday Detector", category: "Coating Inspection", description: "High-voltage spark tester for locating microscopic pinholes and discontinuities in protective linings.", image: "/images/uiis/tools/coating_holiday_detector.jpg" },
+  { id: "tool-4", name: "Welding Gauge Set", category: "Welding Inspection", description: "Calibrated bridge cam and fillet weld gauges for throat, bevel angle, undercut, and misalignment.", image: "/images/uiis/tools/welding_gauge_set.jpg" },
+  { id: "tool-5", name: "Calibrated Measuring Tools", category: "Dimensional Control", description: "Vernier calipers, micrometers, and precision dial indicators with valid calibration certificates.", image: "/images/uiis/tools/calibrated_measuring_tools.jpg" },
+  { id: "tool-6", name: "Borescope / Videoscope", category: "Remote Visual", description: "High-definition flexible optical videoscopes for internal pipe and vessel cavity inspection.", image: "/images/uiis/tools/borescope_hd_3d.jpg" },
+  { id: "tool-7", name: "NDT Equipment (UT / MT / PT)", category: "NDT Support", description: "Flaw detectors, magnetic electromagnetic yokes, and ultraviolet inspection kits.", image: "/images/uiis/tools/ndt_equipment.jpg" },
+  { id: "tool-8", name: "Inspection Photography", category: "Reporting & Traceability", description: "High-resolution digital optical equipment for clear photographic evidence and dossier records.", image: "/images/uiis/tools/inspection_photography.jpg" }
 ];
 
 export const SERVICE_DELIVERY_MODEL = [
