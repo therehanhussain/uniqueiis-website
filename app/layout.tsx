@@ -82,6 +82,27 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "UNIQUE INSPECTION INTEGRATED SERVICES",
+  "alternateName": "Uniqueiis",
+  "url": "https://uniqueiis.com",
+  "logo": "https://uniqueiis.com/images/uiis-logo-transparent.png",
+  "image": "https://uniqueiis.com/images/uiis/logo_official_complete.png",
+  "description": "Independent Third-Party Inspection, verification, vendor audit, expediting, and NDT engineering services. Inspect • Assure • Deliver • Add Value.",
+  "slogan": "A Safer, Stronger Tomorrow — Inspect • Assure • Deliver • Add Value",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Building Number: 7952, Street 26, Madinat Al-Ummal Dist.",
+    "addressLocality": "Al-Khobar",
+    "postalCode": "3441",
+    "addressCountry": "SA",
+  },
+  "telephone": "+966 57 143 4288",
+  "email": "info@uniqueiis.com",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -89,6 +110,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="antialiased min-h-screen">
         <ThemeProvider
           attribute="class"
