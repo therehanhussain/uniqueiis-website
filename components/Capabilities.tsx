@@ -277,13 +277,14 @@ export default function Capabilities() {
             <div className="space-y-4">
               {INSPECTION_TOOLS.map((tool, idx) => (
                 <div key={idx} className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5">
-                  <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-slate-200 dark:border-white/10 flex-shrink-0 bg-slate-900">
+                  <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-slate-200 dark:border-white/10 flex-shrink-0 bg-white dark:bg-slate-900/60 p-1">
                     <Image
                       src={tool.image}
                       alt={tool.name}
                       fill
                       sizes="48px"
-                      className="object-cover object-center"
+                      unoptimized
+                      className="object-contain object-center"
                     />
                   </div>
                   <div className="flex-grow">
