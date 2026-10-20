@@ -286,6 +286,7 @@ export default function NDTSection() {
                           alt={activeMethod.fullName}
                           fill
                           sizes="500px"
+                          unoptimized
                           className="object-cover object-center"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#060A14]/75 via-transparent to-transparent" />

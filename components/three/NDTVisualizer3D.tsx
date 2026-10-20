@@ -56,15 +56,15 @@ export default function NDTVisualizer3D({ method }: Props) {
 
     // --- Common Base: Industrial Welded Steel Test Specimen ---
     const steelBlockMat = new THREE.MeshStandardMaterial({
-      color: 0x242e42,
-      metalness: 0.85,
-      roughness: 0.32,
+      color: 0x5a6d84, // Clean machined industrial steel
+      metalness: 0.72,
+      roughness: 0.30,
     });
 
     const weldMetalMat = new THREE.MeshStandardMaterial({
-      color: 0x334155,
-      metalness: 0.9,
-      roughness: 0.25,
+      color: 0x9fb3c8, // High-sheen welded metal crown / seam
+      metalness: 0.85,
+      roughness: 0.18,
     });
 
     // Main steel plates (Left plate & Right plate with bevel joint)
@@ -78,7 +78,7 @@ export default function NDTVisualizer3D({ method }: Props) {
     rightPlate.position.set(0.95, -0.225, 0);
     rootGroup.add(rightPlate);
 
-    // Center Butt-Weld Crown
+    // Center Butt-Weld Crown / Joint Seam
     const weldGeo = new THREE.CylinderGeometry(0.18, 0.28, 2.2, 24);
     const weldCrown = new THREE.Mesh(weldGeo, weldMetalMat);
     weldCrown.rotation.x = Math.PI / 2;
@@ -90,30 +90,88 @@ export default function NDTVisualizer3D({ method }: Props) {
     const utGroup = new THREE.Group();
     rootGroup.add(utGroup);
 
-    // Probe
-    const probeMat = new THREE.MeshStandardMaterial({
-      color: 0xd97706, // Brass/Gold probe body
-      metalness: 0.8,
-      roughness: 0.2,
-    });
-    const probeGeo = new THREE.BoxGeometry(0.35, 0.35, 0.4);
-    const utProbe = new THREE.Mesh(probeGeo, probeMat);
-    utProbe.position.set(-0.45, 0.2, 0);
-    utGroup.add(utProbe);
+    // Realistic Industrial Angle-Beam Ultrasonic Transducer Probe
+    const probeGroup = new THREE.Group();
+    probeGroup.position.set(-0.55, 0.0, 0.25);
+    utGroup.add(probeGroup);
 
-    // Wave pulses (3 sound wave arcs)
-    const waveMat = new THREE.MeshBasicMaterial({
-      color: 0x10b981,
+    // 1a. Angled Perspex / Rexolite Wedge Shoe (base of angle beam probe)
+    const wedgeGeo = new THREE.BoxGeometry(0.32, 0.14, 0.36);
+    const wedgeMat = new THREE.MeshStandardMaterial({
+      color: 0x38bdf8,
       transparent: true,
       opacity: 0.7,
-      wireframe: true,
+      metalness: 0.1,
+      roughness: 0.1,
+    });
+    const wedgeMesh = new THREE.Mesh(wedgeGeo, wedgeMat);
+    wedgeMesh.position.set(0, 0.07, 0);
+    probeGroup.add(wedgeMesh);
+
+    // 1b. Transducer Metal Housing (Gold/Brass anodized casing)
+    const probeBodyMat = new THREE.MeshStandardMaterial({
+      color: 0xf59e0b,
+      metalness: 0.78,
+      roughness: 0.22,
+    });
+    const probeBodyGeo = new THREE.BoxGeometry(0.28, 0.26, 0.32);
+    const probeBody = new THREE.Mesh(probeBodyGeo, probeBodyMat);
+    probeBody.rotation.z = -0.22; // angled beam transducer orientation
+    probeBody.position.set(-0.02, 0.24, 0);
+    probeGroup.add(probeBody);
+
+    // 1c. Lemo Coaxial Cable Connector on top
+    const connectorGeo = new THREE.CylinderGeometry(0.035, 0.035, 0.12, 16);
+    const connectorMat = new THREE.MeshStandardMaterial({
+      color: 0xe2e8f0,
+      metalness: 0.9,
+      roughness: 0.15,
+    });
+    const connector = new THREE.Mesh(connectorGeo, connectorMat);
+    connector.position.set(-0.04, 0.42, 0);
+    probeGroup.add(connector);
+
+    // 1d. Coaxial Cable Lead
+    const cableCurve = new THREE.QuadraticBezierCurve3(
+      new THREE.Vector3(-0.04, 0.48, 0),
+      new THREE.Vector3(-0.15, 0.8, -0.1),
+      new THREE.Vector3(-0.4, 0.95, -0.3)
+    );
+    const cableGeo = new THREE.TubeGeometry(cableCurve, 16, 0.016, 8, false);
+    const cableMat = new THREE.MeshStandardMaterial({
+      color: 0x0f172a,
+      roughness: 0.8,
+    });
+    const cableMesh = new THREE.Mesh(cableGeo, cableMat);
+    probeGroup.add(cableMesh);
+
+    // 2. Internal Weld Flaw / Defect (Root Planar Crack / Lack of Fusion)
+    const defectMat = new THREE.MeshStandardMaterial({
+      color: 0xef4444, // Vivid warning red flaw
+      emissive: 0xef4444,
+      emissiveIntensity: 0.85,
+      metalness: 0.4,
+      roughness: 0.3,
+    });
+    const defectGeo = new THREE.BoxGeometry(0.06, 0.14, 0.32);
+    const internalDefect = new THREE.Mesh(defectGeo, defectMat);
+    internalDefect.position.set(0, -0.16, 0.25);
+    utGroup.add(internalDefect);
+
+    // 3. Sound Beam & Wave Pulses (45-degree angled sound path toward defect)
+    const waveMat = new THREE.MeshBasicMaterial({
+      color: 0x10b981, // Emerald ultrasonic pulse waves
+      transparent: true,
+      opacity: 0.75,
+      side: THREE.DoubleSide,
     });
     const waveArcs: THREE.Mesh[] = [];
     for (let i = 0; i < 4; i++) {
-      const arcGeo = new THREE.RingGeometry(0.15 + i * 0.18, 0.18 + i * 0.18, 24);
-      const arc = new THREE.Mesh(arcGeo, waveMat);
-      arc.rotation.x = Math.PI / 2;
-      arc.position.set(-0.45 + i * 0.12, -0.05 - i * 0.08, 0);
+      const arcGeo = new THREE.RingGeometry(0.08 + i * 0.08, 0.12 + i * 0.08, 24);
+      const arc = new THREE.Mesh(arcGeo, waveMat.clone());
+      arc.rotation.y = Math.PI / 2;
+      arc.rotation.z = -Math.PI / 4; // 45 degree shear wave
+      arc.position.set(-0.55 + i * 0.12, 0.04 - i * 0.05, 0.25);
       utGroup.add(arc);
       waveArcs.push(arc);
     }
@@ -256,31 +314,53 @@ export default function NDTVisualizer3D({ method }: Props) {
     lightCone.position.set(-0.15, 0.35, 0);
     vtGroup.add(lightCone);
 
-    // Lighting
-    const ambient = new THREE.AmbientLight(0x0e1726, 0.9);
+    // --- Balanced Multi-Source Industrial Lighting ---
+    // 1. Ambient Light: Soft ambient base so dark tones are visible
+    const ambient = new THREE.AmbientLight(0xffffff, 0.75);
     scene.add(ambient);
 
-    const keyLight = new THREE.DirectionalLight(0xffffff, 2.0);
-    keyLight.position.set(4, 5, 4);
+    // 2. Hemisphere Light: Natural skylight (silver-blue) & ground reflection (slate)
+    const hemiLight = new THREE.HemisphereLight(0xdbeafe, 0x1e293b, 1.3);
+    hemiLight.position.set(0, 8, 0);
+    scene.add(hemiLight);
+
+    // 3. Key Directional Light: Crisp highlights on metallic surfaces
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.6);
+    keyLight.position.set(5, 7, 5);
     scene.add(keyLight);
 
-    const rimEmerald = new THREE.DirectionalLight(0x10b981, 2.2);
-    rimEmerald.position.set(-5, -2, -3);
+    // 4. Fill Directional Light: Cool industrial blue fill on left/rear surfaces
+    const fillLight = new THREE.DirectionalLight(0x93c5fd, 1.2);
+    fillLight.position.set(-5, 4, 3);
+    scene.add(fillLight);
+
+    // 5. Emerald Accent Rim: Distinct brand engineering edge highlight
+    const rimEmerald = new THREE.DirectionalLight(0x10b981, 1.6);
+    rimEmerald.position.set(-4, -2, -4);
     scene.add(rimEmerald);
+
+    // 6. Front Specular Fill: Directly illuminates inspection faces towards camera
+    const frontLight = new THREE.DirectionalLight(0xffffff, 0.9);
+    frontLight.position.set(0, 3, 6);
+    scene.add(frontLight);
 
     // Dynamic Theme Lighting Synchronization
     const updateThemeLighting = () => {
       const isDark = document.documentElement.classList.contains("dark");
       if (isDark) {
-        ambient.color.setHex(0x0e1726);
-        ambient.intensity = 0.9;
-        keyLight.intensity = 2.0;
-        steelBlockMat.color.setHex(0x242e42);
+        ambient.color.setHex(0xe2e8f0);
+        ambient.intensity = 0.75;
+        hemiLight.intensity = 1.3;
+        keyLight.intensity = 2.6;
+        steelBlockMat.color.setHex(0x52657a);
+        weldMetalMat.color.setHex(0x9fb3c8);
       } else {
-        ambient.color.setHex(0xdbeafe);
-        ambient.intensity = 1.5;
-        keyLight.intensity = 2.4;
-        steelBlockMat.color.setHex(0x334155);
+        ambient.color.setHex(0xffffff);
+        ambient.intensity = 0.95;
+        hemiLight.intensity = 1.4;
+        keyLight.intensity = 2.8;
+        steelBlockMat.color.setHex(0x64748b);
+        weldMetalMat.color.setHex(0xa8bccf);
       }
     };
     updateThemeLighting();
@@ -373,13 +453,18 @@ export default function NDTVisualizer3D({ method }: Props) {
       // Method-specific animations
       if (!prefersReducedMotion) {
         if (currentM === "UT") {
-          // Pulse waves
+          // Animate ultrasonic wave propagation along the 45-degree sound path
           waveArcs.forEach((arc, idx) => {
-            const waveOffset = (elapsed * 2 + idx * 0.3) % 1.2;
-            arc.scale.setScalar(0.7 + waveOffset * 0.5);
-            arc.position.x = -0.45 + waveOffset * 0.4;
-            arc.position.y = -0.05 - waveOffset * 0.25;
+            const waveOffset = (elapsed * 1.6 + idx * 0.25) % 1.0;
+            // From probe at (-0.55, 0.04, 0.25) to defect at (0, -0.16, 0.25)
+            arc.position.x = -0.55 + waveOffset * 0.55;
+            arc.position.y = 0.04 - waveOffset * 0.20;
+            arc.scale.setScalar(0.7 + waveOffset * 0.6);
+            const mat = arc.material as THREE.MeshBasicMaterial;
+            mat.opacity = Math.sin(waveOffset * Math.PI) * 0.85;
           });
+          // Defect echo pulse (blinks with detection feedback when waves arrive)
+          defectMat.emissiveIntensity = 0.5 + Math.sin(elapsed * 4.5) * 0.45;
         } else if (currentM === "RT") {
           // Subtle pulsation of radiation cone
           rtBeam.scale.set(
